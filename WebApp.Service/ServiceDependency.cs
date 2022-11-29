@@ -27,6 +27,7 @@ namespace WebApp.Service
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IDesignationService, DesignationService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IGenderService, GenderService>();
         }
     }
 }

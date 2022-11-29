@@ -19,7 +19,7 @@ namespace WebApp.Service.Models.Enrols
         public string Phone { get; set; }
         public string Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public Gender GenderId { get; set; }
+        public long? GenderId { get; set; }
         public string Address { get; set; }
         public int BasicSalary { get; set; }
         public bool Status { get; set; }
@@ -35,5 +35,6 @@ namespace WebApp.Service.Models.Enrols
         public string Avatar { get; set; }
         public IFormFile AvatarFile { get; set; }
         public UserModel User { get; set; }
+        public Gender Gender { get; set; }
     }
 }

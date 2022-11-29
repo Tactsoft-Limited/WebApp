@@ -21,7 +21,7 @@ namespace WebApp.Service.Models
         public CountryModel NationalityId { get; set; }
         public Religion ReligionId { get; set; }
         public string ReligionText { get; set; }
-        public Gender GenderId { get; set; }
+        //public Gender GenderId { get; set; }
         public MaritalStatus MaritalStatusId { get; set; }
 
         public string MobileNumber { get; set; }

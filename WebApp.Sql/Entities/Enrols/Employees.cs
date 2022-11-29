@@ -16,7 +16,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string Phone { get; set; }
         public string Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public Gender GenderId { get; set; }
+        public long? GenderId { get; set; }
         public string Address { get; set; }
         public int BasicSalary { get; set; }
 
@@ -34,5 +34,7 @@ namespace WebApp.Sql.Entities.Enrols
         public Department Department { get; set; }
         public Designation Designation { get; set; }
         public User  User { get; set; }
+
+        public Gender Gender { get; set; }
     }
 }

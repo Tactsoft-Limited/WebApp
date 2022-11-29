@@ -16,7 +16,7 @@ namespace WebApp.Sql.Entities.Enrols
         public long? NationalityId { get; set; }
         public Religion ReligionId { get; set; }
         public string ReligionText { get; set; }
-        public Gender GenderId { get; set; }
+        public long? GenderId { get; set; }
         public MaritalStatus MaritalStatusId { get; set; }
 
         public string MobileNumber { get; set; }
@@ -40,6 +40,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string Avatar { get; set; }
 
         public User User { get; set; }
+        public Gender Gender { get; set; }
         public Country Country { get; set; }
         public Country Nationality { get; set; }
         public State State { get; set; }
