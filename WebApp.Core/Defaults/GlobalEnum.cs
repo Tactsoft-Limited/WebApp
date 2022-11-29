@@ -38,17 +38,17 @@ namespace WebApp.Core
         Sms = 2,
         Email = 3
     }
-    public enum BloodGroup
-    {
-        A_Positive = 1,
-        A_Negative,
-        B_Positive,
-        B_Negative,
-        O_Positive,
-        O_Negative,
-        AB_Positive,
-        AB_Negative
-    }
+    //public enum BloodGroup
+    //{
+    //    A_Positive = 1,
+    //    A_Negative,
+    //    B_Positive,
+    //    B_Negative,
+    //    O_Positive,
+    //    O_Negative,
+    //    AB_Positive,
+    //    AB_Negative
+    //}
 
     public enum Religion
     {
