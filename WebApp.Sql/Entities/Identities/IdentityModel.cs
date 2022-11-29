@@ -33,6 +33,7 @@ namespace WebApp.Sql.Entities.Identities
             public IList<UserInformation> UserInformations { get; set; }
             public IList<FamilyInfo> FamilyInfos { get; set; }  
             public IList<Employees> Employees { get; set;}
+            public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
         }
 
         [Table("UserRoles")]
