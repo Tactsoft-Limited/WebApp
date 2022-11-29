@@ -17,7 +17,6 @@ namespace WebApp.Sql.Entities.Enrols
         public Religion ReligionId { get; set; }
         public string ReligionText { get; set; }
         public long? GenderId { get; set; }
-        public MaritalStatus MaritalStatusId { get; set; }
 
         public string MobileNumber { get; set; }
         public string Email { get; set; }
