@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using WebApp.Core;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
@@ -21,8 +22,7 @@ namespace WebApp.Service.Models
         public CountryModel NationalityId { get; set; }
         public Religion ReligionId { get; set; }
         public string ReligionText { get; set; }
-        //public Gender GenderId { get; set; }
-        //public MaritalStatus MaritalStatusId { get; set; }
+        public long? GenderId { get; set; }
 
         public string MobileNumber { get; set; }
         public string Email { get; set; }
@@ -48,6 +48,8 @@ namespace WebApp.Service.Models
         public string Address1 { get; set; }
 
         public UserModel User { get; set; }
+        public GenderModel Gender { get; set; }
+
         public IEnumerable<UserBasicInformationModel> UserBasicInformations { get; set; }
         public IEnumerable<UserHobbyInformationModel> UserHobbyInformations { get; set; }
         public IEnumerable<UserAddressInformationModel> UserAddressInformations { get; set; }
