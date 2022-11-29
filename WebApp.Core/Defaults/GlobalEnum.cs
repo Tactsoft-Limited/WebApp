@@ -11,13 +11,13 @@ namespace WebApp.Core
     //    Other = 3
     //}
 
-    //public enum MaritalStatus
-    //{
-    //    Single = 1,
-    //    Married = 2,
-    //    Divorced = 3,
-    //    Widow = 4
-    //}
+    public enum MaritalStatus
+    {
+        Single = 1,
+        Married = 2,
+        Divorced = 3,
+        Widow = 4
+    }
 
     public enum Status
     {
