@@ -2,5 +2,6 @@
 {
     public class Relation : BaseEntity
     {
+        public string RelationName { get; set; }
     }
 }

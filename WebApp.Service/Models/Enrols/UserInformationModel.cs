@@ -22,7 +22,7 @@ namespace WebApp.Service.Models
         public Religion ReligionId { get; set; }
         public string ReligionText { get; set; }
         //public Gender GenderId { get; set; }
-        public MaritalStatus MaritalStatusId { get; set; }
+        //public MaritalStatus MaritalStatusId { get; set; }
 
         public string MobileNumber { get; set; }
         public string Email { get; set; }
