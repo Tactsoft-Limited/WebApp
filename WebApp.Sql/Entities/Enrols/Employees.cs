@@ -36,5 +36,6 @@ namespace WebApp.Sql.Entities.Enrols
         public User  User { get; set; }
 
         public Gender Gender { get; set; }
+        public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
     }
 }
