@@ -369,88 +369,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("State");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Contact", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("OfficeEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OfficeMobileNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PermanentAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("PermanentCityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("PermanentCountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("PermanentStateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("PermanentZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonalEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonalMobileNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PresentAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("PresentCityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("PresentCountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("PresentStateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("PresentZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("PermanentCityId");
-
-                    b.HasIndex("PermanentCountryId");
-
-                    b.HasIndex("PermanentStateId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Contact");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
                 {
                     b.Property<long>("Id")
@@ -1491,44 +1409,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Contact", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Contacts")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.City", "City")
-                        .WithMany("Contacts")
-                        .HasForeignKey("PermanentCityId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
-                        .WithMany("Contacts")
-                        .HasForeignKey("PermanentCountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("Contacts")
-                        .HasForeignKey("PermanentStateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Contacts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("City");
-
-                    b.Navigation("Country");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("State");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Configurations.Department", "Department")
@@ -1813,15 +1693,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.City", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("UserInformations");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Country", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("States");
 
                     b.Navigation("UserInformationNationalities");
@@ -1845,15 +1721,11 @@ namespace WebApp.Sql.Migrations
                 {
                     b.Navigation("Citites");
 
-                    b.Navigation("Contacts");
-
                     b.Navigation("UserInformations");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("FunctionalDesignations");
                 });
 
@@ -1876,8 +1748,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+User", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("Employees");
 
                     b.Navigation("FamilyInfos");
