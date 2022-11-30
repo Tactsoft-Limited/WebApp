@@ -13,6 +13,7 @@ namespace WebApp.Sql.Entities.Configurations
         public string Name { get; set; }
         public Designation Designation { get; set; }    
         public IList<Employees> Employees { get; set; }
-        
+        public IList<DepartmentSetup> DepartmentSetups { get; set; }
+
     }
 }
