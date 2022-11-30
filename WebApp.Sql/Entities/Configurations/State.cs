@@ -12,5 +12,6 @@ namespace WebApp.Sql.Entities.Configurations
 
         public IList<City> Citites { get; set; }
         public IList<UserInformation> UserInformations { get; set; }
+        public IList<Contact> Contacts { get; set; }
     }
 }
