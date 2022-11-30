@@ -31,6 +31,7 @@ namespace WebApp.Sql.Entities.Identities
             public DateTime? UpdatedDateTimeUtc { get; set; }
 
             public IList<UserInformation> UserInformations { get; set; }
+            public IList<Contact> Contacts { get; set; }
             public IList<FamilyInfo> FamilyInfos { get; set; }  
             public IList<Employees> Employees { get; set;}
             public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
