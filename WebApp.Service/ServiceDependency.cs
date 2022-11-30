@@ -28,6 +28,12 @@ namespace WebApp.Service
             services.AddScoped<IDesignationService, DesignationService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IMeritalStatusService, MeritalStatusService>();
+            services.AddScoped<IBloodGroupService, BloodGroupService>();
+            services.AddScoped<IContactService, ContactService>();
+            
+
+
         }
     }
 }
