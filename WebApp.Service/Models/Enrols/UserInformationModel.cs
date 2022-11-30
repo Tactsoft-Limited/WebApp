@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using WebApp.Core;
 using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Sql.Entities.Configurations;
@@ -20,7 +19,7 @@ namespace WebApp.Service.Models
         public string Lastname { get; set; }
         public DateTime? BirthDate { get; set; }
         public CountryModel NationalityId { get; set; }
-        public Religion ReligionId { get; set; }
+        public long? ReligionId { get; set; }
         public string ReligionText { get; set; }
         public long? GenderId { get; set; }
 
