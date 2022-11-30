@@ -50,15 +50,15 @@ namespace WebApp.Core
     //    AB_Negative
     //}
 
-    public enum Religion
-    {
-        Islam=1,
-        Christian,
-        Hindu,
-        Shikh,
-        Ihudi,
-        Other
-    }
+    //public enum Religion
+    //{
+    //    Islam=1,
+    //    Christian,
+    //    Hindu,
+    //    Shikh,
+    //    Ihudi,
+    //    Other
+    //}
 
     public enum Relationship
     {
@@ -69,5 +69,5 @@ namespace WebApp.Core
         Husband,
         Wife,
         Others
-     }
+    }
 }

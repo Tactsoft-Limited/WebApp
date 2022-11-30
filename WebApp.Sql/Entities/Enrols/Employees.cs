@@ -38,5 +38,6 @@ namespace WebApp.Sql.Entities.Enrols
         public Gender Gender { get; set; }
         public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
         public IList<Supervisor> Supervisors { get; set; }
+        public IList<Contact> Contacts { get; set; }   
     }
 }
