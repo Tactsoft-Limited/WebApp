@@ -32,6 +32,7 @@ namespace WebApp.Service
             services.AddScoped<IBloodGroupService, BloodGroupService>();
             services.AddScoped<IContactService, ContactService>();
             
+            services.AddScoped<ISupervisorService, SupervisorService>();
 
 
         }
