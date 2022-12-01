@@ -81,9 +81,9 @@ namespace WebApp.Sql
 
         #region config
         public DbSet<Relation> Relations { get; set; }
-        public DbSet<Country> Country { get; set; }
-        public DbSet<State> State { get; set; }
-        public DbSet<City> City { get; set; }
+        public DbSet<Country> Countrys { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Citys { get; set; }
         #endregion
 
         public DbSet<Blog> Blogs { get; set; }
@@ -94,6 +94,22 @@ namespace WebApp.Sql
         public DbSet<UserProfessionalInformation> UserProfessionalInformations { get; set; }
         public DbSet<UserCertification> UserCertifications { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<BloodGroup> BloodGroups { get; set; }
+        public DbSet<Religion> Religions { get; set; }
+        public DbSet<MeritalStatus> MeritalStatuses { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<FamilyInfo> FamilyInfos { get; set; }
+        public DbSet<HobbyType> HobbyTypes { get; set; }
+        public DbSet<Supervisor> Supervisors { get; set; }
+        public DbSet<DepartmentSetup> DepartmentSetups { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Designation> Designations { get; set; }
+        public DbSet<Skill> Skills { get; set; }    
+
+
+
+
 
         #region Audit
         private void Audit()
