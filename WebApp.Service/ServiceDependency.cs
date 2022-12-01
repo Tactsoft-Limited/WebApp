@@ -8,6 +8,7 @@ using WebApp.Core.Interface;
 using WebApp.Service.Services;
 using WebApp.Service.Services.Configurations;
 using WebApp.Services;
+using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Service
 {
@@ -33,6 +34,7 @@ namespace WebApp.Service
             services.AddScoped<IContactService, ContactService>();
             
             services.AddScoped<ISupervisorService, SupervisorService>();
+            services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
 
 
         }
