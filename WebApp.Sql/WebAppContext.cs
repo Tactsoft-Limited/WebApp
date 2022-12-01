@@ -106,6 +106,7 @@ namespace WebApp.Sql
         public DbSet<Department> Departments { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<Skill> Skills { get; set; }    
+        public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
 
 
 
