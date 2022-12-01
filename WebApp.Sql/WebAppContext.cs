@@ -109,6 +109,7 @@ namespace WebApp.Sql
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Warning> Warnings { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
 
 
