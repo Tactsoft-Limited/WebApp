@@ -826,48 +826,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("FunctionalDesignation");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("ProficencyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProficencyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Languages");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
                 {
                     b.Property<long>("Id")
@@ -1933,30 +1891,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Languages")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Proficiency", "Proficiency")
-                        .WithMany("Languages")
-                        .HasForeignKey("ProficencyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Languages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("Proficiency");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -2232,11 +2166,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Proficiency", b =>
-                {
-                    b.Navigation("Languages");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.State", b =>
                 {
                     b.Navigation("BranchInfos");
@@ -2255,8 +2184,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("DepartmentSetups");
 
                     b.Navigation("FunctionalDesignations");
-
-                    b.Navigation("Languages");
 
                     b.Navigation("Supervisors");
                 });
@@ -2293,8 +2220,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
-
-                    b.Navigation("Languages");
 
                     b.Navigation("Supervisors");
 

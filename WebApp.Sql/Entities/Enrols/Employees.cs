@@ -40,7 +40,5 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Supervisor> Supervisors { get; set; }
         public IList<Contact> Contacts { get; set; }   
         public IList<DepartmentSetup> DepartmentSetups { get; set;}
-
-        public IList<Language> Languages { get; set; }
     }
 }
