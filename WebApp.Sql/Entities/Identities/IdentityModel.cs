@@ -43,6 +43,7 @@ namespace WebApp.Sql.Entities.Identities
            // public IList<Asset> Assets { get; set; }
             //public IList<Project> Projects { get; set; }
             public IList<Warning> Warnings { get; set; }
+            public IList<Language> Languages { get; set; }
 
         }
 
