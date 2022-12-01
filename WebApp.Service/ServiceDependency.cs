@@ -33,6 +33,7 @@ namespace WebApp.Service
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
             services.AddScoped<ISupervisorService, SupervisorService>();
+            services.AddScoped<IProficiencyService, ProficiencyService>();
 
 
         }
