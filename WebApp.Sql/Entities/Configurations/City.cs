@@ -10,5 +10,7 @@ namespace WebApp.Sql.Entities.Configurations
 
         public State State { get; set; }
         public IList<UserInformation> UserInformations { get; set; }
+        public IList<Contact> Contacts { get; set; }
+        public IList<BranchInfo> BranchInfos { get; set; }
     }
 }

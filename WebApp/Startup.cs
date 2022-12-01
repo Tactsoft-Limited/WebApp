@@ -113,6 +113,8 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
+            CreateMap<Contact, ContactModel>();
+            CreateMap<DepartmentSetup, DepartmentSetupModel>();
         }
     }
 }

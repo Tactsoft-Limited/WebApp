@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebApp.Core;
 using WebApp.Sql.Entities.Configurations;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
@@ -14,7 +13,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string Lastname { get; set; }
         public DateTime? BirthDate { get; set; }
         public long? NationalityId { get; set; }
-        public Religion ReligionId { get; set; }
+        public long? ReligionId { get; set; }
         public string ReligionText { get; set; }
         public long? GenderId { get; set; }
 
@@ -39,6 +38,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string Avatar { get; set; }
 
         public User User { get; set; }
+
         public Gender Gender { get; set; }
         public Country Country { get; set; }
         public Country Nationality { get; set; }

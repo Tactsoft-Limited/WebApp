@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221130153131_UpdateDepartment,Designation,SkilTableNames")]
+    partial class UpdateDepartmentDesignationSkilTableNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1179,58 +1181,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("UserSkills");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("WarningByEmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("WarningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("WarningDetails")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WarningType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Warning");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+Role", b =>
                 {
                     b.Property<long>("Id")
@@ -1999,23 +1949,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("UserInformation");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Warnings")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Warnings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+RoleClaim", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+Role", null)
@@ -2129,8 +2062,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("FunctionalDesignations");
 
                     b.Navigation("Supervisors");
-
-                    b.Navigation("Warnings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
@@ -2167,8 +2098,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Supervisors");
 
                     b.Navigation("UserInformations");
-
-                    b.Navigation("Warnings");
                 });
 #pragma warning restore 612, 618
         }
