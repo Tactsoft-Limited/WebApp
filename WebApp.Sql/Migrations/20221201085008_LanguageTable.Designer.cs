@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221201085008_LanguageTable")]
+    partial class LanguageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,6 +283,43 @@ namespace WebApp.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HobbyTypes");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Language", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ProficencyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProficencyId");
+
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MeritalStatus", b =>
@@ -824,48 +863,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("FunctionalDesignation");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("ProficencyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProficencyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
@@ -1764,6 +1761,23 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Designation");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Language", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("Languages")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.Proficiency", "Proficiency")
+                        .WithMany("Languages")
+                        .HasForeignKey("ProficencyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("Proficiency");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.State", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
@@ -1929,30 +1943,6 @@ namespace WebApp.Sql.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Languages")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Proficiency", "Proficiency")
-                        .WithMany("Languages")
-                        .HasForeignKey("ProficencyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Languages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("Proficiency");
 
                     b.Navigation("User");
                 });
@@ -2293,8 +2283,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
-
-                    b.Navigation("Languages");
 
                     b.Navigation("Supervisors");
 

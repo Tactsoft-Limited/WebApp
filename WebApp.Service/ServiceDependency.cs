@@ -34,6 +34,7 @@ namespace WebApp.Service
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
+            services.AddScoped<ILanguageService, LanguageService>();
 
 
         }
