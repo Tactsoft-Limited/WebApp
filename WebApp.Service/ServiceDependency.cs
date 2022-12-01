@@ -32,6 +32,10 @@ namespace WebApp.Service
             services.AddScoped<IMeritalStatusService, MeritalStatusService>();
             services.AddScoped<IBloodGroupService, BloodGroupService>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
+            services.AddScoped<ISupervisorService, SupervisorService>();
+            services.AddScoped<IWarningService, WarningService>();
+
             
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
