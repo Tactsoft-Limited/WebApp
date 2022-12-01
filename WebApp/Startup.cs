@@ -17,6 +17,7 @@ using WebApp.Service.Models.Enrols;
 using WebApp.Sql;
 using WebApp.Sql.Entities;
 using WebApp.Sql.Entities.Blogs;
+using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
@@ -113,10 +114,11 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
-            CreateMap<Contact, ContactModel>();
-            CreateMap<DepartmentSetup, DepartmentSetupModel>();
-            CreateMap<Warning, WarningModel>();
-            CreateMap<Supervisor, SupervisorModel>();
+            CreateMap<Contact, ContactModel>().ReverseMap();
+            CreateMap<DepartmentSetup, DepartmentSetupModel>().ReverseMap();
+            CreateMap<Warning, WarningModel>().ReverseMap();
+            CreateMap<Supervisor, SupervisorModel>().ReverseMap();
+            CreateMap<Religion, RelationModel>().ReverseMap();
         }
     }
 }
