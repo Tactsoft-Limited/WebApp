@@ -35,6 +35,8 @@ namespace WebApp.Sql.Entities.Identities
             public IList<Employees> Employees { get; set;}
             public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
             public IList<Supervisor> Supervisors { get; set; }
+            public IList<Warning> Warnings { get; set; }
+
         }
 
         [Table("UserRoles")]
