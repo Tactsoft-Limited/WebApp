@@ -817,18 +817,13 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserInformationId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserInformationId");
-
-                    b.ToTable("FunctionalDesignations");
+                    b.ToTable("FunctionalDesignation");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
@@ -1271,58 +1266,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("UserInformationId");
 
                     b.ToTable("UserSkills");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("WarningByEmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("WarningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("WarningDetails")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WarningType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Warnings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+Role", b =>
@@ -1943,11 +1886,6 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Enrols.UserInformation", null)
-                        .WithMany("FunctionalDesignations")
-                        .HasForeignKey("UserInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Employees");
 
                     b.Navigation("User");
@@ -2129,23 +2067,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("UserInformation");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Warnings")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Warnings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+RoleClaim", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+Role", null)
@@ -2265,14 +2186,10 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("FunctionalDesignations");
 
                     b.Navigation("Supervisors");
-
-                    b.Navigation("Warnings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-                    b.Navigation("FunctionalDesignations");
-
                     b.Navigation("Supervisors");
 
                     b.Navigation("UserAddressInformations");
@@ -2307,8 +2224,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Supervisors");
 
                     b.Navigation("UserInformations");
-
-                    b.Navigation("Warnings");
                 });
 #pragma warning restore 612, 618
         }
