@@ -114,6 +114,7 @@ namespace DotnetCoreApplicationBoilerplate
                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
             CreateMap<Contact, ContactModel>();
+            CreateMap<Supervisor, SupervisorModel>();
         }
     }
 }
