@@ -42,6 +42,8 @@ namespace WebApp.Sql.Entities.Identities
             //public IList<AssetType> AssetTypes { get; set; }
            // public IList<Asset> Assets { get; set; }
             //public IList<Project> Projects { get; set; }
+            public IList<Warning> Warnings { get; set; }
+
         }
 
         [Table("UserRoles")]

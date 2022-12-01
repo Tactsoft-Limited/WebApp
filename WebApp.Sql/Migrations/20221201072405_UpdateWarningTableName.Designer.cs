@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221201072405_UpdateWarningTableName")]
+    partial class UpdateWarningTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -308,33 +310,6 @@ namespace WebApp.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MeritalStatuses");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Proficiency", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("ProficiencyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Proficiencies");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Relation", b =>
@@ -817,18 +792,13 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserInformationId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserInformationId");
-
-                    b.ToTable("FunctionalDesignations");
+                    b.ToTable("FunctionalDesignation");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
@@ -1943,11 +1913,6 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Enrols.UserInformation", null)
-                        .WithMany("FunctionalDesignations")
-                        .HasForeignKey("UserInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Employees");
 
                     b.Navigation("User");
@@ -2271,8 +2236,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-                    b.Navigation("FunctionalDesignations");
-
                     b.Navigation("Supervisors");
 
                     b.Navigation("UserAddressInformations");
