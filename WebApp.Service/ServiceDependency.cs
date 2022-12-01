@@ -36,10 +36,11 @@ namespace WebApp.Service
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IWarningService, WarningService>();
 
-            
+
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
+            services.AddScoped<IReligionService, ReligionService>();
 
 
         }
