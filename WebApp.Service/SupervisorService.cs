@@ -24,8 +24,8 @@ namespace WebApp.Service
 
         public SupervisorService(IUnitOfWork unitOfWork,
               IMapper mapper,
-              IWebHostEnvironment webHostEnvironment,
-              IOptions<AppSettings> appSettings) : base(unitOfWork)
+              IWebHostEnvironment webHostEnvironment
+              ) : base(unitOfWork)
         {
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -40,7 +40,7 @@ namespace WebApp.Service
             return new SupervisorModel();
         }
 
-        public async Task<Paging<SupervisorModel>> GetFilterAsync(int pageIndex = 0, int pageSize = 10, string filterText1 = null, string filterText2 = null)
+        public async Task<Paging<SupervisorModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null, string filterText2 = null)
         {
             var data = await _unitOfWork.Repository<Supervisor>().GetPageAsync(pageIndex, pageSize,
                 s => ((string.IsNullOrEmpty(filterText1) || s.Employees.Name.Contains(filterText1) || string.IsNullOrEmpty(filterText2) || s.User.UserName.Contains(filterText2))),
