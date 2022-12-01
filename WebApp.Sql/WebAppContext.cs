@@ -84,6 +84,7 @@ namespace WebApp.Sql
         public DbSet<Country> Countrys { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Citys { get; set; }
+        public DbSet<Proficiency> Proficiencies { get; set; }
         #endregion
 
         public DbSet<Blog> Blogs { get; set; }
