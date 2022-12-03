@@ -55,6 +55,7 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Supervisor> Supervisors { get; set; }
         public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
         public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
+        public IList<BankInfo> BankInfos { get; set; }
     }
 
     //public enum Gender
