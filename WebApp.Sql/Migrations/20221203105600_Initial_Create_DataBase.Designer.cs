@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221203105600_Initial_Create_DataBase")]
+    partial class Initial_Create_DataBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1776,22 +1778,12 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserInformationId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("UserId");
 
-<<<<<<< HEAD
-                    b.HasIndex("UserInformationId");
-
-                    b.ToTable("FunctionalDesignations");
-                });
-
-=======
                     b.ToTable("FunctionalDesignations");
                 });
 
@@ -1835,7 +1827,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("JobStatuses");
                 });
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
                 {
                     b.Property<long>("Id")
@@ -1921,57 +1912,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("NewJobStatus");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Passport", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("IssueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PassportNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Passports");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Project", b =>
@@ -3482,18 +3422,11 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Enrols.UserInformation", null)
-                        .WithMany("FunctionalDesignations")
-                        .HasForeignKey("UserInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Employees");
 
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobStatus", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -3513,7 +3446,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Status");
                 });
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -3560,30 +3492,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Company");
 
                     b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Passport", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
-                        .WithMany("Passports")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Passports")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Passports")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Country");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Project", b =>
@@ -3880,8 +3788,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Contacts");
 
-                    b.Navigation("Passports");
-
                     b.Navigation("States");
 
                     b.Navigation("UserInformationNationalities");
@@ -4012,17 +3918,10 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("FunctionalDesignations");
 
-<<<<<<< HEAD
-                    b.Navigation("Languages");
-
-                    b.Navigation("Passports");
-
-=======
                     b.Navigation("JobStatus");
 
                     b.Navigation("Languages");
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("Supervisors");
 
                     b.Navigation("SupervisorSetups");
@@ -4041,13 +3940,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-<<<<<<< HEAD
-                    b.Navigation("FunctionalDesignations");
-
-                    b.Navigation("Supervisors");
-
-=======
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("UserAddressInformations");
 
                     b.Navigation("UserBasicInformations");
@@ -4089,11 +3981,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Languages");
 
-<<<<<<< HEAD
-                    b.Navigation("Passports");
-
-=======
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("Projects");
 
                     b.Navigation("Supervisors");

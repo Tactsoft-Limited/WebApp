@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebApp.Sql.Entities.Configurations;
+using WebApp.Sql.EntityConfiguration;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Entities.Enrols
@@ -51,8 +52,7 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<UserProfessionalInformation> UserProfessionalInformations { get; set; }
         public IList<UserCertification> UserCertifications { get; set; }
         public IList<UserSkill> UserSkills { get; set; }
-        public IList<Supervisor> Supervisors { get; set; }
-        public IList<FunctionalDesignation> FunctionalDesignations { get; set; }
+      
     }
 
     //public enum Gender

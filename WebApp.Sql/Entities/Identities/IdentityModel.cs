@@ -45,13 +45,18 @@ namespace WebApp.Sql.Entities.Identities
             public IList<Warning> Warnings { get; set; }
             public IList<Passport> Passports { get; set; }
             public IList<Language> Languages { get; set; }
+            public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
 
             public IList<AssetType> AssetTypes { get; set; }
             public IList<Asset> Assets { get; set; }
             public IList<Project> Projects { get; set; }
+<<<<<<< HEAD
             public IList<AssetRequisition> AssetRequisitions { get; set; }
             public IList<JobNewStatus> JobNewStatus { get; set; }
             public IList<DistributeAsset> DistributeAssets { get; set; }
+=======
+            public IList<BankInfo> BankInfos { get; set; }
+>>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
         }
 
         [Table("UserRoles")]
