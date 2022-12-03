@@ -86,6 +86,7 @@ namespace WebApp.Sql
         public DbSet<City> Citys { get; set; }
         public DbSet<Proficiency> Proficiencies { get; set; }
         public DbSet<Religion> Religions { get; set; }
+        public DbSet<Status> Statuses { get; set; }
         #endregion
 
         public DbSet<Blog> Blogs { get; set; }
@@ -110,6 +111,9 @@ namespace WebApp.Sql
         public DbSet<Warning> Warnings { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<DesignationSetup> DesignationSetups { get; set; }
+        public DbSet<JobStatus> JobStatuses { get; set; }
+        public DbSet<Education> Educations { get; set; }
 
 
 
