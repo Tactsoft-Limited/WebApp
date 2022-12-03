@@ -39,6 +39,7 @@ namespace WebApp.Service
             
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
+            services.AddScoped<IEmployeeManagementCategoryService, EmployeeManagementCategoryService>();
 
 
         }
