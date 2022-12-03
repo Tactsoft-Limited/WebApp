@@ -42,5 +42,8 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<DepartmentSetup> DepartmentSetups { get; set;}
         public IList<Warning> Warnings { get; set; }
         public IList<Language> Languages { get; set; }
+        public IList<DesignationSetup> DesignationSetups { get; set;}
+        public IList<JobStatus> JobStatus { get; set; }
+        public IList<Education> Educations { get; set; }
     }
 }
