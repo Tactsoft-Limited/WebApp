@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221203052958_Initial_create")]
+    partial class Initial_create
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1373,54 +1375,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("DepartmentSetups");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.EmployeeManagementCategory", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime>("EffectedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("EmployeeCategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UserInformationId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserInformationId");
-
-                    b.ToTable("EmployeeManagementCategories");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
@@ -3086,28 +3040,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.EmployeeManagementCategory", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("EmployeeManagementCategories")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("EmployeeManagementCategories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.UserInformation", null)
-                        .WithMany("EmployeeManagementCategories")
-                        .HasForeignKey("UserInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Configurations.Department", "Department")
@@ -3636,8 +3568,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("DepartmentSetups");
 
-                    b.Navigation("EmployeeManagementCategories");
-
                     b.Navigation("FunctionalDesignations");
 
                     b.Navigation("Languages");
@@ -3660,8 +3590,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-                    b.Navigation("EmployeeManagementCategories");
-
                     b.Navigation("FunctionalDesignations");
 
                     b.Navigation("Supervisors");
@@ -3694,8 +3622,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Contacts");
 
                     b.Navigation("DepartmentSetups");
-
-                    b.Navigation("EmployeeManagementCategories");
 
                     b.Navigation("Employees");
 

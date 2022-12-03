@@ -24,11 +24,11 @@ namespace WebApp.Sql.Entities.Enrols
         public State State { get; set; }
         public Country Country { get; set; }
         public City City { get; set; }
-        //public IList<AssetType> AssetTypes { get; set; }
-        //public IList<Project> Projects { get; set; }
-        //public IList<NewJobStatus> NewJobStatuses { get; set; }
-        //public IList<JobBaseStatus> JobBaseStatuses { get; set; }
-        //public IList<WorkflowMaping> WorkflowMapings { get; set; }
+        public IList<AssetType> AssetTypes { get; set; }
+        public IList<Project> Projects { get; set; }
+        public IList<NewJobStatus> NewJobStatuses { get; set; }
+        public IList<JobBaseStatus> JobBaseStatuses { get; set; }
+        public IList<WorkflowMaping> WorkflowMapings { get; set; }
     }
 
 }
