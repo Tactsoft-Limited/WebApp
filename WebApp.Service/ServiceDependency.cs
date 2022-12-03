@@ -41,6 +41,7 @@ namespace WebApp.Service
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
             services.AddScoped<IReligionService, ReligionService>();
+            services.AddScoped<IFamilyInfoService, FamilyInfoService>();
 
 
         }
