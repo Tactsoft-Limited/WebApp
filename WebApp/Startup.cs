@@ -117,6 +117,8 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<DepartmentSetup, DepartmentSetupModel>();
             CreateMap<Warning, WarningModel>();
             CreateMap<Supervisor, SupervisorModel>();
+            CreateMap<FunctionalDesignation, FunctionalDesignationModel>();
+            CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>();
         }
     }
 }
