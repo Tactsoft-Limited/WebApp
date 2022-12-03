@@ -111,6 +111,7 @@ namespace WebApp.Sql
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
+        public DbSet<BankInfo> BankInfos { get; set; }
 
 
 
