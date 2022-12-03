@@ -108,8 +108,12 @@ namespace WebApp.Sql
         public DbSet<Designation> Designations { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Warning> Warnings { get; set; }
+        public DbSet<Passport> Passports { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<AssetRequisition> AssetRequisitions { get; set; }
+        public DbSet<DistributeAsset> DistributeAssets { get; set; }
+        public DbSet<JobNewStatus> JobNewStatus { get; set; }
 
 
 

@@ -41,8 +41,12 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Contact> Contacts { get; set; }   
         public IList<DepartmentSetup> DepartmentSetups { get; set;}
         public IList<Warning> Warnings { get; set; }
+        public IList<Passport> Passports { get; set; }
         public IList<Language> Languages { get; set; }
         public IList<SupervisorSetup> SupervisorSetups { get; set; }
         public IList<WorkflowMaping> WorkflowMapings { get; set; }
+        public IList<AssetRequisition> AssetRequisitions { get; set; }
+        public IList<JobNewStatus> JobNewStatus { get; set; }
+        public IList<DistributeAsset> DistributeAssets { get; set; }
     }
 }
