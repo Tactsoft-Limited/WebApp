@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221201072405_UpdateWarningTableName")]
+    partial class UpdateWarningTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,41 +77,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.AwardType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AwardTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("AwardType");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.BloodGroup", b =>
                 {
                     b.Property<long>("Id")
@@ -167,38 +134,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("Citys");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.ClaimType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CliamTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("ClaimType");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Country", b =>
@@ -296,146 +231,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("Designations");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.DocumentCategorie", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("DocumentCategorieName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("DocumentCategorie");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("EducationGroupName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("EducationGroup");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("EducationTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("EducationType");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EmploymentCategorie", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("EmploymentCategorie");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Gender", b =>
                 {
                     b.Property<long>("Id")
@@ -461,41 +256,6 @@ namespace WebApp.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genders");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Grade", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("GradeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("GradePoint")
-                        .HasColumnType("real");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Grade");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.HobbyType", b =>
@@ -525,133 +285,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("HobbyTypes");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Institute", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("InstituteName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Institute");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.JobBaseStatus", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("BranchId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("JobBaseStatusCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobBaseStatusTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("JobBaseStatus");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.LeaveType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<float>("FullPayment")
-                        .HasColumnType("real");
-
-                    b.Property<float>("HalfPayment")
-                        .HasColumnType("real");
-
-                    b.Property<bool>("IsMeternal")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPartialLeave")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsUnpaid")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LeaveTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("LeaveType");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MeritalStatus", b =>
                 {
                     b.Property<long>("Id")
@@ -677,109 +310,6 @@ namespace WebApp.Sql.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MeritalStatuses");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NewApprovalWorkflowName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("NewApprovalWorkflow");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.OpeningYear", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("ClosingYear")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("OpeningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OpeningYearNumber")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("OpeningYear");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Proficiency", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("ProficiencyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Proficiencies");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Relation", b =>
@@ -893,359 +423,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("States");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.SupervisorSetup", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime>("EffectedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("SupervisorSetup");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.WarningType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("WarningTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("WarningType");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.WorkflowMaping", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("ApplicatonTypeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("BranchId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("DepartmentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("WorkflowId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("WorkflowId");
-
-                    b.ToTable("WorkflowMaping");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Asset", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AssetCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AssetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("AssetStatusId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("AssetTypeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("ManufacturerId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("ModelNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SerialNumber")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("SupplierId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("WarrantyPeriod")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AssetTypeId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Asset");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AssetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Attachment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("BranchId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AssetType");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BranchInfo", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("BranchAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BranchName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyStateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ContactNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CompanyStateId");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BranchInfo");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.CompanyInfo", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("StateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("StateId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CompanyInfo");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BranchInfo", b =>
@@ -1622,105 +799,6 @@ namespace WebApp.Sql.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("FunctionalDesignation");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.NewJobStatus", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("BranchId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("StatusCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StatusTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("NewJobStatus");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Project", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long?>("BranchId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CompanyId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<float>("Duration")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ProjectDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProjectName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Project");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Supervisor", b =>
@@ -2165,6 +1243,58 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("UserSkills");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("WarningByEmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("WarningDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WarningDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WarningType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Warnings");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+Role", b =>
                 {
                     b.Property<long>("Id")
@@ -2597,16 +1727,6 @@ namespace WebApp.Sql.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.AwardType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("AwardTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.City", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
@@ -2616,16 +1736,6 @@ namespace WebApp.Sql.Migrations
                         .IsRequired();
 
                     b.Navigation("State");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.ClaimType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("ClaimTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Department", b =>
@@ -2639,120 +1749,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Designation");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.DocumentCategorie", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("DocumentCategories")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("EducationGroups")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("EducationTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EmploymentCategorie", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("EmploymentCategories")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Grade", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("Grades")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Institute", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("Institutes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.JobBaseStatus", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
-                        .WithMany("JobBaseStatuses")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("JobBaseStatuses")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Project", "Project")
-                        .WithMany("JobBaseStatuses")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.LeaveType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("LeaveTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("NewApprovalWorkflows")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.OpeningYear", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("OpeningYears")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.State", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
@@ -2760,177 +1756,6 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.SupervisorSetup", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("SupervisorSetups")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("SupervisorSetups")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.WarningType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("WarningTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.WorkflowMaping", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
-                        .WithMany("WorkflowMapings")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("WorkflowMapings")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Department", "Department")
-                        .WithMany("WorkflowMapings")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("WorkflowMapings")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", "Workflow")
-                        .WithMany("WorkflowMapings")
-                        .HasForeignKey("WorkflowId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("Workflow");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Asset", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.AssetType", "AssetType")
-                        .WithMany("Assets")
-                        .HasForeignKey("AssetTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("Assets")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Assets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AssetType");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
-                        .WithMany("AssetTypes")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("AssetTypes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("AssetTypes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BranchInfo", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Configurations.City", "City")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("CompanyStateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("City");
-
-                    b.Navigation("Country");
-
-                    b.Navigation("State");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.CompanyInfo", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Configurations.City", "City")
-                        .WithMany("CompanyInfos")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
-                        .WithMany("CompanyInfos")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("CompanyInfos")
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("CompanyInfos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("City");
 
                     b.Navigation("Country");
                 });
@@ -3089,54 +1914,6 @@ namespace WebApp.Sql.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.NewJobStatus", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
-                        .WithMany("NewJobStatuses")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("NewJobStatuses")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Project", "Project")
-                        .WithMany("NewJobStatuses")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Project", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
-                        .WithMany("Projects")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Enrols.CompanyInfo", "Company")
-                        .WithMany("Projects")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Projects")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Company");
 
                     b.Navigation("User");
                 });
@@ -3317,6 +2094,23 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("UserInformation");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Warning", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("Warnings")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("Warnings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+RoleClaim", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+Role", null)
@@ -3384,10 +2178,6 @@ namespace WebApp.Sql.Migrations
                 {
                     b.Navigation("BranchInfos");
 
-                    b.Navigation("CompanyInfos");
-
-                    b.Navigation("BranchInfos");
-
                     b.Navigation("Contacts");
 
                     b.Navigation("UserInformations");
@@ -3395,10 +2185,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Country", b =>
                 {
-                    b.Navigation("BranchInfos");
-
-                    b.Navigation("CompanyInfos");
-
                     b.Navigation("BranchInfos");
 
                     b.Navigation("Contacts");
@@ -3415,8 +2201,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("DepartmentSetups");
 
                     b.Navigation("Employees");
-
-                    b.Navigation("WorkflowMapings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Designation", b =>
@@ -3426,81 +2210,15 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
-                {
-                    b.Navigation("WorkflowMapings");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.State", b =>
                 {
                     b.Navigation("BranchInfos");
 
                     b.Navigation("Citites");
 
-                    b.Navigation("CompanyInfos");
-
                     b.Navigation("Contacts");
 
                     b.Navigation("UserInformations");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
-                {
-                    b.Navigation("Assets");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BranchInfo", b =>
-                {
-                    b.Navigation("AssetTypes");
-
-                    b.Navigation("JobBaseStatuses");
-
-                    b.Navigation("NewJobStatuses");
-
-                    b.Navigation("Projects");
-
-                    b.Navigation("WorkflowMapings");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.CompanyInfo", b =>
-                {
-                    b.Navigation("Assets");
-
-                    b.Navigation("AssetTypes");
-
-                    b.Navigation("AwardTypes");
-
-                    b.Navigation("ClaimTypes");
-
-                    b.Navigation("DocumentCategories");
-
-                    b.Navigation("EducationGroups");
-
-                    b.Navigation("EducationTypes");
-
-                    b.Navigation("EmploymentCategories");
-
-                    b.Navigation("Grades");
-
-                    b.Navigation("Institutes");
-
-                    b.Navigation("JobBaseStatuses");
-
-                    b.Navigation("LeaveTypes");
-
-                    b.Navigation("NewApprovalWorkflows");
-
-                    b.Navigation("NewJobStatuses");
-
-                    b.Navigation("OpeningYears");
-
-                    b.Navigation("Projects");
-
-                    b.Navigation("SupervisorSetups");
-
-                    b.Navigation("WarningTypes");
-
-                    b.Navigation("WorkflowMapings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
@@ -3513,16 +2231,7 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Supervisors");
 
-                    b.Navigation("SupervisorSetups");
-
-                    b.Navigation("WorkflowMapings");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Project", b =>
-                {
-                    b.Navigation("JobBaseStatuses");
-
-                    b.Navigation("NewJobStatuses");
+                    b.Navigation("Warnings");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
@@ -3546,14 +2255,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+User", b =>
                 {
-                    b.Navigation("Assets");
-
-                    b.Navigation("AssetTypes");
-
-                    b.Navigation("BranchInfos");
-
-                    b.Navigation("CompanyInfos");
-
                     b.Navigation("BranchInfos");
 
                     b.Navigation("Contacts");
@@ -3566,11 +2267,11 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("FunctionalDesignations");
 
-                    b.Navigation("Projects");
-
                     b.Navigation("Supervisors");
 
                     b.Navigation("UserInformations");
+
+                    b.Navigation("Warnings");
                 });
 #pragma warning restore 612, 618
         }

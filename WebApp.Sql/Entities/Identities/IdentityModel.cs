@@ -39,6 +39,12 @@ namespace WebApp.Sql.Entities.Identities
             public IList<DepartmentSetup> DepartmentSetups { get; set; }
             public IList<CompanyInfo> CompanyInfos { get; set; }
             public IList<BranchInfo> BranchInfos { get; set; }
+            //public IList<AssetType> AssetTypes { get; set; }
+           // public IList<Asset> Assets { get; set; }
+            //public IList<Project> Projects { get; set; }
+            public IList<Warning> Warnings { get; set; }
+            public IList<Language> Languages { get; set; }
+
             public IList<AssetType> AssetTypes { get; set; }
             public IList<Asset> Assets { get; set; }
             public IList<Project> Projects { get; set; }
