@@ -46,6 +46,9 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<SupervisorSetup> SupervisorSetups { get; set; }
         public IList<WorkflowMaping> WorkflowMapings { get; set; }
         public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
+        public IList<DesignationSetup> DesignationSetups { get; set;}
+        public IList<JobStatus> JobStatus { get; set; }
+        public IList<Education> Educations { get; set; }
         public IList<BankInfo> BankInfos { get; set; }
     }
 }
