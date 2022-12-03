@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221201102011_EmployeeManagementCategory")]
+    partial class EmployeeManagementCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -657,7 +659,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("UserInformationId");
 
-                    b.ToTable("EmployeeManagementCategories");
+                    b.ToTable("EmployeeManagementCategory");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
