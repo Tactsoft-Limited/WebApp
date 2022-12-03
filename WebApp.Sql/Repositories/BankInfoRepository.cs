@@ -11,7 +11,7 @@ namespace WebApp.Sql.Repositories
 {
     public class BankInfoRepository : SqlRepository<BankInfo>, IBankInfoRepository
     {
-        public BankInfoRepository(WebAppContext dbContext) : base(dbContext)
+        public BankInfoRepository(WebAppContext Context) : base(Context)
         {
         }
     }
