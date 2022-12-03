@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Sql.Entities.Configurations;
+using WebApp.Sql.EntityConfiguration;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Entities.Enrols
@@ -41,5 +42,6 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Contact> Contacts { get; set; }   
         public IList<DepartmentSetup> DepartmentSetups { get; set;}
         public IList<Warning> Warnings { get; set; }
+        public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
     }
 }
