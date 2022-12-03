@@ -29,6 +29,7 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<NewJobStatus> NewJobStatuses { get; set; }
         public IList<JobBaseStatus> JobBaseStatuses { get; set; }
         public IList<WorkflowMaping> WorkflowMapings { get; set; }
+        public IList<BankInfo> BankInfos { get; set; }
     }
 
 }
