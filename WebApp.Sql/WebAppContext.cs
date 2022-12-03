@@ -111,6 +111,7 @@ namespace WebApp.Sql
         public DbSet<Warning> Warnings { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
         public DbSet<DesignationSetup> DesignationSetups { get; set; }
         public DbSet<JobStatus> JobStatuses { get; set; }
         public DbSet<Education> Educations { get; set; }

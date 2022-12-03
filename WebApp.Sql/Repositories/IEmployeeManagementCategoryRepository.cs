@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApp.Sql.Entities.Enrols
+namespace WebApp.Sql.Repositories
 {
-    public class OpeningYear:BaseEntity
+    public interface IEmployeeManagementCategoryRepository
     {
     }
 }
