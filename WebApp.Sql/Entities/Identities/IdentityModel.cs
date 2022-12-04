@@ -56,7 +56,10 @@ namespace WebApp.Sql.Entities.Identities
             public IList<DistributeAsset> DistributeAssets { get; set; }
 
             public IList<BankInfo> BankInfos { get; set; }
+            public IList<DesignationSetup> DesignationSetups { get; set; }
 
+            public IList<Document> Documents { get; set; }
+            public IList<AwardInfo> AwardInfos { get; set; }
         }
 
         [Table("UserRoles")]
