@@ -116,6 +116,8 @@ namespace WebApp.Sql
         public DbSet<JobStatus> JobStatuses { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<BankInfo> BankInfos { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<AwardInfo> AwardInfos { get; set; }
 
 
 
