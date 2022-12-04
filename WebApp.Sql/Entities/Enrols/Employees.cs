@@ -46,16 +46,13 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Language> Languages { get; set; }
         public IList<SupervisorSetup> SupervisorSetups { get; set; }
         public IList<WorkflowMaping> WorkflowMapings { get; set; }
-<<<<<<< HEAD
         public IList<AssetRequisition> AssetRequisitions { get; set; }
         public IList<JobNewStatus> JobNewStatus { get; set; }
         public IList<DistributeAsset> DistributeAssets { get; set; }
-=======
         public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
         public IList<DesignationSetup> DesignationSetups { get; set;}
         public IList<JobStatus> JobStatus { get; set; }
         public IList<Education> Educations { get; set; }
         public IList<BankInfo> BankInfos { get; set; }
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
     }
 }

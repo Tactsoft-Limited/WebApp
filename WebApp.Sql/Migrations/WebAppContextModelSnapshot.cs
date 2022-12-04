@@ -1785,15 +1785,11 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("UserId");
 
-<<<<<<< HEAD
                     b.HasIndex("UserInformationId");
 
                     b.ToTable("FunctionalDesignations");
                 });
 
-=======
-                    b.ToTable("FunctionalDesignations");
-                });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobStatus", b =>
                 {
@@ -1835,7 +1831,7 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("JobStatuses");
                 });
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
                 {
                     b.Property<long>("Id")
@@ -3492,8 +3488,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobStatus", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -3513,7 +3507,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Status");
                 });
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -4012,17 +4005,14 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("FunctionalDesignations");
 
-<<<<<<< HEAD
                     b.Navigation("Languages");
 
                     b.Navigation("Passports");
 
-=======
                     b.Navigation("JobStatus");
 
                     b.Navigation("Languages");
 
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("Supervisors");
 
                     b.Navigation("SupervisorSetups");
@@ -4041,13 +4031,10 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-<<<<<<< HEAD
                     b.Navigation("FunctionalDesignations");
 
                     b.Navigation("Supervisors");
 
-=======
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("UserAddressInformations");
 
                     b.Navigation("UserBasicInformations");
@@ -4089,11 +4076,8 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Languages");
 
-<<<<<<< HEAD
                     b.Navigation("Passports");
 
-=======
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
                     b.Navigation("Projects");
 
                     b.Navigation("Supervisors");
@@ -4102,7 +4086,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Warnings");
                 });
-#pragma warning restore 612, 618
         }
     }
 }

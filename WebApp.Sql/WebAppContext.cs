@@ -112,17 +112,14 @@ namespace WebApp.Sql
         public DbSet<Passport> Passports { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
-<<<<<<< HEAD
         public DbSet<AssetRequisition> AssetRequisitions { get; set; }
         public DbSet<DistributeAsset> DistributeAssets { get; set; }
         public DbSet<JobNewStatus> JobNewStatus { get; set; }
-=======
         public DbSet<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
         public DbSet<DesignationSetup> DesignationSetups { get; set; }
         public DbSet<JobStatus> JobStatuses { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<BankInfo> BankInfos { get; set; }
->>>>>>> 23dc92ec7cc454ca80fb9c13850f03c6c472523f
 
 
 
