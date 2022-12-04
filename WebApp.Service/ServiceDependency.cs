@@ -46,6 +46,8 @@ namespace WebApp.Service
             services.AddScoped<IBankInfoService, BankInfoService>();
 
             services.AddScoped<IStatusService, StatusService>();
+            services.AddScoped<IDesignationSetupService, DesignationSetupService>();
+
 
 
         }

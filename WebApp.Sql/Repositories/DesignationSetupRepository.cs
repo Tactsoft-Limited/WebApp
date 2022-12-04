@@ -14,5 +14,7 @@ namespace WebApp.Sql.Repositories
         public DesignationSetupRepository(WebAppContext Context) : base(Context)
         {
         }
+
+
     }
 }
