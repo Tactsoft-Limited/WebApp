@@ -127,6 +127,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<FunctionalDesignation, FunctionalDesignationModel>().ReverseMap();
             CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>().ReverseMap();
             CreateMap<DesignationSetup, DepartmentSetupModel>().ReverseMap();
+            CreateMap<Education, EducationModel>().ReverseMap();
         }
     }
 }
