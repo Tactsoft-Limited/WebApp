@@ -14,6 +14,7 @@ namespace WebApp.Sql.EntityConfiguration
         public void Configure(EntityTypeBuilder<DesignationSetup> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasOne(p => p.User).WithMany(t => t.DesignationSetups).HasForeignKey(t=>t.UserId);
             builder.HasOne(p => p.Employees).WithMany(t => t.DesignationSetups).HasForeignKey(f => f.EmployeeId);
             builder.HasOne(p => p.Designation).WithMany(t => t.DesignationSetups).HasForeignKey(f => f.DesignationId);
         }
