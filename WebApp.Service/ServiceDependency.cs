@@ -45,6 +45,8 @@ namespace WebApp.Service
             services.AddScoped<IEmployeeManagementCategoryService, EmployeeManagementCategoryService>();
 
             services.AddScoped<IStatusService, StatusService>();
+            services.AddScoped<IDesignationSetupService, DesignationSetupService>();
+
 
 
         }
