@@ -43,6 +43,7 @@ namespace WebApp.Service
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<IFamilyInfoService, FamilyInfoService>();
             services.AddScoped<IEmployeeManagementCategoryService, EmployeeManagementCategoryService>();
+            services.AddScoped<IBankInfoService, BankInfoService>();
 
             services.AddScoped<IStatusService, StatusService>();
             services.AddScoped<IDesignationSetupService, DesignationSetupService>();

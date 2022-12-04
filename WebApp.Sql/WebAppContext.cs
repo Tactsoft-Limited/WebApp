@@ -145,6 +145,8 @@ namespace WebApp.Sql
         public DbSet<JobStatus> JobStatuses { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<AwardInfo> AwardInfos { get; set; }
 
 
 
