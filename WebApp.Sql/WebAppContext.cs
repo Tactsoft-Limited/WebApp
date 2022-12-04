@@ -87,8 +87,40 @@ namespace WebApp.Sql
         public DbSet<Proficiency> Proficiencies { get; set; }
         public DbSet<Religion> Religions { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<AwardType> AwardTypes { get; set; }
+        public DbSet<BloodGroup> BloodGroups { get; set; }
+        public DbSet<ClaimType> ClaimTypes { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Designation> Designations { get; set; }
+        public DbSet<DocumentCategorie> DocumentCategorias { get; set; }
+        public DbSet<EducationGroup> EducationsGroups { get; set; }
+        public DbSet<EducationType> EducationsTypes { get; set; }
+        public DbSet<EmploymentCategorie> EmploymentCategories { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<HobbyType> HobbyTypes { get; set; }
+        public DbSet<Institute> Institutes { get; set; }
+        public DbSet<JobBaseStatus> JobBaseStatuses { get; set; }
+        public DbSet<LeaveType> LeaveTypes { get; set; }
+        public DbSet<MeritalStatus> MeritalStatuses { get; set; }
+        public DbSet<NewApprovalWorkflow> NewApprovalWorkflows { get; set; }
+        public DbSet<NewJobStatus> NewJobStatus { get; set; }
+        public DbSet<OpeningYear> OpeningYears { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<SupervisorSetup> SupervisorSetups { get; set; }
+        public DbSet<WarningType> WarningTypes { get; set; }
+        public DbSet<WorkflowMaping> WorkflowMaps { get; set; }
+
+
         #endregion
 
+        public DbSet<Asset> Assets { get; set; }
+        public DbSet<AssetRequisition> AssetsRequisitions { get; set; }
+        public DbSet<AssetType> AssetsTypes { get; set; }
+        public DbSet<BankInfo> BankInfos { get; set; }
+        public DbSet<BranchInfo> BranchInfos { get; set; }
+        public DbSet<CompanyInfo> CompanyInfos { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<UserInformation> UserInformations { get;set;}
         public DbSet<UserBasicInformation> UserBasicInformations { get; set; }
@@ -97,24 +129,22 @@ namespace WebApp.Sql
         public DbSet<UserProfessionalInformation> UserProfessionalInformations { get; set; }
         public DbSet<UserCertification> UserCertifications { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
-        public DbSet<Gender> Genders { get; set; }
-        public DbSet<BloodGroup> BloodGroups { get; set; }
-        public DbSet<MeritalStatus> MeritalStatuses { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Employees> Employees { get; set; }
         public DbSet<FamilyInfo> FamilyInfos { get; set; }
-        public DbSet<HobbyType> HobbyTypes { get; set; }
         public DbSet<Supervisor> Supervisors { get; set; }
         public DbSet<DepartmentSetup> DepartmentSetups { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Designation> Designations { get; set; }
-        public DbSet<Skill> Skills { get; set; }
         public DbSet<Warning> Warnings { get; set; }
+        public DbSet<Passport> Passports { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<AssetRequisition> AssetRequisitions { get; set; }
+        public DbSet<DistributeAsset> DistributeAssets { get; set; }
+        public DbSet<JobNewStatus> JobNewStatus { get; set; }
         public DbSet<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
         public DbSet<DesignationSetup> DesignationSetups { get; set; }
         public DbSet<JobStatus> JobStatuses { get; set; }
         public DbSet<Education> Educations { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DbSet<BankInfo> BankInfos { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<AwardInfo> AwardInfos { get; set; }

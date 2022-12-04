@@ -24,6 +24,8 @@ namespace WebApp.Sql.Entities.Enrols
         public CompanyInfo Company { get; set; }
         public AssetType AssetType { get; set; }
         public User User { get; set; }
+        public IList<AssetRequisition> AssetRequisitions { get; set; }
+        public IList<DistributeAsset> DistributeAssets { get; set; }
 
     }
 
