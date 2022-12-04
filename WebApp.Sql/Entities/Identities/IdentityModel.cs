@@ -50,6 +50,8 @@ namespace WebApp.Sql.Entities.Identities
             public IList<Asset> Assets { get; set; }
             public IList<Project> Projects { get; set; }
             public IList<BankInfo> BankInfos { get; set; }
+            public IList<Document> Documents { get; set; }
+            public IList<AwardInfo> AwardInfos { get; set; }
         }
 
         [Table("UserRoles")]
