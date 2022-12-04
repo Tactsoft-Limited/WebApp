@@ -56,6 +56,7 @@ namespace WebApp.Sql.Entities.Identities
             public IList<DistributeAsset> DistributeAssets { get; set; }
 
             public IList<BankInfo> BankInfos { get; set; }
+            public IList<DesignationSetup> DesignationSetups { get; set; }
 
         }
 
