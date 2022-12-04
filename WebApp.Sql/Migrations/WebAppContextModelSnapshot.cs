@@ -1112,6 +1112,54 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("Asset");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetRequisition", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long?>("ApprovalById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ApprovalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("AssetId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AssetRequisitions");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
                 {
                     b.Property<long>("Id")
@@ -1493,6 +1541,54 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("DesignationSetups");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.DistributeAsset", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long?>("AssetId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Enddate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DistributeAssets");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
                     b.Property<long>("Id")
@@ -1776,7 +1872,53 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserInformationId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("FunctionalDesignations");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobNewStatus", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTime>("EffectedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NextJobStatusType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("StatusType")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -1785,11 +1927,8 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserInformationId");
-
-                    b.ToTable("FunctionalDesignations");
+                    b.ToTable("JobNewStatus");
                 });
-
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobStatus", b =>
                 {
@@ -1830,7 +1969,6 @@ namespace WebApp.Sql.Migrations
 
                     b.ToTable("JobStatuses");
                 });
-
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Language", b =>
                 {
@@ -3201,6 +3339,30 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetRequisition", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Asset", "Assets")
+                        .WithMany("AssetRequisitions")
+                        .HasForeignKey("AssetId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("AssetRequisitions")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("AssetRequisitions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Assets");
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "Branch")
@@ -3390,6 +3552,30 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Employees");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.DistributeAsset", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Asset", "Assets")
+                        .WithMany("DistributeAssets")
+                        .HasForeignKey("AssetId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("DistributeAssets")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("DistributeAssets")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Assets");
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
@@ -3478,9 +3664,21 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Enrols.UserInformation", null)
-                        .WithMany("FunctionalDesignations")
-                        .HasForeignKey("UserInformationId")
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.JobNewStatus", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("JobNewStatus")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("JobNewStatus")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Employees");
@@ -3928,6 +4126,13 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("JobStatus");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Asset", b =>
+                {
+                    b.Navigation("AssetRequisitions");
+
+                    b.Navigation("DistributeAssets");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AssetType", b =>
                 {
                     b.Navigation("Assets");
@@ -3991,6 +4196,8 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Employees", b =>
                 {
+                    b.Navigation("AssetRequisitions");
+
                     b.Navigation("BankInfos");
 
                     b.Navigation("Contacts");
@@ -3999,19 +4206,21 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("DesignationSetups");
 
+                    b.Navigation("DistributeAssets");
+
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
 
                     b.Navigation("FunctionalDesignations");
 
-                    b.Navigation("Languages");
-
-                    b.Navigation("Passports");
+                    b.Navigation("JobNewStatus");
 
                     b.Navigation("JobStatus");
 
                     b.Navigation("Languages");
+
+                    b.Navigation("Passports");
 
                     b.Navigation("Supervisors");
 
@@ -4031,10 +4240,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.UserInformation", b =>
                 {
-                    b.Navigation("FunctionalDesignations");
-
-                    b.Navigation("Supervisors");
-
                     b.Navigation("UserAddressInformations");
 
                     b.Navigation("UserBasicInformations");
@@ -4052,6 +4257,8 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Identities.IdentityModel+User", b =>
                 {
+                    b.Navigation("AssetRequisitions");
+
                     b.Navigation("Assets");
 
                     b.Navigation("AssetTypes");
@@ -4066,6 +4273,8 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("DepartmentSetups");
 
+                    b.Navigation("DistributeAssets");
+
                     b.Navigation("EmployeeManagementCategories");
 
                     b.Navigation("Employees");
@@ -4073,6 +4282,8 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
+
+                    b.Navigation("JobNewStatus");
 
                     b.Navigation("Languages");
 
@@ -4086,6 +4297,7 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("Warnings");
                 });
+#pragma warning restore 612, 618
         }
     }
 }
