@@ -120,6 +120,12 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Supervisor, SupervisorModel>().ReverseMap();
             CreateMap<Religion, RelationModel>().ReverseMap();
             CreateMap<FamilyInfo, FamilyInfoModel>().ReverseMap();
+            CreateMap<Contact, ContactModel>();
+            CreateMap<DepartmentSetup, DepartmentSetupModel>();
+            CreateMap<Warning, WarningModel>();
+            CreateMap<Supervisor, SupervisorModel>();
+            CreateMap<FunctionalDesignation, FunctionalDesignationModel>();
+            CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace WebApp.Sql.Entities.Configurations
         public Designation Designation { get; set; }    
         public IList<Employees> Employees { get; set; }
         public IList<DepartmentSetup> DepartmentSetups { get; set; }
+        public IList<WorkflowMaping> WorkflowMapings { get; set; }
 
     }
 }
