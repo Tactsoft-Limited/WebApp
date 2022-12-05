@@ -49,9 +49,7 @@ namespace WebApp.Service
             services.AddScoped<IDesignationSetupService, DesignationSetupService>();
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IAwardInfoService, AwardInfoService>();
-
-
-
+            services.AddScoped<IDocumentService, DocumentService>();
         }
     }
 }
