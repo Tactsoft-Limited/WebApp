@@ -35,6 +35,11 @@ namespace WebApp.Service
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IWarningService, WarningService>();
+            services.AddScoped<IPassportService, PassportService>();
+            services.AddScoped<IJobNewStatusService, JobNewStatusService>();
+            services.AddScoped<IDistributeAssetService, DistributeAssetService>();
+            services.AddScoped<IAssetRequisitionService, AssetRequisitionService>();
+
 
 
             services.AddScoped<ISupervisorService, SupervisorService>();
