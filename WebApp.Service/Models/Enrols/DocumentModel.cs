@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static WebApp.Sql.Entities.Identities.IdentityModel;
+using WebApp.Sql.Entities.Enrols;
+using Microsoft.AspNetCore.Http;
+
+namespace WebApp.Service.Models.Enrols
+{
+    public class DocumentModel:MasterModel
+    {
+        public DocumentModel()
+        {
+
+        }
+        public long? UserId { get; set; }
+        public long? EmployeeId { get; set; }
+        public int DocumentTypeId { get; set; }
+        public string Attachment { get; set; }
+        public IFormFile AttachmentFile { get; set; }
+        public string Remark { get; set; }
+        public User User { get; set; }
+        public Employees Employees { get; set; }
+    }
+}
