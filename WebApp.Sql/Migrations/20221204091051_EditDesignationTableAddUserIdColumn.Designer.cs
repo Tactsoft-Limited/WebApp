@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221204091051_EditDesignationTableAddUserIdColumn")]
+    partial class EditDesignationTableAddUserIdColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1205,58 +1207,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("AssetsTypes");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Attachment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AwardName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("AwardTypeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Gift")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("PriceAmount")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AwardInfos");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BankInfo", b =>
                 {
                     b.Property<long>("Id")
@@ -1646,49 +1596,6 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("DistributeAssets");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Document", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Attachment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("DocumentTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Documents");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
                     b.Property<long>("Id")
@@ -1702,22 +1609,22 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<long?>("EducationTypeId")
+                    b.Property<long>("EducationTypeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("EgucationGroupId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("EmployeeId")
+                    b.Property<long>("EmployeeId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ForeignDegree")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("GradeId")
+                    b.Property<long>("GradeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("InstituteId")
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("InstituteId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("LastEducation")
@@ -1746,15 +1653,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EducationTypeId");
-
-                    b.HasIndex("EgucationGroupId");
-
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("GradeId");
-
-                    b.HasIndex("InstituteId");
 
                     b.ToTable("Educations");
                 });
@@ -3495,23 +3394,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("AwardInfos")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("AwardInfos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BankInfo", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "BranchInfo")
@@ -3708,59 +3590,15 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Document", b =>
-                {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("Documents")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
-                        .WithMany("Documents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
-                    b.HasOne("WebApp.Sql.Entities.Configurations.EducationType", "EducationType")
-                        .WithMany("Educations")
-                        .HasForeignKey("EducationTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.EducationGroup", "EducationGroup")
-                        .WithMany("Educations")
-                        .HasForeignKey("EgucationGroupId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("Educations")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Grade", "Grade")
-                        .WithMany("Educations")
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.Institute", "Institute")
-                        .WithMany("Educations")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("EducationGroup");
-
-                    b.Navigation("EducationType");
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Employees");
-
-                    b.Navigation("Grade");
-
-                    b.Navigation("Institute");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.EmployeeManagementCategory", b =>
@@ -4274,26 +4112,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
-                {
-                    b.Navigation("Educations");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
-                {
-                    b.Navigation("Educations");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Grade", b =>
-                {
-                    b.Navigation("Educations");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Institute", b =>
-                {
-                    b.Navigation("Educations");
-                });
-
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
                 {
                     b.Navigation("WorkflowMapings");
@@ -4394,8 +4212,6 @@ namespace WebApp.Sql.Migrations
                 {
                     b.Navigation("AssetRequisitions");
 
-                    b.Navigation("AwardInfos");
-
                     b.Navigation("BankInfos");
 
                     b.Navigation("Contacts");
@@ -4405,8 +4221,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("DesignationSetups");
 
                     b.Navigation("DistributeAssets");
-
-                    b.Navigation("Documents");
 
                     b.Navigation("Educations");
 
@@ -4463,8 +4277,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("AssetTypes");
 
-                    b.Navigation("AwardInfos");
-
                     b.Navigation("BankInfos");
 
                     b.Navigation("BranchInfos");
@@ -4478,8 +4290,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("DesignationSetups");
 
                     b.Navigation("DistributeAssets");
-
-                    b.Navigation("Documents");
 
                     b.Navigation("EmployeeManagementCategories");
 

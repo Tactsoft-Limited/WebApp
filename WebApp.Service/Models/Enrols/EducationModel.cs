@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Sql.Entities.Configurations;
-using WebApp.Sql.Migrations;
+using WebApp.Sql.Entities.Enrols;
 
-namespace WebApp.Sql.Entities.Enrols
+namespace WebApp.Service.Models.Enrols
 {
-    public class Education:BaseEntity
+    public class EducationModel:MasterModel
     {
-
+        public EducationModel()
+        {
+                
+        }
         public long? EmployeeId { get; set; }
         public long? EgucationGroupId { get; set; }
         public long? EducationTypeId { get; set; }
@@ -30,6 +32,5 @@ namespace WebApp.Sql.Entities.Enrols
         public EducationType EducationType { get; set; }
         public Grade Grade { get; set; }
         public Institute Institute { get; set; }
-
     }
 }

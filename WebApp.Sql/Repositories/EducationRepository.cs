@@ -9,12 +9,10 @@ using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Sql.Repositories
 {
-    public class DesignationSetupRepository : SqlRepository<DesignationSetup>, IDesignationSetupRepository
+    public class EducationRepository : SqlRepository<Education>, IEducationRepository
     {
-        public DesignationSetupRepository(WebAppContext Context) : base(Context)
+        public EducationRepository(WebAppContext Context) : base(Context)
         {
         }
-
-
     }
 }
