@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221204101007_EditEducationTableAddForeignKeyColumn")]
+    partial class EditEducationTableAddForeignKeyColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1702,22 +1704,22 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<long?>("EducationTypeId")
+                    b.Property<long>("EducationTypeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("EgucationGroupId")
+                    b.Property<long>("EgucationGroupId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("EmployeeId")
+                    b.Property<long>("EmployeeId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ForeignDegree")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("GradeId")
+                    b.Property<long>("GradeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("InstituteId")
+                    b.Property<long>("InstituteId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("LastEducation")
@@ -3730,27 +3732,32 @@ namespace WebApp.Sql.Migrations
                     b.HasOne("WebApp.Sql.Entities.Configurations.EducationType", "EducationType")
                         .WithMany("Educations")
                         .HasForeignKey("EducationTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("WebApp.Sql.Entities.Configurations.EducationGroup", "EducationGroup")
                         .WithMany("Educations")
                         .HasForeignKey("EgucationGroupId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("Educations")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("WebApp.Sql.Entities.Configurations.Grade", "Grade")
                         .WithMany("Educations")
                         .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("WebApp.Sql.Entities.Configurations.Institute", "Institute")
                         .WithMany("Educations")
                         .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("EducationGroup");
 

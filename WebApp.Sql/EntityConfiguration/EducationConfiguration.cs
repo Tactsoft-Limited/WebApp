@@ -15,6 +15,10 @@ namespace WebApp.Sql.EntityConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.HasOne(p=>p.Employees).WithMany(t=>t.Educations).HasForeignKey(f=>f.EmployeeId);
+            builder.HasOne(p => p.EducationGroup).WithMany(t => t.Educations).HasForeignKey(f => f.EgucationGroupId);
+            builder.HasOne(p => p.EducationType).WithMany(t => t.Educations).HasForeignKey(f => f.EducationTypeId);
+            builder.HasOne(p => p.Grade).WithMany(t => t.Educations).HasForeignKey(f => f.GradeId);
+            builder.HasOne(p => p.Institute).WithMany(t => t.Educations).HasForeignKey(f => f.InstituteId);
         }
     }
 }

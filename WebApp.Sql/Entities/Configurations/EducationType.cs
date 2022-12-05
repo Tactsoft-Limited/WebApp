@@ -13,5 +13,7 @@ namespace WebApp.Sql.Entities.Configurations
         public string EducationTypeName { get; set; }
         public bool Status { get; set; }
         public CompanyInfo Company { get; set; }
+
+        public IList<Education> Educations { get; set; }
     }
 }

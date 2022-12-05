@@ -47,6 +47,7 @@ namespace WebApp.Service
 
             services.AddScoped<IStatusService, StatusService>();
             services.AddScoped<IDesignationSetupService, DesignationSetupService>();
+            services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IAwardInfoService, AwardInfoService>();
 
 
