@@ -15,7 +15,7 @@ namespace WebApp.Service
     {
         Task<Paging<WarningModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<WarningModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null, string filterText2 = null);
-        Task<WarningModel> GetWarningDetailAsync(long supervisorId);
+        Task<WarningModel> GetWarningDetailAsync(long warningId);
         Task<WarningModel> AddWarningDetailAsync(WarningModel model);
         Task<WarningModel> UpdateWarningDetailAsync(long warningId, WarningModel model);
     }
