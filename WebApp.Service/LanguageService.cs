@@ -10,7 +10,7 @@ using WebApp.Core.Collections;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
 using WebApp.Sql.Entities.Enrols;
-using WebApp.Sql.Migrations;
+//using WebApp.Sql.Migrations;
 
 namespace WebApp.Service
 {
