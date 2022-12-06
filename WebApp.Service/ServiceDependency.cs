@@ -42,8 +42,30 @@ namespace WebApp.Service
             services.AddScoped<IProficiencyService, ProficiencyService>();
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<IFamilyInfoService, FamilyInfoService>();
-
-
+            services.AddScoped<ICompanyInfoService, CompanyInfoService>();
+            services.AddScoped<IBranchInfoService, BranchInfoService>();
+            services.AddScoped<IAssetTypeService, AssetTypeService>();
+            services.AddScoped<IAssetService, AssetService>();  
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<INewJobStatusService, NewJobStatusService>();
+            services.AddScoped<IJobBaseStatusService, JobBaseStatusService>();
+            services.AddScoped<IEducationGroupService, EducationGroupService>();
+            services.AddScoped<IEducationTypeService, EducationTypeService>();
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IInstituteService, InstituteService>();
+            services.AddScoped<IEmploymentCategoryService, EmploymentCategoryService>();
+            services.AddScoped<IDocumentCategoryService, DocumentCategoryService>();
+            services.AddScoped<IAwardTypeService, AwardTypeService>();
+            services.AddScoped<IWarningService, WarningService>();
+            services.AddScoped<ISupervisorService, SupervisorService>();
+            services.AddScoped<IWorkflowMappingService, WorkflowMappingService>();
+            services.AddScoped<IClaimTypeService, ClaimTypeService>();
+            services.AddScoped<IOpeningYearService, OpeningYearService>();
+            services.AddScoped<IGradeService, GradeService>();
+            services.AddScoped<IWarningTypeService, WarningTypeService>();
+            services.AddScoped<ISupervisorSetupService, SupervisorSetupService>();
+            services.AddScoped<INewApprovalWorkflowService, NewApprovalWorkflowService>();
+            services.AddScoped<ILeaveTypeService, LeaveTypeService>();
         }
     }
 }
