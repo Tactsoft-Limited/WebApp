@@ -6,7 +6,7 @@ using WebApp.Helpers.Base;
 using WebApp.Service;
 using WebApp.Service.Models.Enrols;
 using WebApp.Sql.Entities.Enrols;
-using WebApp.Sql.Migrations;
+//using WebApp.Sql.Migrations;
 
 namespace WebApp.Controllers
 {
