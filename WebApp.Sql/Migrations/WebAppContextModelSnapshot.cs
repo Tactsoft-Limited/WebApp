@@ -328,7 +328,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("DocumentCategorias");
+                    b.ToTable("DocumentCategorie");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
@@ -363,7 +363,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("EducationsGroups");
+                    b.ToTable("EducationGroup");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
@@ -398,7 +398,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("EducationsTypes");
+                    b.ToTable("EducationType");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EmploymentCategorie", b =>
@@ -1202,7 +1202,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AssetsTypes");
+                    b.ToTable("AssetType");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
