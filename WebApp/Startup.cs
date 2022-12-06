@@ -128,6 +128,12 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>().ReverseMap();
             CreateMap<DesignationSetup, DepartmentSetupModel>().ReverseMap();
             CreateMap<Education, EducationModel>().ReverseMap();
+            CreateMap<CompanyInfo, CompanyInfoModel>().ReverseMap();
+            CreateMap<BranchInfo, BranchInfoModel>().ReverseMap();
+            CreateMap<AssetType, AssetTypeModel>().ReverseMap();
+            CreateMap<Asset, AssetModel>().ReverseMap();
+            CreateMap<Project, ProjectModel>().ReverseMap();
+           
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Sql.Entities.Configurations;
-using WebApp.Sql.Migrations;
+//using WebApp.Sql.Migrations;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Entities.Enrols

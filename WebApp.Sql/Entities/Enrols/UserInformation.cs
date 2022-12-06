@@ -53,6 +53,7 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<UserCertification> UserCertifications { get; set; }
         public IList<UserSkill> UserSkills { get; set; }
       
+    
     }
 
     //public enum Gender
