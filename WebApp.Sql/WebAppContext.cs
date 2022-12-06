@@ -110,6 +110,28 @@ namespace WebApp.Sql
         public DbSet<Warning> Warnings { get; set; }
         public DbSet<FunctionalDesignation> FunctionalDesignations { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Asset> Assets { get; set; }
+        public DbSet<AssetType> AssetTypes { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<BranchInfo> BranchInfos { get; set; }
+        public DbSet<CompanyInfo> CompanyInfos { get; set; }
+        public DbSet<AwardType> AwardTypes { get; set; }
+        public DbSet<ClaimType> ClaimTypes { get; set; }
+        public DbSet<DocumentCategorie> DocumentCategories { get; set; }
+        public DbSet<EducationGroup> EducationGroups { get; set; }
+        public DbSet<EducationType> EducationTypes { get; set; }
+        public DbSet<EmploymentCategorie> EmploymentCategories { get; set; }    
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Institute> Institutes  { get; set; }
+        public DbSet<JobBaseStatus> JobBaseStatuses { get; set; }
+        public DbSet<LeaveType> LeaveTypes { get; set; }
+        public DbSet<NewApprovalWorkflow> NewApprovalWorkflows { get; set; }
+        public DbSet<NewJobStatus> NewJobStatuses { get; set; }
+        public DbSet<OpeningYear> OpeningYears { get; set; }
+        public DbSet<WarningType> WarningTypes { get; set; }
+        public DbSet<WorkflowMaping> WorkflowMaps { get; set; }
+
+
 
 
 
