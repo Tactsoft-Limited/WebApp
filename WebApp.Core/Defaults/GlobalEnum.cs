@@ -19,18 +19,18 @@ namespace WebApp.Core
     //    Widow = 4
     //}
 
-    public enum Status
-    {
-        Initial = 1,
-        Pending,
-        NoAssigned,
-        InProgress,
-        DonePayment,
-        Reverted,
-        Failed,
-        Completed,
-        Downloaded
-    }
+    //public enum Status
+    //{
+    //    Initial = 1,
+    //    Pending,
+    //    NoAssigned,
+    //    InProgress,
+    //    DonePayment,
+    //    Reverted,
+    //    Failed,
+    //    Completed,
+    //    Downloaded
+    //}
 
     public enum MessageType : int
     {
