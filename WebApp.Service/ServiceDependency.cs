@@ -35,6 +35,11 @@ namespace WebApp.Service
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IWarningService, WarningService>();
+            services.AddScoped<IPassportService, PassportService>();
+            services.AddScoped<IJobNewStatusService, JobNewStatusService>();
+            services.AddScoped<IDistributeAssetService, DistributeAssetService>();
+            services.AddScoped<IAssetRequisitionService, AssetRequisitionService>();
+
 
 
             services.AddScoped<ISupervisorService, SupervisorService>();
@@ -42,6 +47,14 @@ namespace WebApp.Service
             services.AddScoped<IProficiencyService, ProficiencyService>();
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<IFamilyInfoService, FamilyInfoService>();
+            services.AddScoped<IEmployeeManagementCategoryService, EmployeeManagementCategoryService>();
+            services.AddScoped<IBankInfoService, BankInfoService>();
+
+            services.AddScoped<IStatusService, StatusService>();
+            services.AddScoped<IDesignationSetupService, DesignationSetupService>();
+            services.AddScoped<IEducationService, EducationService>();
+            services.AddScoped<IAwardInfoService, AwardInfoService>();
+            services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<ICompanyInfoService, CompanyInfoService>();
             services.AddScoped<IBranchInfoService, BranchInfoService>();
             services.AddScoped<IAssetTypeService, AssetTypeService>();

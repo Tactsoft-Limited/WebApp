@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Sql.Entities.Configurations;
+using WebApp.Sql.EntityConfiguration;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 
 namespace WebApp.Sql.Entities.Enrols
@@ -41,8 +42,19 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<Contact> Contacts { get; set; }   
         public IList<DepartmentSetup> DepartmentSetups { get; set;}
         public IList<Warning> Warnings { get; set; }
+        public IList<Passport> Passports { get; set; }
         public IList<Language> Languages { get; set; }
         public IList<SupervisorSetup> SupervisorSetups { get; set; }
         public IList<WorkflowMaping> WorkflowMapings { get; set; }
+        public IList<AssetRequisition> AssetRequisitions { get; set; }
+        public IList<JobNewStatus> JobNewStatus { get; set; }
+        public IList<DistributeAsset> DistributeAssets { get; set; }
+        public IList<EmployeeManagementCategory> EmployeeManagementCategories { get; set; }
+        public IList<DesignationSetup> DesignationSetups { get; set;}
+        public IList<JobStatus> JobStatus { get; set; }
+        public IList<Education> Educations { get; set; }
+        public IList<BankInfo> BankInfos { get; set; }
+        public IList<Document> Documents { get; set; }
+        public IList<AwardInfo> AwardInfos { get; set; }
     }
 }

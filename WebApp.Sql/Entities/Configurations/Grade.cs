@@ -13,5 +13,8 @@ namespace WebApp.Sql.Entities.Configurations
         public string GradeName { get; set; }
         public float GradePoint { get; set; }
         public CompanyInfo Company { get; set; }
+
+        public IList<Education> Educations { get; set; }
+
     }
 }
