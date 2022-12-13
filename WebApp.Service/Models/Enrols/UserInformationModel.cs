@@ -18,7 +18,7 @@ namespace WebApp.Service.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public DateTime? BirthDate { get; set; }
-        public CountryModel NationalityId { get; set; }
+        public long? NationalityId { get; set; }
         public long? ReligionId { get; set; }
         public string ReligionText { get; set; }
         public long? GenderId { get; set; }
@@ -33,7 +33,6 @@ namespace WebApp.Service.Models
         public string FatherLasttname { get; set; }
         public string FatherContactNumber { get; set; }
         public string MotherFirstname { get; set; }
-        public string MotherLastname { get; set; }
         public string FatherLastname { get; set; }
         public string MotherContactNumber { get; set; }
 
