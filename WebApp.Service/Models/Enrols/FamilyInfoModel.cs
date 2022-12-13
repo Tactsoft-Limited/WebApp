@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 using WebApp.Core;
 using WebApp.Sql.Entities.Configurations;
+using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Service.Models.Enrols
 {
@@ -16,7 +17,7 @@ namespace WebApp.Service.Models.Enrols
 
         }
         public long? UserId { get; set; }
-        public int EmoloyeeId { get; set; }
+        public long? EmoloyeeId { get; set; }
         public string FemilyMemberName { get; set; }
         public Relationship RelationshipId { get; set; }
         public long? GenderId { get; set; }
@@ -29,6 +30,7 @@ namespace WebApp.Service.Models.Enrols
 
         public User User { get; set; }
         public Gender Gender { get; set; }
+        public Employees Employees { get; set; }
 
     }
 }
