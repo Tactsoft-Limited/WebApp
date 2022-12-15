@@ -29,6 +29,16 @@ namespace WebApp.Service
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
         }
+        public async Task<Dropdown<ProjectModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<Project>().GetDropdownAsync(
+                 p => (string.IsNullOrEmpty(searchText) || p.ProjectName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new ProjectModel { Id = se.Id, ProjectName = se.ProjectName },
+                 size
+                 );
+            return data;
+        }
 
         public async Task<Paging<ProjectModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {

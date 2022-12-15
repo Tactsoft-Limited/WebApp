@@ -29,6 +29,17 @@ namespace WebApp.Service
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        public async Task<Dropdown<CompanyInfoModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<CompanyInfo>().GetDropdownAsync(
+                 p => (string.IsNullOrEmpty(searchText) || p.CompanyName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new CompanyInfoModel { Id = se.Id, CompanyName = se.CompanyName },
+                 size
+                 );
+            return data;
+        }
         public async Task<Paging<CompanyInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
             var data = await _unitOfWork.Repository<CompanyInfo>().GetPageAsync(pageIndex,

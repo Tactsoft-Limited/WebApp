@@ -19,6 +19,13 @@ namespace WebApp.Controllers
         {
             _companyInfoService = companyInfoService;
         }
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _companyInfoService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
@@ -33,7 +40,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("{employeesId}")]
+        [HttpGet("{companyInfoId}")]
         public async Task<IActionResult> GetCompanyInfoDetailAsync(long companyInfoId)
         {
             var res = await _companyInfoService.GetCompanyInfoDetailAsync(companyInfoId);
@@ -47,7 +54,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{employeesId}")]
+        [HttpPut("{companyInfoId}")]
         public async Task<IActionResult> UpdateCompanyInfoDetailAsync(long companyInfoId, [FromForm] CompanyInfoModel companyInfo)
         {
 
