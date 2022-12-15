@@ -19,6 +19,13 @@ namespace WebApp.Controllers
         {
             _projectService = projectService;
         }
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _projectService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
