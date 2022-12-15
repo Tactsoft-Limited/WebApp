@@ -1327,9 +1327,6 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CompanyStateId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("ContactNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -1344,6 +1341,9 @@ namespace WebApp.Sql.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("StateId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -1361,9 +1361,9 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("CompanyStateId");
-
                     b.HasIndex("CountryId");
+
+                    b.HasIndex("StateId");
 
                     b.HasIndex("UserId");
 
@@ -1913,8 +1913,11 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("EmergencyContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmoloyeeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("EmployeesId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("FemilyMemberName")
                         .HasColumnType("nvarchar(max)");
@@ -1941,6 +1944,8 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeesId");
 
                     b.HasIndex("GenderId");
 
@@ -3543,14 +3548,14 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("CompanyStateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
                         .WithMany("BranchInfos")
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
+                        .WithMany("BranchInfos")
+                        .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
@@ -3813,6 +3818,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.FamilyInfo", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("FamilyInfos")
+                        .HasForeignKey("EmployeesId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
@@ -3822,6 +3832,8 @@ namespace WebApp.Sql.Migrations
                         .WithMany("FamilyInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
 
                     b.Navigation("Gender");
 
@@ -4411,6 +4423,8 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
+
+                    b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
 

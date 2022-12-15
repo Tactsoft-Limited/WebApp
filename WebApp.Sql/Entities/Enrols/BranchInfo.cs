@@ -16,7 +16,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string BranchAddress { get; set; }
         public long? CountryId { get; set; }
         public long? CityId { get; set; }
-        public long? CompanyStateId { get; set; }
+        public long? StateId { get; set; }
         public string ZipCode { get; set; }
         public string Email { get; set; }
         public string ContactNumber { get; set; }

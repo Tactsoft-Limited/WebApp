@@ -10,8 +10,8 @@ using WebApp.Sql;
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20221204070538_RenameDatabaseTables")]
-    partial class RenameDatabaseTables
+    [Migration("20221213110544_update-Family-Info")]
+    partial class updateFamilyInfo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -330,7 +330,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("DocumentCategorias");
+                    b.ToTable("DocumentCategorie");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
@@ -365,7 +365,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("EducationsGroups");
+                    b.ToTable("EducationGroup");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
@@ -400,7 +400,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("EducationsTypes");
+                    b.ToTable("EducationType");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EmploymentCategorie", b =>
@@ -1204,7 +1204,59 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AssetsTypes");
+                    b.ToTable("AssetType");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Attachment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AwardName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("AwardTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Gift")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("PriceAmount")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AwardInfos");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BankInfo", b =>
@@ -1534,11 +1586,16 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset?>("UpdatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DesignationId");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("DesignationSetups");
                 });
@@ -1591,6 +1648,49 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("DistributeAssets");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Document", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Attachment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateUtc")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Documents");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
                     b.Property<long>("Id")
@@ -1604,22 +1704,22 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<long>("EducationTypeId")
+                    b.Property<long?>("EducationTypeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("EmployeeId")
+                    b.Property<long?>("EgucationGroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ForeignDegree")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("GradeId")
+                    b.Property<long?>("GradeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("GroupId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("InstituteId")
+                    b.Property<long?>("InstituteId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("LastEducation")
@@ -1648,7 +1748,15 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EducationTypeId");
+
+                    b.HasIndex("EgucationGroupId");
+
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("GradeId");
+
+                    b.HasIndex("InstituteId");
 
                     b.ToTable("Educations");
                 });
@@ -1807,8 +1915,11 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("EmergencyContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmoloyeeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("EmployeesId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("FemilyMemberName")
                         .HasColumnType("nvarchar(max)");
@@ -1835,6 +1946,8 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeesId");
 
                     b.HasIndex("GenderId");
 
@@ -3389,6 +3502,23 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("AwardInfos")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("AwardInfos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.BankInfo", b =>
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.BranchInfo", "BranchInfo")
@@ -3549,9 +3679,16 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("DesignationSetups")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Designation");
 
                     b.Navigation("Employees");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.DistributeAsset", b =>
@@ -3578,15 +3715,59 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Document", b =>
+                {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("Documents")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
+                        .WithMany("Documents")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Education", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Configurations.EducationType", "EducationType")
+                        .WithMany("Educations")
+                        .HasForeignKey("EducationTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.EducationGroup", "EducationGroup")
+                        .WithMany("Educations")
+                        .HasForeignKey("EgucationGroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("Educations")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.Grade", "Grade")
+                        .WithMany("Educations")
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.Institute", "Institute")
+                        .WithMany("Educations")
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("EducationGroup");
+
+                    b.Navigation("EducationType");
 
                     b.Navigation("Employees");
+
+                    b.Navigation("Grade");
+
+                    b.Navigation("Institute");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.EmployeeManagementCategory", b =>
@@ -3639,6 +3820,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.FamilyInfo", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("FamilyInfos")
+                        .HasForeignKey("EmployeesId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
@@ -3648,6 +3834,8 @@ namespace WebApp.Sql.Migrations
                         .WithMany("FamilyInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
 
                     b.Navigation("Gender");
 
@@ -4100,6 +4288,26 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Employees");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationGroup", b =>
+                {
+                    b.Navigation("Educations");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.EducationType", b =>
+                {
+                    b.Navigation("Educations");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Grade", b =>
+                {
+                    b.Navigation("Educations");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Institute", b =>
+                {
+                    b.Navigation("Educations");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
                 {
                     b.Navigation("WorkflowMapings");
@@ -4200,6 +4408,8 @@ namespace WebApp.Sql.Migrations
                 {
                     b.Navigation("AssetRequisitions");
 
+                    b.Navigation("AwardInfos");
+
                     b.Navigation("BankInfos");
 
                     b.Navigation("Contacts");
@@ -4210,9 +4420,13 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("DistributeAssets");
 
+                    b.Navigation("Documents");
+
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
+
+                    b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
 
@@ -4265,6 +4479,8 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("AssetTypes");
 
+                    b.Navigation("AwardInfos");
+
                     b.Navigation("BankInfos");
 
                     b.Navigation("BranchInfos");
@@ -4275,7 +4491,11 @@ namespace WebApp.Sql.Migrations
 
                     b.Navigation("DepartmentSetups");
 
+                    b.Navigation("DesignationSetups");
+
                     b.Navigation("DistributeAssets");
+
+                    b.Navigation("Documents");
 
                     b.Navigation("EmployeeManagementCategories");
 

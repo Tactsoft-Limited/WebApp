@@ -11,8 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
+using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Service.Services
@@ -148,6 +150,17 @@ namespace WebApp.Service.Services
             await _unitOfWork.CompleteAsync();
 
             return new EmployeesModel();
+        }
+
+        public async Task<Dropdown<EmployeesModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<Employees>().GetDropdownAsync(
+                 p => (string.IsNullOrEmpty(searchText) || p.Name.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new EmployeesModel { Id = se.Id, Name = se.Name },
+                 size
+                 );
+            return data;
         }
     }
 }
