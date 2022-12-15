@@ -13,6 +13,7 @@ namespace WebApp.Service
 {
     public interface IBranchInfoService : IBaseService<BranchInfo>
     {
+        Task<Dropdown<BranchInfoModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
         Task<Paging<BranchInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<BranchInfoModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 

@@ -29,7 +29,16 @@ namespace WebApp.Service
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
         }
-
+        public async Task<Dropdown<BranchInfoModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<BranchInfo>().GetDropdownAsync(
+                 p => (string.IsNullOrEmpty(searchText) || p.BranchName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new BranchInfoModel { Id = se.Id, BranchName = se.BranchName },
+                 size
+                 );
+            return data;
+        }
         public async Task<Paging<BranchInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
             var data = await _unitOfWork.Repository<BranchInfo>().GetPageAsync(pageIndex,

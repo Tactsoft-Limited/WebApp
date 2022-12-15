@@ -13,6 +13,7 @@ namespace WebApp.Service
 {
     public interface IProjectService : IBaseService<Project>
     {
+        Task<Dropdown<ProjectModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
         Task<Paging<ProjectModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<ProjectModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 
