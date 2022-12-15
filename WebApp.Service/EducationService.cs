@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Core.Collections;
 using WebApp.Core.DataType;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
@@ -38,6 +39,16 @@ namespace WebApp.Service
                 o=>o.OrderBy(ob=>ob.Id));
 
             return _mapper.Map<Education, EducationModel>(data);
+        }
+
+        public Task<Paging<EducationModel>> GetFilterAsync(int pageIndex = 0, int pageSize = 10, string filterText1 = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Paging<EducationModel>> GetSearchAsync(int pageIndex = 0, int pageSize = 10, string searchText = null)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<EducationModel> UpdateEducationDetailsAsync(long educationId, EducationModel model)
