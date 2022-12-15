@@ -7,6 +7,7 @@ using static WebApp.Sql.Entities.Identities.IdentityModel;
 using WebApp.Core;
 using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
+using WebApp.Service.Models.Configurations;
 
 namespace WebApp.Service.Models.Enrols
 {
@@ -28,9 +29,9 @@ namespace WebApp.Service.Models.Enrols
         public string Address { get; set; }
         public string EmergencyContact { get; set; }
 
-        public User User { get; set; }
-        public Gender Gender { get; set; }
-        public Employees Employees { get; set; }
+        public UserModel User { get; set; }
+        public GenderModel Gender { get; set; }
+        public EmployeesModel Employees { get; set; }
 
     }
 }
