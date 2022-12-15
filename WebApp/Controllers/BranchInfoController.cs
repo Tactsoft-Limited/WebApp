@@ -33,7 +33,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("{employeesId}")]
+        [HttpGet("{branchInfoId}")]
         public async Task<IActionResult> GetBranchInfoDetailAsync(long branchInfoId)
         {
             var res = await _branchInfoService.GetBranchInfoDetailAsync(branchInfoId);
@@ -47,7 +47,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{employeesId}")]
+        [HttpPut("{branchInfoId}")]
         public async Task<IActionResult> UpdateCompanyInfoDetailAsync(long branchInfoId, [FromForm] BranchInfoModel branchInfo)
         {
 
