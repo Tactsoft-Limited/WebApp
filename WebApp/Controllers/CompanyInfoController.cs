@@ -33,7 +33,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("{employeesId}")]
+        [HttpGet("{companyInfoId}")]
         public async Task<IActionResult> GetCompanyInfoDetailAsync(long companyInfoId)
         {
             var res = await _companyInfoService.GetCompanyInfoDetailAsync(companyInfoId);
@@ -47,7 +47,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{employeesId}")]
+        [HttpPut("{companyInfoId}")]
         public async Task<IActionResult> UpdateCompanyInfoDetailAsync(long companyInfoId, [FromForm] CompanyInfoModel companyInfo)
         {
 
