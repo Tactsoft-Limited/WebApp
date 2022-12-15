@@ -56,5 +56,6 @@ namespace WebApp.Sql.Entities.Enrols
         public IList<BankInfo> BankInfos { get; set; }
         public IList<Document> Documents { get; set; }
         public IList<AwardInfo> AwardInfos { get; set; }
+        public IList<FamilyInfo> FamilyInfos { get; set; }
     }
 }
