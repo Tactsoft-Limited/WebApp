@@ -19,7 +19,7 @@ namespace WebApp.Service.Models.Enrols
         }
         public long? UserId { get; set; }
         public long? EmployeeId { get; set; }
-        public string FemilyMemberName { get; set; }
+        public string FamilyMemberName { get; set; }
         public Relationship RelationshipId { get; set; }
         public long? GenderId { get; set; }
         public DateTime DOB { get; set; }
