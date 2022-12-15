@@ -13,7 +13,7 @@ namespace WebApp.Sql.Entities.Enrols
     public class FamilyInfo:BaseEntity
     {
         public long? UserId { get; set; }
-        public int EmoloyeeId { get; set; }
+        public long? EmployeeId { get; set; }
         public string FemilyMemberName { get; set; }
         public Relationship RelationshipId { get; set; }
         public long? GenderId { get; set; }
@@ -26,6 +26,6 @@ namespace WebApp.Sql.Entities.Enrols
 
         public User User { get; set; }
         public Gender Gender { get; set; }
-
+        public Employees Employees { get; set; }
     }
 }

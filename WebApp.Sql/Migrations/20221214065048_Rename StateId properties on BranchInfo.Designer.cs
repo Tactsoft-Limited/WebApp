@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221214065048_Rename StateId properties on BranchInfo")]
+    partial class RenameStateIdpropertiesonBranchInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1913,11 +1915,8 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("EmergencyContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("EmployeesId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("EmoloyeeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FemilyMemberName")
                         .HasColumnType("nvarchar(max)");
@@ -1944,8 +1943,6 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeesId");
 
                     b.HasIndex("GenderId");
 
@@ -3818,11 +3815,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.FamilyInfo", b =>
                 {
-                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
-                        .WithMany("FamilyInfos")
-                        .HasForeignKey("EmployeesId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
@@ -3832,8 +3824,6 @@ namespace WebApp.Sql.Migrations
                         .WithMany("FamilyInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Employees");
 
                     b.Navigation("Gender");
 
@@ -4423,8 +4413,6 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
-
-                    b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
 

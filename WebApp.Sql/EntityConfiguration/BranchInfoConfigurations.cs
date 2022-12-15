@@ -17,7 +17,7 @@ namespace WebApp.Sql.EntityConfiguration
             builder.HasOne(p => p.User).WithMany(m => m.BranchInfos).HasForeignKey(p => p.UserId);
             builder.HasOne(p => p.Country).WithMany(m => m.BranchInfos).HasForeignKey(p => p.CountryId);
             builder.HasOne(p => p.City).WithMany(m => m.BranchInfos).HasForeignKey(p => p.CityId);
-            builder.HasOne(p => p.State).WithMany(m => m.BranchInfos).HasForeignKey(p => p.CompanyStateId);
+            builder.HasOne(p => p.State).WithMany(m => m.BranchInfos).HasForeignKey(p => p.StateId);
         }
     }
 }

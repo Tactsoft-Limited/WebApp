@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
 using WebApp.Sql.Entities.Enrols;
@@ -14,6 +15,7 @@ namespace WebApp.Service.Services
 {
     public interface IEmployeesService : IBaseService<Employees>
     {
+        Task<Dropdown<EmployeesModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
         Task<Paging<EmployeesModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<EmployeesModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 

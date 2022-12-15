@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221213110544_update-Family-Info")]
+    partial class updateFamilyInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1327,6 +1329,9 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CompanyStateId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("ContactNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -1341,9 +1346,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("StateId")
-                        .HasColumnType("bigint");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -1361,9 +1363,9 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("CompanyStateId");
 
-                    b.HasIndex("StateId");
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("UserId");
 
@@ -3548,14 +3550,14 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
+                        .WithMany("BranchInfos")
+                        .HasForeignKey("CompanyStateId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
                         .WithMany("BranchInfos")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")

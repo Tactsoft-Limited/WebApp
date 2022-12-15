@@ -32,10 +32,10 @@ namespace WebApp.Service.Models.Enrols
         public long? PermanentCityId { get; set; }
         public string PermanentZipCode { get; set; }
 
-        public Employees Employees { get; set; }
-        public User User { get; set; }
-        public Country Country { get; set; }
-        public State State { get; set; }
-        public City City { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public UserModel User { get; set; }
+        public CountryModel Country { get; set; }
+        public StateModel State { get; set; }
+        public CityModel City { get; set; }
     }
 }

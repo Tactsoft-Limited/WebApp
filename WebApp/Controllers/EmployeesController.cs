@@ -6,6 +6,7 @@ using WebApp.Extensions;
 using WebApp.Helpers.Base;
 using WebApp.Service.Models.Enrols;
 using WebApp.Service.Services;
+using WebApp.Service.Services.Configurations;
 using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Controllers
@@ -18,6 +19,14 @@ namespace WebApp.Controllers
         public EmployeesController(IEmployeesService employeesService) : base(employeesService)
         {
             _employeesService = employeesService;
+        }
+
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _employeesService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
         }
 
         [HttpGet("search")]
