@@ -34,6 +34,10 @@ namespace WebApp.Service
             return new FunctionalDesignationModel();
         }
 
+        public Task<FunctionalDesignationModel> GetFilterAsync(int pageIndex = 0, int pageSize = 10, string searchText = null)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<FunctionalDesignationModel> GetFunctionalDesignationDetailAsync(long functionalDesignationId)
         {
@@ -42,6 +46,10 @@ namespace WebApp.Service
             return response;
         }
 
+        public Task<FunctionalDesignationModel> GetSearchAsync(int pageIndex = 0, int pageSize = 10, string searchText = null)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<FunctionalDesignationModel> UpdateFunctionalDesignationDetailAsync(long functionalDesignationId, FunctionalDesignationModel model)
         {

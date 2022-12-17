@@ -41,9 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\profiles\" />
-    <Folder Include="wwwroot\images\profiles\" />
-    <Folder Include="wwwroot\images\profiles\" />
+    <Folder Include="wwwroot\images\NewFolder\" />
+    <Folder Include="wwwroot\images\profiles\NewFolder\" />
+    <Folder Include="wwwroot\NewFolder1\" />
     <Folder Include="wwwroot\NewFolder\" />
 
   </ItemGroup>
