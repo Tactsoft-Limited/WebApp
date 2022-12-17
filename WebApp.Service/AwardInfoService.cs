@@ -35,16 +35,16 @@ namespace WebApp.Service
         public async Task<AwardInfoModel> AddAwardInfoDetailAsync(AwardInfoModel model)
         {
             string uniqueFileName = string.Empty;
-            if (model.AvatarFile != null)
+            if (model.AttachmentFile != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, CommonVariables.AvatarLocation);
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AvatarFile.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AttachmentFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.AvatarFile.CopyTo(fileStream);
+                    model.AttachmentFile.CopyTo(fileStream);
                 }
-                model.Avatar = uniqueFileName;
+                model.Attachment = uniqueFileName;
             }
             var entity = _mapper.Map<AwardInfoModel, AwardInfo>(model);
             await _unitOfWork.Repository<AwardInfo>().UpdateAsync(entity);
@@ -66,46 +66,32 @@ namespace WebApp.Service
         //    throw new NotImplementedException();
         //}
 
-        public async Task<Paging<AwardInfoModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
-        {
-            var data = await _unitOfWork.Repository<AwardInfo>().GetPageAsync(pageIndex, pageSize,
-                s=>((string.IsNullOrEmpty(filterText1)||s.AwardName.Contains(filterText1))),
-                o=>o.OrderBy(ob=>ob.Id),
-                se=>se,
-                i=>i.User
-                );
-            var res = data.ToPagingModel<AwardInfo, AwardInfoModel>(_mapper);
-            return res;
-        }
+        //public Task<Paging<AwardInfoModel>> GetFilterAsync(int pageIndex = 0, int pageSize = 10, string filterText1 = null)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public async Task<Paging<AwardInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
-        {
-            var data = await _unitOfWork.Repository<AwardInfo>().GetPageAsync(pageIndex, pageSize,
-                s => ((string.IsNullOrEmpty(searchText) || s.AwardName.Contains(searchText))),
-                o => o.OrderBy(ob => ob.Id),
-                se => se,
-                i => i.User
-                );
-            var res = data.ToPagingModel<AwardInfo, AwardInfoModel>(_mapper);
-            return res;
-        }
+        //public Task<Paging<AwardInfoModel>> GetSearchAsync(int pageIndex = 0, int pageSize = 10, string searchText = null)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<AwardInfoModel> UpdateAwardInfoDetailAsync(long awardinfoId, AwardInfoModel model)
         {
             string uniqueFileName = string.Empty;
-            if (model.AvatarFile != null)
+            if (model.AttachmentFile != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, CommonVariables.AvatarLocation);
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AvatarFile.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AttachmentFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.AvatarFile.CopyTo(fileStream);
+                    model.AttachmentFile.CopyTo(fileStream);
                 }
-                model.Avatar = uniqueFileName;
+                model.Attachment = uniqueFileName;
             }
             {
-                model.Avatar = model.Avatar?.Split("/")?.LastOrDefault();
+                model.Attachment = model.Attachment?.Split("/")?.LastOrDefault();
             }
 
             var entity = _mapper.Map<AwardInfoModel, AwardInfo>(model);
@@ -130,7 +116,7 @@ namespace WebApp.Service
                     image.CopyTo(fileStream);
                 }
             }
-            awardinfo.Avatar = uniqueFileName;
+            awardinfo.Attachment = uniqueFileName;
             var entity = _mapper.Map<AwardInfoModel, AwardInfo>(awardinfo);
             await _unitOfWork.Repository<AwardInfo>().UpdateAsync(entity);
             await _unitOfWork.CompleteAsync();
