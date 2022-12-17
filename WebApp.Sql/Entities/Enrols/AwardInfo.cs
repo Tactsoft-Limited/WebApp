@@ -15,7 +15,7 @@ namespace WebApp.Sql.Entities.Enrols
         public string AwardName { get; set; }
         public string Gift { get; set; }
         public float PriceAmount { get; set; }
-        public string Attachment { get; set; }
+        public string Avatar { get; set; }
         public string Remark { get; set; }
         public User User { get; set; }
         public Employees Employees { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221217063734_update awardinfo colomnRename avatar")]
+    partial class updateawardinfocolomnRenameavatar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1916,7 +1918,10 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("FamilyMemberName")
+                    b.Property<long?>("EmployeesId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FemilyMemberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("GenderId")
@@ -1942,7 +1947,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeesId");
 
                     b.HasIndex("GenderId");
 
@@ -3817,7 +3822,7 @@ namespace WebApp.Sql.Migrations
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("FamilyInfos")
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
