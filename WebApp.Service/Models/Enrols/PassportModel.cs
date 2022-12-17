@@ -23,7 +23,7 @@ namespace WebApp.Service.Models.Enrols
         public DateTime ExpireDate { get; set; }
         public string Remark { get; set; }
         public User User { get; set; }
-        public Employees Employees { get; set; }
-        public Country Country { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public CountryModel Country { get; set; }
     }
 }
