@@ -12,8 +12,8 @@ namespace WebApp.Service
 {
     public interface IFunctionalDesignationService:IBaseService<FunctionalDesignation>
     {
-        Task<FunctionalDesignationModel> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
-        Task<FunctionalDesignationModel> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        //Task<FunctionalDesignationModel> GetSearchAsync(int pageIndex=CommonVariables.pageIndex,int pageSize=CommonVariables.pageSize,string searchText=null);
+        //Task<FunctionalDesignationModel> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<FunctionalDesignationModel> GetFunctionalDesignationDetailAsync(long functionalDesignationId);
         Task<FunctionalDesignationModel> AddFunctionalDesignationDetailAsync(FunctionalDesignationModel functionalDesignation);
         Task<FunctionalDesignationModel> UpdateFunctionalDesignationDetailAsync(long functionalDesignationId, FunctionalDesignationModel model);
