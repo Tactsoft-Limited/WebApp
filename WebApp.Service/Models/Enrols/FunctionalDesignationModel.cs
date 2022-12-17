@@ -18,7 +18,7 @@ namespace WebApp.Service.Models.Enrols
         public long? EmployeeId { get; set; }
         public DateTime EffectedDate { get; set; }
         public string Remark { get; set; }
-        public UserModel User { get; set; }
-        public EmployeesModel Employees { get; set; }
+        public User User { get; set; }
+        public Employees Employees { get; set; }
     }
 }
