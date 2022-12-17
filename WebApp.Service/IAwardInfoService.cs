@@ -14,8 +14,8 @@ namespace WebApp.Service
 {
     public interface IAwardInfoService:IBaseService<AwardInfo>
     {
-        Task<Paging<AwardInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
-        Task<Paging<AwardInfoModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        //Task<Paging<AwardInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        //Task<Paging<AwardInfoModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 
         Task<AwardInfoModel> GetAwardInfoDetailAsync(long awardinfoId);
         Task<AwardInfoModel> AddAwardInfoDetailAsync(AwardInfoModel model);
