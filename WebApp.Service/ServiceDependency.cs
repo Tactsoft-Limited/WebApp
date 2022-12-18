@@ -39,6 +39,7 @@ namespace WebApp.Service
             services.AddScoped<IJobNewStatusService, JobNewStatusService>();
             services.AddScoped<IDistributeAssetService, DistributeAssetService>();
             services.AddScoped<IAssetRequisitionService, AssetRequisitionService>();
+            services.AddScoped<IFunctionalDesignationService,FunctionalDesignationService>();
 
 
 
@@ -79,6 +80,7 @@ namespace WebApp.Service
             services.AddScoped<ISupervisorSetupService, SupervisorSetupService>();
             services.AddScoped<INewApprovalWorkflowService, NewApprovalWorkflowService>();
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
+            services.AddScoped<IAwardInfoService, AwardInfoService>();
         }
     }
 }
