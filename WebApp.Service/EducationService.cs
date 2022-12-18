@@ -33,6 +33,11 @@ namespace WebApp.Service
             return new EducationModel();
         }
 
+        public Task<Dropdown<EducationModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<EducationModel> GetEducationDetailsAsync(long educationId)
         {
             var data = await _unitOfWork.Repository<Education>().FirstOrDefaultAsync(f=>f.Id== educationId,
