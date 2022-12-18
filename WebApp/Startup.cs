@@ -13,6 +13,7 @@ using WebApp.Core.Sqls;
 using WebApp.Helpers.Attributes;
 using WebApp.Service;
 using WebApp.Service.Models;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Sql;
 using WebApp.Sql.Entities;
@@ -114,6 +115,7 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
+            CreateMap<BloodGroup, BloodGroupModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
             CreateMap<DepartmentSetup, DepartmentSetupModel>().ReverseMap();
             CreateMap<Warning, WarningModel>().ReverseMap();
@@ -133,6 +135,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<AssetType, AssetTypeModel>().ReverseMap();
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
+            CreateMap<Gender, GenderModel>().ReverseMap();
            
         }
     }
