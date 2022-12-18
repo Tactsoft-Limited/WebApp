@@ -21,6 +21,14 @@ namespace WebApp.Controllers
             this._awardInfoService=awardInfoService;
         }
 
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _awardInfoService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
+
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
@@ -28,6 +36,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
+        
         [HttpGet("filter")]
         public async Task<IActionResult> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null /*string filterText2 = null*/)
         {
@@ -43,6 +52,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
+        
         [HttpPost()]
         public async Task<IActionResult> AddAwardInfoDetailAsync([FromForm] AwardInfoModel model)
         {
@@ -50,6 +60,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
+        
         [HttpPut("{awardinfoId}")]
         public async Task<IActionResult> UpdateAwardInfoDetailAsync(long awardinfoId, [FromForm] AwardInfoModel awardinfo)
         {
@@ -58,14 +69,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{awardinfoId1}")]
-        public async Task<IActionResult> UpdateAwardInfoDetailAsync(long awardinfoId, [FromForm] string awardino, [FromForm] List<IFormFile> file)
-        {
-
-            var res = await _awardInfoService.UpdateAwardInfoDetailAsync(awardinfoId, awardino, file);
-
-            return new ApiOkActionResult(res);
-        }
+        
 
     }
 }
