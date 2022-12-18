@@ -14,7 +14,7 @@ namespace WebApp.Service.Services.Configurations
         Task<Paging<BloodGroupModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
         Task<BloodGroupModel> AddBloodGroupDetailsAsync(BloodGroupModel model);
         Task<BloodGroupModel> UpdateBloodGroupDetailsAsync(long bloodgroupId, BloodGroupModel model);
-        Task<BloodGroupModel> UpdateBloodGroupDetailsAsync(long contactId, string model);
+        Task<BloodGroupModel> UpdateBloodGroupDetailsAsync(long bloodgroupId, string model);
         Task<BloodGroupModel> GetBloodGroupDetailsAsync(long bloodgroupId);
     }
 }
