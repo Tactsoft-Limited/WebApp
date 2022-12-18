@@ -135,6 +135,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<AssetType, AssetTypeModel>().ReverseMap();
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
+            CreateMap<Gender, GenderModel>().ReverseMap();
+
+            CreateMap<AwardInfo, AwardInfoModel>();
            
         }
     }
