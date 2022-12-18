@@ -138,6 +138,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Gender, GenderModel>().ReverseMap();
 
             CreateMap<AwardInfo, AwardInfoModel>();
+            CreateMap<Country, CountryModel>().ReverseMap();
+            CreateMap<State, StateModel>().ReverseMap();
+            CreateMap<City, CityModel>().ReverseMap();
            
         }
     }
