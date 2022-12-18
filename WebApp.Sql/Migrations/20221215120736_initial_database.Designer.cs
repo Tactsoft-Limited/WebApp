@@ -10,8 +10,8 @@ using WebApp.Sql;
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20221215095148_Rename & Relation FamilyInfoTableColumn")]
-    partial class RenameRelationFamilyInfoTableColumn
+    [Migration("20221215120736_initial_database")]
+    partial class initial_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1918,7 +1918,7 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("FemilyMemberName")
+                    b.Property<string>("FamilyMemberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("GenderId")
