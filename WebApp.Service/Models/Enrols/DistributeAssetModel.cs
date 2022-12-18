@@ -20,8 +20,8 @@ namespace WebApp.Service.Models.Enrols
         public DateTime StartdDate { get; set; }
         public DateTime Enddate { get; set; }
         public string Remarks { get; set; }
-        public User User { get; set; }
-        public Employees Employees { get; set; }
-        public Asset Assets { get; set; }
+        public UserModel User { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public AssetModel Assets { get; set; }
     }
 }
