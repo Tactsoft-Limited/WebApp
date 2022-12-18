@@ -79,6 +79,7 @@ namespace WebApp.Service
             services.AddScoped<ISupervisorSetupService, SupervisorSetupService>();
             services.AddScoped<INewApprovalWorkflowService, NewApprovalWorkflowService>();
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
+            services.AddScoped<IAwardInfoService, AwardInfoService>();
         }
     }
 }
