@@ -6,5 +6,7 @@ namespace WebApp.Sql.Entities.Configurations
     {
         public string Name { get; set; }
         public long CountryId { get; set; }
+
+        public CountryModel Country { get; set; }
     }
 }
