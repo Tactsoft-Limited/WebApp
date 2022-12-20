@@ -62,8 +62,10 @@ namespace WebApp.Service.Services.Configurations
 
         public async Task<Paging<BloodGroupModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var data = await _unitOfWork.Repository<BloodGroup>().GetPageAsync(pageIndex,
-                pageSize);
+            var data = await _unitOfWork.Repository<BloodGroup>().GetPageAsync(pageIndex,pageSize,
+                p=>string.IsNullOrEmpty(searchText)|(p.BloodGroupName.Contains(searchText)),
+                o=>o.OrderBy(ob=>ob.Id),
+                se=>se);
 
             var response = data.ToPagingModel<BloodGroup, BloodGroupModel>(_mapper);
 
