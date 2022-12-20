@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApp.Sql.Entities.Configurations
 {
-    public class MeritalStatus:BaseEntity
+    public class MaritalStatus:BaseEntity
     {
-        public string MeritalStatusName { get; set; }
+        public string MaritalStatusName { get; set; }
     }
 }

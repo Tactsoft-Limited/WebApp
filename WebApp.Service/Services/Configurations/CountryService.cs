@@ -60,7 +60,9 @@ namespace WebApp.Service.Services.Configurations
 
         public async Task<Paging<CountryModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var data = await _unitOfWork.Repository<Country>().GetPageAsync(pageIndex,pageSize);
+            var data = await _unitOfWork.Repository<Country>().GetPageAsync(pageIndex,pageSize,
+                p=>(string.IsNullOrEmpty(searchText)|p.Name.Contains(searchText)|p.Code.Contains(searchText) | p.Currency.Contains(searchText)),
+                o=>o.OrderBy(ob=>ob.Id));
 
             var response = data.ToPagingModel<Country, CountryModel>(_mapper);
 

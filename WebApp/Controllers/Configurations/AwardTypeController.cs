@@ -18,7 +18,7 @@ namespace WebApp.Controllers.Configurations
         {
             _awardtypeService = awardtypeService;
         }
-        [HttpGet("company_dropdown")]
+        [HttpGet("dropdown")]
         public async Task<IActionResult> GetCompanyDropdownAsync(long? companyId = null, string searchText = null)
         {
             var res = await _awardtypeService.GetCompanyDropdownAsync(companyId, searchText);

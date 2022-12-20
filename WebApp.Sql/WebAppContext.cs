@@ -102,7 +102,7 @@ namespace WebApp.Sql
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<JobBaseStatus> JobBaseStatuses { get; set; }
         public DbSet<LeaveType> LeaveTypes { get; set; }
-        public DbSet<MeritalStatus> MeritalStatuses { get; set; }
+        public DbSet<MaritalStatus> MaritalStatuses { get; set; }
         public DbSet<NewApprovalWorkflow> NewApprovalWorkflows { get; set; }
         public DbSet<NewJobStatus> NewJobStatus { get; set; }
         public DbSet<OpeningYear> OpeningYears { get; set; }

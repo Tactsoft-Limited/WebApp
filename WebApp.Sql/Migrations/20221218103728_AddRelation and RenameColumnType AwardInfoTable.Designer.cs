@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221218103728_AddRelation and RenameColumnType AwardInfoTable")]
+    partial class AddRelationandRenameColumnTypeAwardInfoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -652,7 +654,7 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("LeaveTypes");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MaritalStatus", b =>
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MeritalStatus", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -665,7 +667,7 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("MaritalStatusName")
+                    b.Property<string>("MeritalStatusName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("UpdatedBy")
@@ -676,7 +678,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MaritalStatuses");
+                    b.ToTable("MeritalStatuses");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>

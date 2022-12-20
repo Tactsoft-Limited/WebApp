@@ -14,6 +14,7 @@ namespace WebApp.Service
 {
     public interface IAwardInfoService:IBaseService<AwardInfo>
     {
+        Task<Dropdown<AwardInfoModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
         Task<Paging<AwardInfoModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<AwardInfoModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 
@@ -21,6 +22,6 @@ namespace WebApp.Service
         Task<AwardInfoModel> AddAwardInfoDetailAsync(AwardInfoModel model);
         Task<AwardInfoModel> UpdateAwardInfoDetailAsync(long awardinfoId, AwardInfoModel model);
         Task<AwardInfoModel> UpdateAwardInfoDetailAsync(long awardinfoId, string model, List<IFormFile> images);
-        //Task<Dropdown<AwardInfoModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
+
     }
 }

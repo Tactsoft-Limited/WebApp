@@ -13,5 +13,7 @@ namespace WebApp.Sql.Entities.Configurations
         public string AwardTypeName { get; set; }
         public bool Status { get; set; }
         public CompanyInfo Company { get; set; }
+
+        public IList<AwardInfo> AwardInfos { get; set; }
     }
 }

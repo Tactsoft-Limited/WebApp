@@ -17,6 +17,7 @@ namespace WebApp.Sql.EntityConfiguration
             builder.HasKey(x => x.Id);
             builder.HasOne(p => p.User).WithMany(m => m.AwardInfos).HasForeignKey(p => p.UserId);
             builder.HasOne(p => p.Employees).WithMany(m => m.AwardInfos).HasForeignKey(p => p.EmployeeId);
+            builder.HasOne(p=>p.AwardType).WithMany(m=>m.AwardInfos).HasForeignKey(p=>p.AwardTypeId);
         }
     }
 }
