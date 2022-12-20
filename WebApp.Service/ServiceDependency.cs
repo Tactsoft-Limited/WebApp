@@ -80,7 +80,6 @@ namespace WebApp.Service
             services.AddScoped<INewApprovalWorkflowService, NewApprovalWorkflowService>();
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
             services.AddScoped<IAwardInfoService, AwardInfoService>();
-            services.AddScoped<IBankInfoService, BankInfoService>();
         }
     }
 }
