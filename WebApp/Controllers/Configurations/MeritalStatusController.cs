@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Extensions;
 using WebApp.Helpers.Base;
 using WebApp.Service.Models.Configurations;
@@ -28,6 +29,35 @@ namespace WebApp.Controllers.Configurations
 
             return new ApiOkActionResult(res);
         }
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var res = await _meritalStatusService.GetSearchAsync(pageIndex, pageSize, searchText);
 
+            return new ApiOkActionResult(res);
+        }
+        [HttpGet("{meritalStatusId}")]
+        public async Task<IActionResult> GetMeritalStatusDetailsAsync(long meritalStatusId)
+        {
+            var res = await _meritalStatusService.GetMeritalStatusDetailsAsync(meritalStatusId);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> AddMeritalStatusDetailsAsync([FromForm] MeritalStatusModel model)
+        {
+            var res = await _meritalStatusService.AddMeritalStatusDetailsAsync(model);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpPut("{meritalStatusId}")]
+        public async Task<IActionResult> UpdateContactDetailsAsync(long meritalStatusId, [FromForm] MeritalStatusModel model)
+        {
+            var res = await _meritalStatusService.UpdateMeritalStatusDetailsAsync(meritalStatusId, model);
+
+            return new ApiOkActionResult(res);
+        }
     }
 }
