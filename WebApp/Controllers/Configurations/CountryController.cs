@@ -36,7 +36,7 @@ namespace WebApp.Controllers.Configurations
             return new ApiOkActionResult(res);
         }
         [HttpGet("{countryId}")]
-        public async Task<IActionResult> GetContactDetailsAsync(long countryId)
+        public async Task<IActionResult> GetCountryDetailsAsync(long countryId)
         {
             var res = await _countryService.GetCountryDetailsAsync(countryId);
 
@@ -44,7 +44,7 @@ namespace WebApp.Controllers.Configurations
         }
 
         [HttpPost()]
-        public async Task<IActionResult> AddBloodGroupDetailsAsync([FromForm] CountryModel model)
+        public async Task<IActionResult> AddCountryDetailsAsync([FromForm] CountryModel model)
         {
             var res = await _countryService.AddCountryDetailsAsync(model);
 
@@ -52,7 +52,7 @@ namespace WebApp.Controllers.Configurations
         }
 
         [HttpPut("{countryId}")]
-        public async Task<IActionResult> UpdateContactDetailsAsync(long countryId, [FromForm] CountryModel model)
+        public async Task<IActionResult> UpdateCountryDetailsAsync(long countryId, [FromForm] CountryModel model)
         {
             var res = await _countryService.UpdateCountryDetailsAsync(countryId, model);
 
