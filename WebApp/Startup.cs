@@ -142,6 +142,13 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<State, StateModel>().ReverseMap();
             CreateMap<City, CityModel>().ReverseMap();
            
+            CreateMap<Passport, PassportModel>().ReverseMap();
+            CreateMap<AssetRequisition, AssetRequisitionModel>().ReverseMap();
+            CreateMap<JobNewStatus, JobNewStatusModel>().ReverseMap();
+            CreateMap<DistributeAsset, DistributeAssetModel>().ReverseMap();
+
+
+
         }
     }
 }
