@@ -29,7 +29,7 @@ namespace WebApp.Service
             services.AddScoped<IDesignationService, DesignationService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IGenderService, GenderService>();
-            services.AddScoped<IMeritalStatusService, MeritalStatusService>();
+            services.AddScoped<IMaritalStatusService, MaritalStatusService>();
             services.AddScoped<IBloodGroupService, BloodGroupService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
