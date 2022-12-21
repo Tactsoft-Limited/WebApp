@@ -42,7 +42,6 @@ namespace WebApp.Service
 
 
 
-            services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
             services.AddScoped<IReligionService, ReligionService>();
@@ -70,7 +69,6 @@ namespace WebApp.Service
             services.AddScoped<IDocumentCategoryService, DocumentCategoryService>();
             services.AddScoped<IAwardTypeService, AwardTypeService>();
             services.AddScoped<IWarningService, WarningService>();
-            services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IWorkflowMappingService, WorkflowMappingService>();
             services.AddScoped<IClaimTypeService, ClaimTypeService>();
             services.AddScoped<IOpeningYearService, OpeningYearService>();
