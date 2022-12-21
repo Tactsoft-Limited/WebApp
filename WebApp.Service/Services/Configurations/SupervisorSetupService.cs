@@ -23,7 +23,7 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<SupervisorSetupModel>> GetCompanyDropdownAsync(long? companyId = null,
+        public async Task<Dropdown<SupervisorSetupModel>> GetDropdownAsync(long? companyId = null,
     string searchText = null,
     int size = CommonVariables.DropdownSize)
         {
@@ -37,19 +37,6 @@ namespace WebApp.Service.Services.Configurations
 
             return data;
         }
-        public async Task<Dropdown<SupervisorSetupModel>> GetEmployeeDropdownAsync(long? branchId = null,
-        string searchText = null,
-        int size = CommonVariables.DropdownSize)
-        {
-            var data = await _unitOfWork.Repository<SupervisorSetup>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText))
-                    && branchId == null || s.EmployeeId == branchId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new SupervisorSetupModel { Id = se.Id, EmployeeId = se.EmployeeId },
-
-            size);
-
-            return data;
-        }
+        
     }
 }
