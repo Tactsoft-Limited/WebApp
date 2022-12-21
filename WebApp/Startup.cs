@@ -114,6 +114,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Employees, EmployeesModel>()
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
+            CreateMap<AwardInfo, AwardInfoModel>()
+                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar)?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
             CreateMap<BloodGroup, BloodGroupModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
@@ -136,7 +139,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Project, ProjectModel>().ReverseMap();
             CreateMap<Gender, GenderModel>().ReverseMap();
 
-            CreateMap<AwardInfo, AwardInfoModel>().ReverseMap();
+            
             CreateMap<Country, CountryModel>().ReverseMap();
             CreateMap<State, StateModel>().ReverseMap();
             CreateMap<City, CityModel>().ReverseMap();
