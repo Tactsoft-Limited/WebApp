@@ -21,16 +21,10 @@ namespace WebApp.Controllers.Configurations
         [HttpGet("company_dropdown")]
         public async Task<IActionResult> GetCompanyDropdownAsync(long? companyId = null, string searchText = null)
         {
-            var res = await _supervisorsetupService.GetCompanyDropdownAsync(companyId, searchText);
+            var res = await _supervisorsetupService.GetDropdownAsync(companyId, searchText);
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("employee_dropdown")]
-        public async Task<IActionResult> GetProjectDropdownAsync(long? employeeId = null, string searchText = null)
-        {
-            var res = await _supervisorsetupService.GetEmployeeDropdownAsync(employeeId, searchText);
-
-            return new ApiOkActionResult(res);
-        }
+        
     }
 }
