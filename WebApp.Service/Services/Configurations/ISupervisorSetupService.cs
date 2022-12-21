@@ -13,7 +13,6 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface ISupervisorSetupService : IBaseService<SupervisorSetup>
     {
-        Task<Dropdown<SupervisorSetupModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<SupervisorSetupModel>> GetEmployeeDropdownAsync(long? employeeId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Dropdown<SupervisorSetupModel>> GetDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
     }
 }
