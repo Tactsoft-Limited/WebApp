@@ -125,7 +125,6 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Contact, ContactModel>().ReverseMap();
             CreateMap<DepartmentSetup, DepartmentSetupModel>().ReverseMap();
             CreateMap<Warning, WarningModel>().ReverseMap();
-            CreateMap<Supervisor, SupervisorModel>().ReverseMap();
             CreateMap<FunctionalDesignation, FunctionalDesignationModel>().ReverseMap();
             CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>().ReverseMap();
             CreateMap<DesignationSetup, DepartmentSetupModel>().ReverseMap();
@@ -148,6 +147,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<JobNewStatus, JobNewStatusModel>().ReverseMap();
             CreateMap<DistributeAsset, DistributeAssetModel>().ReverseMap();
             CreateMap<BankInfo, BankInfoModel>().ReverseMap();
+            CreateMap<SupervisorSetup, SupervisorSetupModel>().ReverseMap();
 
 
 
