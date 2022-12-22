@@ -14,5 +14,7 @@ namespace WebApp.Sql.Entities.Configurations
         public DateTime EffectedDate { get; set; }
         public CompanyInfo Company { get; set; }
         public Employees Employees { get; set; }
+
+        public IList<Supervisor> Supervisors { get; set; }
     }
 }

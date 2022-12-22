@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Service.Models.Configurations;
+using WebApp.Service.Models.Enrols;
 using WebApp.Services;
 using WebApp.Sql.Entities.Configurations;
+using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Service.Services.Configurations
 {
@@ -23,33 +25,58 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<SupervisorSetupModel>> GetCompanyDropdownAsync(long? companyId = null,
-    string searchText = null,
-    int size = CommonVariables.DropdownSize)
+
+        public async Task<SupervisorSetupModel> AddSupervisorSetupDetailAsync(SupervisorSetupModel model)
         {
-            var data = await _unitOfWork.Repository<SupervisorSetup>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new SupervisorSetupModel { Id = se.Id, CompanyId = se.CompanyId },
+            var entity = _mapper.Map<SupervisorSetupModel, SupervisorSetup>(model);
+            await _unitOfWork.Repository<SupervisorSetup>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
 
-            size);
-
-            return data;
+            return new SupervisorSetupModel();
         }
-        public async Task<Dropdown<SupervisorSetupModel>> GetEmployeeDropdownAsync(long? branchId = null,
-        string searchText = null,
-        int size = CommonVariables.DropdownSize)
+
+        //public Task<Dropdown<SupervisorSetupModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public async Task<Paging<SupervisorSetupModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
         {
-            var data = await _unitOfWork.Repository<SupervisorSetup>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText))
-                    && branchId == null || s.EmployeeId == branchId),
+            var data = await _unitOfWork.Repository<SupervisorSetup>().GetPageAsync(pageIndex, pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.Company.CompanyName.Contains(filterText1))),
                 o => o.OrderBy(ob => ob.Id),
-                se => new SupervisorSetupModel { Id = se.Id, EmployeeId = se.EmployeeId },
+                se=>se
+                );
+            var response = data.ToPagingModel<SupervisorSetup, SupervisorSetupModel>(_mapper);
+            return response;
+        }
 
-            size);
+        public async Task<Paging<SupervisorSetupModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<SupervisorSetup>().GetPageAsync(pageIndex, pageSize,
+                s=>(string.IsNullOrEmpty(searchText)||s.Company.CompanyName.Contains(searchText)),
+                o=>o.OrderBy(ob=>ob.Id),
+                se=>se
+                );
+            var res = data.ToPagingModel<SupervisorSetup, SupervisorSetupModel>(_mapper);
+            return res;
+        }
 
-            return data;
+        public async Task<SupervisorSetupModel> GetSupervisorSetupDetailAsync(long supervisorSetupId)
+        {
+            var data = await _unitOfWork.Repository<SupervisorSetup>().FirstOrDefaultAsync(f => f.Id == supervisorSetupId,
+                o=>o.OrderBy(ob=>ob.Id),
+                i=>i.Employees);
+            return _mapper.Map<SupervisorSetup, SupervisorSetupModel>(data);
+        }
+
+        public async Task<SupervisorSetupModel> UpdateSupervisorSetupDetailAsync(long supervisorSetupId, SupervisorSetupModel model)
+        {
+            var entity = _mapper.Map<SupervisorSetupModel, SupervisorSetup>(model);
+            await _unitOfWork.Repository<SupervisorSetup>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new SupervisorSetupModel();
         }
     }
 }
