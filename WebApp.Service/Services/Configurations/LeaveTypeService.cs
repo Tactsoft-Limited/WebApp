@@ -23,18 +23,66 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<LeaveTypeModel>> GetCompanyDropdownAsync(long? companyId = null,
+        public async Task<Dropdown<LeaveTypeModel>> GetDropdownAsync(
     string searchText = null,
     int size = CommonVariables.DropdownSize)
         {
             var data = await _unitOfWork.Repository<LeaveType>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
+                s => ((string.IsNullOrEmpty(searchText) || s.LeaveTypeName.Contains(searchText))),
+                  
                 o => o.OrderBy(ob => ob.Id),
-                se => new LeaveTypeModel { Id = se.Id, LeaveTypeName = se.LeaveTypeName, CompanyId = se.CompanyId },
+                se => new LeaveTypeModel { Id = se.Id, LeaveTypeName = se.LeaveTypeName},
                 size);
 
             return data;
+        }
+        public async Task<LeaveTypeModel> AddLeaveTypeDetailsAsync(LeaveTypeModel model)
+        {
+            var entity = _mapper.Map<LeaveTypeModel, LeaveType>(model);
+
+            await _unitOfWork.Repository<LeaveType>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new LeaveTypeModel();
+        }
+
+        public async Task<LeaveTypeModel> GetLeaveTypeDetailsAsync(long leaveTypeId)
+        {
+            var data = await _unitOfWork.Repository<LeaveType>().FirstOrDefaultAsync(f => f.Id == leaveTypeId);
+
+            var response = _mapper.Map<LeaveType, LeaveTypeModel>(data);
+
+            return response;
+        }
+        public Task<Paging<LeaveTypeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Paging<LeaveTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<LeaveType>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(searchText) | p.LeaveTypeName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id));
+
+            var response = data.ToPagingModel<LeaveType, LeaveTypeModel>(_mapper);
+
+            return response;
+        }
+
+        public async Task<LeaveTypeModel> UpdateLeaveTypeDetailsAsync(long leaveTypeId, LeaveTypeModel model)
+        {
+            var entity = _mapper.Map<LeaveTypeModel, LeaveType>(model);
+
+            await _unitOfWork.Repository<LeaveType>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new LeaveTypeModel();
+        }
+
+        public Task<LeaveTypeModel> UpdateLeaveTypeDetailsAsync(long leaveTypeId, string model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -148,6 +148,8 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<JobNewStatus, JobNewStatusModel>().ReverseMap();
             CreateMap<DistributeAsset, DistributeAssetModel>().ReverseMap();
             CreateMap<BankInfo, BankInfoModel>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeModel>().ReverseMap();
+            CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
 
 
 
