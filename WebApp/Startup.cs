@@ -153,6 +153,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<SupervisorSetup, SupervisorSetupModel>().ReverseMap();
             CreateMap<Designation, DesignationModel>().ReverseMap();
             CreateMap<Department, DepartmentModel>().ReverseMap();
+            CreateMap<Language, LanguageModel>().ReverseMap();
 
 
 
