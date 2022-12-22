@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Core;
+using WebApp.Core.Collections;
 using WebApp.Service.Models.Enrols;
 using WebApp.Service.Services.Configurations;
 using WebApp.Services;
@@ -39,6 +41,39 @@ namespace WebApp.Service
                 i=>i.User);
 
             return _mapper.Map<DesignationSetup, DesignationSetupModel>(data);
+        }
+
+        public Task<Dropdown<DesignationSetupModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Paging<DesignationSetupModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<DesignationSetup>().GetPageAsync(pageIndex,
+               pageSize,
+               s => (string.IsNullOrEmpty(filterText1) || s.Employees.Name.Contains(filterText1)),
+               o => o.OrderBy(ob => ob.Id),
+               se => se,
+               i => i.User);
+
+            var response = data.ToPagingModel<DesignationSetup, DesignationSetupModel>(_mapper);
+
+            return response;
+        }
+
+        public async Task<Paging<DesignationSetupModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<DesignationSetup>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se,
+                i => i.User);
+
+            var response = data.ToPagingModel<DesignationSetup, DesignationSetupModel>(_mapper);
+
+            return response;
         }
 
         public async Task<DesignationSetupModel> UpdateDesignationSetupDetailAsync(long designationSetupId, DesignationSetupModel model)

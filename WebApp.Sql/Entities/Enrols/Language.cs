@@ -13,6 +13,7 @@ namespace WebApp.Sql.Entities.Enrols
         public long? UserId { get; set; }
         public long? EmployeeId { get; set; }
         public long? ProficencyId { get; set; }
+        public string LanguageName { get; set; }
         public string Remark { get; set; }
 
         public Employees Employees { get; set; }

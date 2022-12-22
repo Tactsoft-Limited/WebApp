@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Core;
+using WebApp.Core.Collections;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
 using WebApp.Sql.Entities.Enrols;
@@ -39,6 +41,39 @@ namespace WebApp.Service
                 o => o.OrderBy(ob => ob.Id),
                 i => i.User);
             var response = _mapper.Map<DepartmentSetup, DepartmentSetupModel>(data);
+
+            return response;
+        }
+
+        public Task<Dropdown<DepartmentSetupModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Paging<DepartmentSetupModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<DepartmentSetup>().GetPageAsync(pageIndex,
+               pageSize,
+               s => (string.IsNullOrEmpty(filterText1) || s.Employees.Name.Contains(filterText1)),
+               o => o.OrderBy(ob => ob.Id),
+               se => se,
+               i => i.User);
+
+            var response = data.ToPagingModel<DepartmentSetup, DepartmentSetupModel>(_mapper);
+
+            return response;
+        }
+
+        public async Task<Paging<DepartmentSetupModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<DepartmentSetup>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se,
+                i => i.User);
+
+            var response = data.ToPagingModel<DepartmentSetup, DepartmentSetupModel>(_mapper);
 
             return response;
         }

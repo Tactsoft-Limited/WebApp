@@ -126,11 +126,11 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Religion, RelationModel>().ReverseMap();
             CreateMap<FamilyInfo, FamilyInfoModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
-            CreateMap<DepartmentSetup, DepartmentSetupModel>().ReverseMap();
+            CreateMap<DesignationSetup, DesignationSetupModel>().ReverseMap();
             CreateMap<Warning, WarningModel>().ReverseMap();
             CreateMap<FunctionalDesignation, FunctionalDesignationModel>().ReverseMap();
             CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>().ReverseMap();
-            CreateMap<DesignationSetup, DepartmentSetupModel>().ReverseMap();
+            
             CreateMap<Education, EducationModel>().ReverseMap();
             CreateMap<CompanyInfo, CompanyInfoModel>().ReverseMap();
             CreateMap<BranchInfo, BranchInfoModel>().ReverseMap();
@@ -138,7 +138,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
             CreateMap<Gender, GenderModel>().ReverseMap();
-
+            CreateMap<Proficiency, ProficiencyModel>().ReverseMap();
             
             CreateMap<Country, CountryModel>().ReverseMap();
             CreateMap<State, StateModel>().ReverseMap();
@@ -151,6 +151,8 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<DistributeAsset, DistributeAssetModel>().ReverseMap();
             CreateMap<BankInfo, BankInfoModel>().ReverseMap();
             CreateMap<SupervisorSetup, SupervisorSetupModel>().ReverseMap();
+            CreateMap<Designation, DesignationModel>().ReverseMap();
+            CreateMap<Department, DepartmentModel>().ReverseMap();
 
 
 
