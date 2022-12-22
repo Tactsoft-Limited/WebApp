@@ -79,6 +79,7 @@ namespace WebApp.Service
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
             services.AddScoped<IAwardInfoService, AwardInfoService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
+            services.AddScoped<ILanguageService, LanguageService>();
         }
     }
 }
