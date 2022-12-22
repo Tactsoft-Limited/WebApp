@@ -24,6 +24,20 @@ namespace WebApp.Service.Services.Configurations
             _mapper = mapper;
         }
 
+        public async Task<DepartmentModel> AddDepartmentDetailsAsync(DepartmentModel model)
+        {
+            var entity = _mapper.Map<DepartmentModel, Department>(model);
+            await _unitOfWork.Repository<Department>().InsertAsync(entity);
+            await _unitOfWork.CompleteAsync();
+            return new DepartmentModel();
+        }
+
+        public async Task<DepartmentModel> GetDepartmentDetailsAsync(long departmentId)
+        {
+            var data = await _unitOfWork.Repository<Department>().FirstOrDefaultAsync(f=>f.Id== departmentId);
+            return _mapper.Map<Department, DepartmentModel>(data);
+        }
+
         public async Task<Dropdown<DepartmentModel>> GetDropdownAsync(long? designationId = null,
          string searchText = null,
          int size = CommonVariables.DropdownSize)
@@ -36,6 +50,37 @@ namespace WebApp.Service.Services.Configurations
                 size);
 
             return data;
+        }
+
+        public async Task<Paging<DepartmentModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<Department>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(filterText1) | p.Name.Contains(filterText1)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+            return data.ToPagingModel<Department, DepartmentModel>(_mapper);
+        }
+
+        public async Task<Paging<DepartmentModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<Department>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(searchText) | p.Name.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+            return data.ToPagingModel<Department, DepartmentModel>(_mapper);
+        }
+
+        public async Task<DepartmentModel> UpdateDepartmentDetailsAsync(long departmentId, DepartmentModel model)
+        {
+            var entity = _mapper.Map<DepartmentModel, Department>(model);
+            await _unitOfWork.Repository<Department>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+            return new DepartmentModel();
+        }
+
+        public Task<DepartmentModel> UpdateDepartmentDetailsAsync(long departmentId, string model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
