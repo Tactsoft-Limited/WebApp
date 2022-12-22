@@ -16,6 +16,7 @@ namespace WebApp.Sql.EntityConfiguration
             builder.HasKey(x => x.Id);
             builder.HasOne(p => p.User).WithMany(m => m.Supervisors).HasForeignKey(p=>p.UserId);
             builder.HasOne(p => p.Employees).WithMany(m => m.Supervisors).HasForeignKey(p=>p.EmployeeId);
+            builder.HasOne(p => p.SupervisorSetup).WithMany(m => m.Supervisors).HasForeignKey(p => p.SuppervisorSetupId);
         }
     }
 }

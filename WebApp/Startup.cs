@@ -114,6 +114,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Employees, EmployeesModel>()
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
+            CreateMap<AwardInfo, AwardInfoModel>()
+                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar)?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
             CreateMap<BloodGroup, BloodGroupModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
@@ -123,12 +126,11 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Religion, RelationModel>().ReverseMap();
             CreateMap<FamilyInfo, FamilyInfoModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
-            CreateMap<DepartmentSetup, DepartmentSetupModel>().ReverseMap();
+            CreateMap<DesignationSetup, DesignationSetupModel>().ReverseMap();
             CreateMap<Warning, WarningModel>().ReverseMap();
-            CreateMap<Supervisor, SupervisorModel>().ReverseMap();
             CreateMap<FunctionalDesignation, FunctionalDesignationModel>().ReverseMap();
             CreateMap<EmployeeManagementCategory, EmployeeManagementCategoryModel>().ReverseMap();
-            CreateMap<DesignationSetup, DepartmentSetupModel>().ReverseMap();
+            
             CreateMap<Education, EducationModel>().ReverseMap();
             CreateMap<CompanyInfo, CompanyInfoModel>().ReverseMap();
             CreateMap<BranchInfo, BranchInfoModel>().ReverseMap();
@@ -136,8 +138,8 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
             CreateMap<Gender, GenderModel>().ReverseMap();
-
-            CreateMap<AwardInfo, AwardInfoModel>().ReverseMap();
+            CreateMap<Proficiency, ProficiencyModel>().ReverseMap();
+            
             CreateMap<Country, CountryModel>().ReverseMap();
             CreateMap<State, StateModel>().ReverseMap();
             CreateMap<City, CityModel>().ReverseMap();
@@ -148,6 +150,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<JobNewStatus, JobNewStatusModel>().ReverseMap();
             CreateMap<DistributeAsset, DistributeAssetModel>().ReverseMap();
             CreateMap<BankInfo, BankInfoModel>().ReverseMap();
+            CreateMap<SupervisorSetup, SupervisorSetupModel>().ReverseMap();
+            CreateMap<Designation, DesignationModel>().ReverseMap();
+            CreateMap<Department, DepartmentModel>().ReverseMap();
             CreateMap<LeaveType, LeaveTypeModel>().ReverseMap();
             CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
 

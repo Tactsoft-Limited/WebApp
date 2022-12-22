@@ -15,7 +15,7 @@ namespace WebApp.Sql.Entities.Enrols
         public long? EmployeeId { get; set; }
         public long? DesignationId { get; set; }
         public DateTime EffectedDate { get; set; }
-        public string RemarK { get; set; }
+        public string Remark { get; set; }
 
         public User User { get; set; }
         public Employees Employees { get; set; }
