@@ -13,7 +13,17 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface ILeaveTypeService : IBaseService<LeaveType>
     {
-        Task<Dropdown<LeaveTypeModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Dropdown<LeaveTypeModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
+
+        Task<Paging<LeaveTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<LeaveTypeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<LeaveTypeModel> AddLeaveTypeDetailsAsync(LeaveTypeModel model);
+        Task<LeaveTypeModel> UpdateLeaveTypeDetailsAsync(long leaveTypeId, LeaveTypeModel model);
+        Task<LeaveTypeModel> UpdateLeaveTypeDetailsAsync(long leaveTypeId, string model);
+        Task<LeaveTypeModel> GetLeaveTypeDetailsAsync(long leaveTypeId);
 
     }
+
+
+
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Service.Models.Enrols;
 
 namespace WebApp.Service.Models.Configurations
 {
@@ -15,5 +16,6 @@ namespace WebApp.Service.Models.Configurations
         public bool IsMeternal { get; set; }
         public bool IsUnpaid { get; set; }
         public bool IsPartialLeave { get; set; }
+        public CompanyInfoModel Company { get; set; }
     }
 }
