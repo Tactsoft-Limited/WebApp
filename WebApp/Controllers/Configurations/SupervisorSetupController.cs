@@ -43,9 +43,9 @@ namespace WebApp.Controllers.Configurations
             return new ApiOkActionResult(res);
         }
         [HttpGet("{supervisorsetupId}")]
-        public async Task<IActionResult> GetSupervisorSetupDetailAsync(long awardinfoId)
+        public async Task<IActionResult> GetSupervisorSetupDetailAsync(long supervisorsetupId)
         {
-            var res = await _supervisorsetupService.GetSupervisorSetupDetailAsync(awardinfoId);
+            var res = await _supervisorsetupService.GetSupervisorSetupDetailAsync(supervisorsetupId);
 
             return new ApiOkActionResult(res);
         }

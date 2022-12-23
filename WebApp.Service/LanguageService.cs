@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Service.Models.Enrols;
 using WebApp.Services;
@@ -35,6 +36,24 @@ namespace WebApp.Service
             return new LanguageModel();
         }
 
+        public async Task<Dropdown<LanguageModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<Language>().GetDropdownAsync(
+                p =>(string.IsNullOrEmpty(searchText)|p.LanguageName.Contains(searchText)),
+                o=>o.OrderBy(ob=>ob.Id),
+                se=> new LanguageModel { Id=se.Id, LanguageName=se.LanguageName },
+                size);
+            return data;
+        }
+
+        public async Task<Paging<LanguageModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<Language>().GetPageAsync(pageIndex,pageSize,
+                p=>(string.IsNullOrEmpty(filterText1)|p.LanguageName.Contains(filterText1)),
+                o=>o.OrderBy(ob=>ob.Id),
+                se=>se);
+            return data.ToPagingModel<Language, LanguageModel>(_mapper);
+        }
 
         public async Task<LanguageModel> GetLanguageDetailAsync(long languageId)
         {
@@ -45,7 +64,15 @@ namespace WebApp.Service
             
         }
 
-        
+        public async Task<Paging<LanguageModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<Language>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(searchText) | p.LanguageName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+            return data.ToPagingModel<Language, LanguageModel>(_mapper);
+        }
+
         public async Task<LanguageModel> UpdateLanguageDetailAsync(long languageId, LanguageModel model)
         {
             var entity = _mapper.Map<LanguageModel, Language>(model);
