@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +24,81 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<DocumentCategoryModel>> GetCompanyDropdownAsync(long? companyId = null,
-    string searchText = null,
-    int size = CommonVariables.DropdownSize)
+        public async Task<Dropdown<DocumentCategoryModel>> GetDropdownAsync(string searchText = null, int size = 15)
         {
             var data = await _unitOfWork.Repository<DocumentCategorie>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new DocumentCategoryModel { Id = se.Id, DocumentCategorieName = se.DocumentCategorieName, CompanyId = se.CompanyId },
-                size);
-
+                 p => (string.IsNullOrEmpty(searchText) || p.DocumentCategorieName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new DocumentCategoryModel { Id = se.Id, DocumentCategorieName = se.DocumentCategorieName },
+                 size
+                 );
             return data;
+        }
+        public async Task<Paging<DocumentCategoryModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<DocumentCategorie>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.DocumentCategorieName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<DocumentCategorie, DocumentCategoryModel>(_mapper);
+
+            return response;
+        }
+        public async Task<Paging<DocumentCategoryModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<DocumentCategorie>().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.DocumentCategorieName.Contains(filterText1))),
+                //|| (string.IsNullOrEmpty(filterText2) || s.Lastname.Contains(filterText2))),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<DocumentCategorie, DocumentCategoryModel>(_mapper);
+
+            return response;
+        }
+        public async Task<DocumentCategoryModel> GetDocumentCategorieDetailAsync(long documentcategorieId)
+        {
+            var data = await _unitOfWork.Repository<DocumentCategorie>().FirstOrDefaultAsync(f => f.Id == documentcategorieId,
+                o => o.OrderBy(ob => ob.Id)
+                );
+
+
+            var response = _mapper.Map<DocumentCategorie, DocumentCategoryModel>(data);
+
+            return response;
+        }
+        public async Task<DocumentCategoryModel> AddDocumentCategorieDetailAsync(DocumentCategoryModel documentcategorie)
+        {
+
+
+            var entity = _mapper.Map<DocumentCategoryModel, DocumentCategorie>(documentcategorie);
+
+            await _unitOfWork.Repository<DocumentCategorie>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new DocumentCategoryModel();
+        }
+        public async Task<DocumentCategoryModel> UpdateDocumentCategorieDetailAsync(long documentcategorieId, DocumentCategoryModel documentcategorie)
+        {
+            var entity = _mapper.Map<DocumentCategoryModel, DocumentCategorie>(documentcategorie);
+
+            await _unitOfWork.Repository<DocumentCategorie>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new DocumentCategoryModel();
+        }
+        public async Task<DocumentCategoryModel> UpdateDocumentCategorieDetailAsync(long documentcategorieId, string model)
+        {
+            var documentcategorie = JsonConvert.DeserializeObject<DocumentCategoryModel>(model);
+            var entity = _mapper.Map<DocumentCategoryModel, DocumentCategorie>(documentcategorie);
+
+            await _unitOfWork.Repository<DocumentCategorie>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new DocumentCategoryModel();
         }
     }
 }
