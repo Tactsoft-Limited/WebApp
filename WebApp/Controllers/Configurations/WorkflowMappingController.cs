@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Extensions;
 using WebApp.Helpers.Base;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Services.Configurations;
 using WebApp.Sql.Entities.Configurations;
 
@@ -18,38 +20,39 @@ namespace WebApp.Controllers.Configurations
         {
             _workflowmappingService = workflowmappingService;
         }
-        [HttpGet("company_dropdown")]
-        public async Task<IActionResult> GetCompanyDropdownAsync(long? companyId = null, string searchText = null)
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var res = await _workflowmappingService.GetCompanyDropdownAsync(companyId, searchText);
+            var res = await _workflowmappingService.GetSearchAsync(pageIndex, pageSize, searchText);
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("employww_dropdown")]
-        public async Task<IActionResult> GetEmployeeDropdownAsync(long? employeeId = null, string searchText = null)
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null /*string filterText2 = null*/)
         {
-            var res = await _workflowmappingService.GetEmployeeDropdownAsync(employeeId, searchText);
+            var res = await _workflowmappingService.GetFilterAsync(pageIndex, pageSize, filterText1 /*filterText2*/);
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("branch_dropdown")]
-        public async Task<IActionResult> GetBranchDropdownAsync(long? branchId = null, string searchText = null)
+        [HttpGet("{workflowMappingId}")]
+        public async Task<IActionResult> GetWorkflowMappingDetailAsync(long workflowMappingId)
         {
-            var res = await _workflowmappingService.GetBranchDropdownAsync(branchId, searchText);
+            var res = await _workflowmappingService.GetWorkflowMappingDetailAsync(workflowMappingId);
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("department_dropdown")]
-        public async Task<IActionResult> GetDepartmentDropdownAsync(long? departmentId = null, string searchText = null)
+        [HttpPost()]
+        public async Task<IActionResult> AddWorkflowMappingDetailAsync([FromForm] WorkflowMappingModel model)
         {
-            var res = await _workflowmappingService.GetDepartmentDropdownAsync(departmentId, searchText);
+            var res = await _workflowmappingService.AddWorkflowMappingDetailAsync(model);
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("workflow_dropdown")]
-        public async Task<IActionResult> GetWorkflowDropdownAsync(long? workflowId = null, string searchText = null)
+        [HttpPut("{workflowMappingId}")]
+        public async Task<IActionResult> UpdateWorkflowMappingDetailAsync(long workflowMappingId, [FromForm] WorkflowMappingModel workflowMapping)
         {
-            var res = await _workflowmappingService.GetWorkflowDropdownAsync(workflowId, searchText);
+
+            var res = await _workflowmappingService.UpdateWorkflowMappingDetailAsync(workflowMappingId, workflowMapping);
 
             return new ApiOkActionResult(res);
         }

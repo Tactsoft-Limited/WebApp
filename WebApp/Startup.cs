@@ -13,6 +13,7 @@ using WebApp.Core.Sqls;
 using WebApp.Helpers.Attributes;
 using WebApp.Service;
 using WebApp.Service.Models;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Models.Enrols;
 using WebApp.Sql;
 using WebApp.Sql.Entities;
@@ -133,7 +134,19 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<AssetType, AssetTypeModel>().ReverseMap();
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
-           
+            CreateMap<NewJobStatus, NewJobStatusModel>().ReverseMap();
+            CreateMap<JobBaseStatus, JobBaseStatusModel>().ReverseMap();
+            CreateMap<EducationGroup, EducationGroupModel>().ReverseMap();
+            CreateMap<EducationType, EducationTypeModel>().ReverseMap();
+            CreateMap<Grade, GradeModel>().ReverseMap();
+            CreateMap<Institute, InstituteModel>().ReverseMap();
+            CreateMap<EmploymentCategorie, EmploymentCategoryModel>().ReverseMap();
+            CreateMap<DocumentCategorie, DocumentCategoryModel>().ReverseMap();
+            CreateMap<AwardType, AwardTypeModel>().ReverseMap();
+            CreateMap<WarningType, WarningTypeModel>().ReverseMap();
+            CreateMap<NewApprovalWorkflow, NewApprovalWorkflowModel>().ReverseMap();
+            CreateMap<WorkflowMaping, WorkflowMappingModel>().ReverseMap();
+            CreateMap<OpeningYear, OpeningYearModel>().ReverseMap();
         }
     }
 }
