@@ -156,6 +156,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Language, LanguageModel>().ReverseMap();
             CreateMap<LeaveType, LeaveTypeModel>().ReverseMap();
             CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
+            CreateMap<Religion, ReligionModel>().ReverseMap();
+            CreateMap<JobStatus, JobStatusModel>().ReverseMap();
+
 
         }
     }
