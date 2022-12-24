@@ -97,5 +97,16 @@ namespace WebApp.Service
 
             return new AssetModel();
         }
+        public async Task<Dropdown<AssetModel>> GetDropdownAsync(string searchText = null,
+          int size = CommonVariables.DropdownSize)
+        {
+            var data = await _unitOfWork.Repository<Asset>().GetDropdownAsync(
+                p => (string.IsNullOrEmpty(searchText) || p.AssetName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => new AssetModel { Id = se.Id, AssetName = se.AssetName},
+                size);
+
+            return data;
+        }
     }
 }

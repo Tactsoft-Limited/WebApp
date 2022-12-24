@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
+using WebApp.Service.Models.Configurations;
 
 namespace WebApp.Service.Models.Enrols
 {
@@ -21,8 +22,8 @@ namespace WebApp.Service.Models.Enrols
         public string EffectedDate { get; set; }
         public string Remark { get; set; }
 
-        public User User { get; set; }
-        public Employees Employees { get; set; }
-        public Department Department { get; set; }
+        public UserModel User { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public DepartmentModel Department { get; set; }
     }
 }

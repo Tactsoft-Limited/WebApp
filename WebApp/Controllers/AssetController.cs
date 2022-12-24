@@ -19,6 +19,13 @@ namespace WebApp.Controllers
         {
             _assetService = assetService;
         }
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _assetService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {

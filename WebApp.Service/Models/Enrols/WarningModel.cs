@@ -22,7 +22,7 @@ namespace WebApp.Service.Models.Enrols
         public string Remarks { get; set; }
         public string Action { get; set; }
 
-        public User User { get; set; }
-        public Employees Employees { get; set; }
+        public UserModel User { get; set; }
+        public EmployeesModel Employees { get; set; }
     }
 }

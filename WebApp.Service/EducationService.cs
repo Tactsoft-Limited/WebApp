@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Core.Collections;
 using WebApp.Core.DataType;
 using WebApp.Service.Models.Enrols;
@@ -33,6 +34,11 @@ namespace WebApp.Service
             return new EducationModel();
         }
 
+        public Task<Dropdown<EducationModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<EducationModel> GetEducationDetailsAsync(long educationId)
         {
             var data = await _unitOfWork.Repository<Education>().FirstOrDefaultAsync(f=>f.Id== educationId,
@@ -41,14 +47,22 @@ namespace WebApp.Service
             return _mapper.Map<Education, EducationModel>(data);
         }
 
-        public Task<Paging<EducationModel>> GetFilterAsync(int pageIndex = 0, int pageSize = 10, string filterText1 = null)
+        public async Task<Paging<EducationModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
         {
-            throw new NotImplementedException();
+            var data = await _unitOfWork.Repository<Education>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(filterText1) | p.Employees.Name.Contains(filterText1)),
+                o => o.OrderBy(f => f.Id),
+                se => se);
+            return data.ToPagingModel<Education, EducationModel>(_mapper);
         }
 
-        public Task<Paging<EducationModel>> GetSearchAsync(int pageIndex = 0, int pageSize = 10, string searchText = null)
+        public async Task<Paging<EducationModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            throw new NotImplementedException();
+            var data = await _unitOfWork.Repository<Education>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(searchText) | p.Employees.Name.Contains(searchText)),
+                o => o.OrderBy(f => f.Id),
+                se => se);
+            return data.ToPagingModel<Education, EducationModel>(_mapper);
         }
 
         public async Task<EducationModel> UpdateEducationDetailsAsync(long educationId, EducationModel model)

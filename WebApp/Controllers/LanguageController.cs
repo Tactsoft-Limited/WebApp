@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Extensions;
 using WebApp.Helpers.Base;
 using WebApp.Service;
@@ -19,6 +20,30 @@ namespace WebApp.Controllers
         public LanguageController(ILanguageService languageService) : base(languageService)
         {
             this._languageService = languageService;
+        }
+
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _languageService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var res = await _languageService.GetSearchAsync(pageIndex, pageSize, searchText);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null /*string filterText2 = null*/)
+        {
+            var res = await _languageService.GetFilterAsync(pageIndex, pageSize, filterText1 /*filterText2*/);
+
+            return new ApiOkActionResult(res);
         }
 
         [HttpGet("{languageId}")]

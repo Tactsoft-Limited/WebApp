@@ -29,7 +29,7 @@ namespace WebApp.Service
             services.AddScoped<IDesignationService, DesignationService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IGenderService, GenderService>();
-            services.AddScoped<IMeritalStatusService, MeritalStatusService>();
+            services.AddScoped<IMaritalStatusService, MaritalStatusService>();
             services.AddScoped<IBloodGroupService, BloodGroupService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IDepartmentSetupService, DepartmentSetupService>();
@@ -42,7 +42,6 @@ namespace WebApp.Service
 
 
 
-            services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IFunctionalDesignationService, FunctionalDesignationService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
             services.AddScoped<IReligionService, ReligionService>();
@@ -70,7 +69,6 @@ namespace WebApp.Service
             services.AddScoped<IDocumentCategoryService, DocumentCategoryService>();
             services.AddScoped<IAwardTypeService, AwardTypeService>();
             services.AddScoped<IWarningService, WarningService>();
-            services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IWorkflowMappingService, WorkflowMappingService>();
             services.AddScoped<IClaimTypeService, ClaimTypeService>();
             services.AddScoped<IOpeningYearService, OpeningYearService>();
@@ -79,6 +77,11 @@ namespace WebApp.Service
             services.AddScoped<ISupervisorSetupService, SupervisorSetupService>();
             services.AddScoped<INewApprovalWorkflowService, NewApprovalWorkflowService>();
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
+            services.AddScoped<IAwardInfoService, AwardInfoService>();
+            services.AddScoped<IProficiencyService, ProficiencyService>();
+            services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IReligionService, ReligionService>();
+            services.AddScoped<IJobStatusService, JobStatusService>();
         }
     }
 }

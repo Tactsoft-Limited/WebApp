@@ -21,8 +21,8 @@ namespace WebApp.Service.Models.Enrols
         public string RoutingNumber { get; set; }
         public string AccountName { get; set; }
         public string Remark { get; set; }
-        public User User { get; set; }
-        public Employees Employees { get; set; }
-        public BranchInfo BranchInfo { get; set; }
+        public UserModel User { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public BranchInfoModel BranchInfo { get; set; }
     }
 }

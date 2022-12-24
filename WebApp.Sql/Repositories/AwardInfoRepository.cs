@@ -11,7 +11,7 @@ namespace WebApp.Sql.Repositories
 {
     public class AwardInfoRepository : SqlRepository<AwardInfo>, IAwardInfoRepository
     {
-        public AwardInfoRepository(WebAppContext dbContext) : base(dbContext)
+        public AwardInfoRepository(WebAppContext Context) : base(Context)
         {
         }
     }

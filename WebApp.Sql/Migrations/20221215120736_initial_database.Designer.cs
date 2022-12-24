@@ -10,8 +10,8 @@ using WebApp.Sql;
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20221214065048_Rename StateId properties on BranchInfo")]
-    partial class RenameStateIdpropertiesonBranchInfo
+    [Migration("20221215120736_initial_database")]
+    partial class initial_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1915,10 +1915,10 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("EmergencyContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmoloyeeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("FemilyMemberName")
+                    b.Property<string>("FamilyMemberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("GenderId")
@@ -1943,6 +1943,8 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("GenderId");
 
@@ -3815,6 +3817,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.FamilyInfo", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("FamilyInfos")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
@@ -3824,6 +3831,8 @@ namespace WebApp.Sql.Migrations
                         .WithMany("FamilyInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
 
                     b.Navigation("Gender");
 
@@ -4413,6 +4422,8 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
+
+                    b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
 

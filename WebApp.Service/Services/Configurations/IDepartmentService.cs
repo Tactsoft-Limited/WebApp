@@ -13,8 +13,12 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface IDepartmentService : IBaseService<Department>
     {
-        Task<Dropdown<DepartmentModel>> GetDropdownAsync(long? designationId = null,
-          string searchText = null,
-          int size = CommonVariables.DropdownSize);
+        Task<Dropdown<DepartmentModel>> GetDropdownAsync(long? departmentId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<DepartmentModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<DepartmentModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<DepartmentModel> AddDepartmentDetailsAsync(DepartmentModel model);
+        Task<DepartmentModel> UpdateDepartmentDetailsAsync(long departmentId, DepartmentModel model);
+        Task<DepartmentModel> UpdateDepartmentDetailsAsync(long departmentId, string model);
+        Task<DepartmentModel> GetDepartmentDetailsAsync(long departmentId);
     }
 }

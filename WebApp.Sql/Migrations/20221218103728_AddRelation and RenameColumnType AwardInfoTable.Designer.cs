@@ -10,8 +10,8 @@ using WebApp.Sql;
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20221206060625_Initial_Create")]
-    partial class Initial_Create
+    [Migration("20221218103728_AddRelation and RenameColumnType AwardInfoTable")]
+    partial class AddRelationandRenameColumnTypeAwardInfoTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1214,7 +1214,7 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Attachment")
+                    b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AwardName")
@@ -1235,8 +1235,8 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("Gift")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("PriceAmount")
-                        .HasColumnType("real");
+                    b.Property<double>("PriceAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("Remark")
                         .HasColumnType("nvarchar(max)");
@@ -1251,6 +1251,8 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AwardTypeId");
 
                     b.HasIndex("EmployeeId");
 
@@ -1329,9 +1331,6 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("CompanyId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CompanyStateId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("ContactNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -1346,6 +1345,9 @@ namespace WebApp.Sql.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("StateId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -1363,9 +1365,9 @@ namespace WebApp.Sql.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("CompanyStateId");
-
                     b.HasIndex("CountryId");
+
+                    b.HasIndex("StateId");
 
                     b.HasIndex("UserId");
 
@@ -1915,10 +1917,10 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("EmergencyContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmoloyeeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("EmployeeId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("FemilyMemberName")
+                    b.Property<string>("FamilyMemberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("GenderId")
@@ -1943,6 +1945,8 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("GenderId");
 
@@ -3499,6 +3503,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Configurations.AwardType", "AwardType")
+                        .WithMany("AwardInfos")
+                        .HasForeignKey("AwardTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("AwardInfos")
                         .HasForeignKey("EmployeeId")
@@ -3508,6 +3517,8 @@ namespace WebApp.Sql.Migrations
                         .WithMany("AwardInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("AwardType");
 
                     b.Navigation("Employees");
 
@@ -3545,14 +3556,14 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
-                        .WithMany("BranchInfos")
-                        .HasForeignKey("CompanyStateId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("WebApp.Sql.Entities.Configurations.Country", "Country")
                         .WithMany("BranchInfos")
                         .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("WebApp.Sql.Entities.Configurations.State", "State")
+                        .WithMany("BranchInfos")
+                        .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
@@ -3815,6 +3826,11 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.FamilyInfo", b =>
                 {
+                    b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
+                        .WithMany("FamilyInfos")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
@@ -3824,6 +3840,8 @@ namespace WebApp.Sql.Migrations
                         .WithMany("FamilyInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Employees");
 
                     b.Navigation("Gender");
 
@@ -4230,6 +4248,11 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Categories");
                 });
 
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.AwardType", b =>
+                {
+                    b.Navigation("AwardInfos");
+                });
+
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.City", b =>
                 {
                     b.Navigation("BranchInfos");
@@ -4413,6 +4436,8 @@ namespace WebApp.Sql.Migrations
                     b.Navigation("Educations");
 
                     b.Navigation("EmployeeManagementCategories");
+
+                    b.Navigation("FamilyInfos");
 
                     b.Navigation("FunctionalDesignations");
 

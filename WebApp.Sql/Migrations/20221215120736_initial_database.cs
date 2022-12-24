@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Sql.Migrations
 {
-    public partial class Initial_Create : Migration
+    public partial class initial_database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -570,45 +570,6 @@ namespace WebApp.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FamilyInfos",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: true),
-                    EmoloyeeId = table.Column<int>(type: "int", nullable: false),
-                    FemilyMemberName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RelationshipId = table.Column<int>(type: "int", nullable: false),
-                    GenderId = table.Column<long>(type: "bigint", nullable: true),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NationalityId = table.Column<long>(type: "bigint", nullable: true),
-                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Profession = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmergencyContact = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
-                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FamilyInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FamilyInfos_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FamilyInfos_Genders_GenderId",
-                        column: x => x.GenderId,
-                        principalTable: "Genders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Citys",
                 columns: table => new
                 {
@@ -702,7 +663,7 @@ namespace WebApp.Sql.Migrations
                     BranchAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountryId = table.Column<long>(type: "bigint", nullable: true),
                     CityId = table.Column<long>(type: "bigint", nullable: true),
-                    CompanyStateId = table.Column<long>(type: "bigint", nullable: true),
+                    StateId = table.Column<long>(type: "bigint", nullable: true),
                     ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -733,8 +694,8 @@ namespace WebApp.Sql.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BranchInfos_States_CompanyStateId",
-                        column: x => x.CompanyStateId,
+                        name: "FK_BranchInfos_States_StateId",
+                        column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -1103,6 +1064,51 @@ namespace WebApp.Sql.Migrations
                         name: "FK_EmployeeManagementCategories_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FamilyInfos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    EmployeeId = table.Column<long>(type: "bigint", nullable: true),
+                    FamilyMemberName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RelationshipId = table.Column<int>(type: "int", nullable: false),
+                    GenderId = table.Column<long>(type: "bigint", nullable: true),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NationalityId = table.Column<long>(type: "bigint", nullable: true),
+                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Profession = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmergencyContact = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FamilyInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FamilyInfos_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FamilyInfos_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FamilyInfos_Genders_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "Genders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -2460,14 +2466,14 @@ namespace WebApp.Sql.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BranchInfos_CompanyStateId",
-                table: "BranchInfos",
-                column: "CompanyStateId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BranchInfos_CountryId",
                 table: "BranchInfos",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BranchInfos_StateId",
+                table: "BranchInfos",
+                column: "StateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BranchInfos_UserId",
@@ -2668,6 +2674,11 @@ namespace WebApp.Sql.Migrations
                 name: "IX_EmploymentCategories_CompanyId",
                 table: "EmploymentCategories",
                 column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FamilyInfos_EmployeeId",
+                table: "FamilyInfos",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FamilyInfos_GenderId",
