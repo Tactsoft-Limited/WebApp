@@ -19,6 +19,13 @@ namespace WebApp.Controllers
         {
             _assetTypeService = assetTypeService;
         }
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
+        {
+            var res = await _assetTypeService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
@@ -33,7 +40,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("{assetTypeIdId}")]
+        [HttpGet("{assetTypeId}")]
         public async Task<IActionResult> GetAssetTypeDetailAsync(long assetTypeId)
         {
             var res = await _assetTypeService.GetAssetTypeDetailAsync(assetTypeId);

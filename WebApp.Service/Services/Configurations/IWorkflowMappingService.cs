@@ -13,10 +13,11 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface IWorkflowMappingService : IBaseService<WorkflowMaping>
     {
-        Task<Dropdown<WorkflowMappingModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<WorkflowMappingModel>> GetEmployeeDropdownAsync(long? employeeId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<WorkflowMappingModel>> GetBranchDropdownAsync(long? branchId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<WorkflowMappingModel>> GetDepartmentDropdownAsync(long? departmentId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<WorkflowMappingModel>> GetWorkflowDropdownAsync(long? workflowId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<WorkflowMappingModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<WorkflowMappingModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null, string filterText2 = null, string filterText3 = null, string filterText4 = null);
+        Task<WorkflowMappingModel> GetWorkflowMappingDetailAsync(long workflowMappingId);
+        Task<WorkflowMappingModel> AddWorkflowMappingDetailAsync(WorkflowMappingModel model);
+        Task<WorkflowMappingModel> UpdateWorkflowMappingDetailAsync(long workflowMappingId, WorkflowMappingModel model);
+        Task<WorkflowMappingModel> UpdateWorkflowMappingDetailAsync(long workflowMappingId, string model);
     }
 }

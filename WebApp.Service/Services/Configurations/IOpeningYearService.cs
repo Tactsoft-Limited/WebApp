@@ -13,6 +13,11 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface IOpeningYearService : IBaseService<OpeningYear>
     {
-        Task<Dropdown<OpeningYearModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<OpeningYearModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<OpeningYearModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<OpeningYearModel> GetOpeningYearDetailAsync(long openingYearId);
+        Task<OpeningYearModel> AddOpeningYearDetailAsync(OpeningYearModel model);
+        Task<OpeningYearModel> UpdateOpeningYearDetailAsync(long openingYearId, OpeningYearModel model);
+        Task<OpeningYearModel> UpdateOpeningYearDetailAsync(long openingYearId, string model);
     }
 }

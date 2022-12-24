@@ -11,7 +11,7 @@ namespace WebApp.Sql.Entities.Enrols
     {
         public long? UserId { get; set; }
         public string AssetName { get; set; }
-        public string Attachment { get; set; }
+        public string Avatar { get; set; }
         public long?  CompanyId { get; set; }
         public long? BranchId { get; set; }
         public User User { get; set; }

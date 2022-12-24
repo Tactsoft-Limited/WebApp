@@ -14,6 +14,7 @@ namespace WebApp.Service
 {
     public interface IAssetTypeService : IBaseService<AssetType>
     {
+        Task<Dropdown<AssetTypeModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
         Task<Paging<AssetTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<AssetTypeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 

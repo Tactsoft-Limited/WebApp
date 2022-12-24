@@ -31,6 +31,16 @@ namespace WebApp.Service
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
         }
+        public async Task<Dropdown<AssetTypeModel>> GetDropdownAsync(string searchText = null, int size = 15)
+        {
+            var data = await _unitOfWork.Repository<AssetType>().GetDropdownAsync(
+                 p => (string.IsNullOrEmpty(searchText) || p.AssetName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new AssetTypeModel { Id = se.Id, AssetName = se.AssetName },
+                 size
+                 );
+            return data;
+        }
         public async Task<Paging<AssetTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
             var data = await _unitOfWork.Repository<AssetType>().GetPageAsync(pageIndex,

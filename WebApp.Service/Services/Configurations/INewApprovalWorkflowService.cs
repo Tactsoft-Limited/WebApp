@@ -13,6 +13,12 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface INewApprovalWorkflowService : IBaseService<NewApprovalWorkflow>
     {
-        Task<Dropdown<NewApprovalWorkflowModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Dropdown<NewApprovalWorkflowModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<NewApprovalWorkflowModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<NewApprovalWorkflowModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<NewApprovalWorkflowModel> GetNewapprovalworkflowDetailAsync(long newapprovalworkflowId);
+        Task<NewApprovalWorkflowModel> AddNewapprovalworkflowDetailAsync(NewApprovalWorkflowModel model);
+        Task<NewApprovalWorkflowModel> UpdateNewapprovalworkflowDetailAsync(long newapprovalworkflowId, NewApprovalWorkflowModel model);
+        Task<NewApprovalWorkflowModel> UpdateNewapprovalworkflowDetailAsync(long newapprovalworkflowId, string model);
     }
 }

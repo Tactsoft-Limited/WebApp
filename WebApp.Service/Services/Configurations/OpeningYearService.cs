@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +24,71 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<OpeningYearModel>> GetCompanyDropdownAsync(long? companyId = null,
-    string searchText = null,
-    int size = CommonVariables.DropdownSize)
+        public async Task<Paging<OpeningYearModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var data = await _unitOfWork.Repository<OpeningYear>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
+            var data = await _unitOfWork.Repository<OpeningYear>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText)),
                 o => o.OrderBy(ob => ob.Id),
-                se => new OpeningYearModel { Id = se.Id, CompanyId = se.CompanyId },
-                size);
+                se => se);
 
-            return data;
+            var response = data.ToPagingModel<OpeningYear, OpeningYearModel>(_mapper);
+
+            return response;
+        }
+        public async Task<Paging<OpeningYearModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<OpeningYear>().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.Company.CompanyName.Contains(filterText1))),
+                //|| (string.IsNullOrEmpty(filterText2) || s.Lastname.Contains(filterText2))),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<OpeningYear, OpeningYearModel>(_mapper);
+
+            return response;
+        }
+        public async Task<OpeningYearModel> GetOpeningYearDetailAsync(long openingYearId)
+        {
+            var data = await _unitOfWork.Repository<OpeningYear>().FirstOrDefaultAsync(f => f.Id == openingYearId,
+                o => o.OrderBy(ob => ob.Id)
+                );
+
+
+            var response = _mapper.Map<OpeningYear, OpeningYearModel>(data);
+
+            return response;
+        }
+        public async Task<OpeningYearModel> AddOpeningYearDetailAsync(OpeningYearModel openingYear)
+        {
+
+
+            var entity = _mapper.Map<OpeningYearModel, OpeningYear>(openingYear);
+
+            await _unitOfWork.Repository<OpeningYear>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new OpeningYearModel();
+        }
+        public async Task<OpeningYearModel> UpdateOpeningYearDetailAsync(long openingYearId, OpeningYearModel openingYear)
+        {
+            var entity = _mapper.Map<OpeningYearModel, OpeningYear>(openingYear);
+
+            await _unitOfWork.Repository<OpeningYear>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new OpeningYearModel();
+        }
+        public async Task<OpeningYearModel> UpdateOpeningYearDetailAsync(long openingYearId, string model)
+        {
+            var grade = JsonConvert.DeserializeObject<OpeningYearModel>(model);
+            var entity = _mapper.Map<OpeningYearModel, OpeningYear>(grade);
+
+            await _unitOfWork.Repository<OpeningYear>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new OpeningYearModel();
         }
     }
 }

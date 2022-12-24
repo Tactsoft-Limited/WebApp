@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,75 +24,77 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<WorkflowMappingModel>> GetCompanyDropdownAsync(long? companyId = null,
-        string searchText = null,
-        int size = CommonVariables.DropdownSize)
+        public async Task<Paging<WorkflowMappingModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var data = await _unitOfWork.Repository<WorkflowMaping>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
+            var data = await _unitOfWork.Repository<WorkflowMaping>().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText))) ||
+                ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))) ||
+                ((string.IsNullOrEmpty(searchText) || s.Branch.BranchName.Contains(searchText)))||
+                ((string.IsNullOrEmpty(searchText) || s.Department.Name.Contains(searchText))),
                 o => o.OrderBy(ob => ob.Id),
-                se => new WorkflowMappingModel { Id = se.Id, CompanyId = se.CompanyId },
+                se => se);
 
-            size);
+            var response = data.ToPagingModel<WorkflowMaping, WorkflowMappingModel>(_mapper);
 
-            return data;
+            return response;
         }
-        public async Task<Dropdown<WorkflowMappingModel>> GetBranchDropdownAsync(long? branchId = null,
-                string searchText = null,
-                int size = CommonVariables.DropdownSize)
+        public async Task<Paging<WorkflowMappingModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null, string filterText2 = null, string filterText3 = null, string filterText4 = null)
         {
-            var data = await _unitOfWork.Repository<WorkflowMaping>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Branch.BranchName.Contains(searchText))
-                    && branchId == null || s.BranchId == branchId),
+            var data = await _unitOfWork.Repository<WorkflowMaping>().GetPageAsync(pageIndex,
+                pageSize,
+                    s => ((string.IsNullOrEmpty(filterText1) || s.Employees.Name.Contains(filterText1))
+                    || (string.IsNullOrEmpty(filterText2) || s.Company.CompanyName.Contains(filterText2))
+                    || (string.IsNullOrEmpty(filterText3) || s.Branch.BranchName.Contains(filterText3))
+                    || (string.IsNullOrEmpty(filterText4) || s.Department.Name.Contains(filterText4))),
                 o => o.OrderBy(ob => ob.Id),
-                se => new WorkflowMappingModel { Id = se.Id, BranchId = se.BranchId },
+                se => se);
 
-            size);
+            var response = data.ToPagingModel<WorkflowMaping, WorkflowMappingModel>(_mapper);
 
-            return data;
+            return response;
         }
-        public async Task<Dropdown<WorkflowMappingModel>> GetEmployeeDropdownAsync(long? projectId = null,
-    string searchText = null,
-    int size = CommonVariables.DropdownSize)
+        public async Task<WorkflowMappingModel> GetWorkflowMappingDetailAsync(long workflowMapingId)
         {
-            var data = await _unitOfWork.Repository<WorkflowMaping>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Employees.Name.Contains(searchText))
-                    && projectId == null || s.EmployeeId == projectId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new WorkflowMappingModel { Id = se.Id, EmployeeId = se.EmployeeId },
+            var data = await _unitOfWork.Repository<WorkflowMaping>().FirstOrDefaultAsync(f => f.Id == workflowMapingId,
+                o => o.OrderBy(ob => ob.Id)
+                );
 
-            size);
 
-            return data;
+            var response = _mapper.Map<WorkflowMaping, WorkflowMappingModel>(data);
+
+            return response;
         }
-        public async Task<Dropdown<WorkflowMappingModel>> GetDepartmentDropdownAsync(long? departmentId = null,
-            string searchText = null,
-            int size = CommonVariables.DropdownSize)
+        public async Task<WorkflowMappingModel> AddWorkflowMappingDetailAsync(WorkflowMappingModel workflowMaping)
         {
-            var data = await _unitOfWork.Repository<WorkflowMaping>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Department.Name.Contains(searchText))
-                    && departmentId == null || s.DepartmentId == departmentId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new WorkflowMappingModel { Id = se.Id, DepartmentId = se.DepartmentId },
 
-            size);
 
-            return data;
+            var entity = _mapper.Map<WorkflowMappingModel, WorkflowMaping>(workflowMaping);
+
+            await _unitOfWork.Repository<WorkflowMaping>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new WorkflowMappingModel();
         }
-        public async Task<Dropdown<WorkflowMappingModel>> GetWorkflowDropdownAsync(long? workflowId = null,
-        string searchText = null,
-        int size = CommonVariables.DropdownSize)
+        public async Task<WorkflowMappingModel> UpdateWorkflowMappingDetailAsync(long workflowMapingId, WorkflowMappingModel workflowMaping)
         {
-            var data = await _unitOfWork.Repository<WorkflowMaping>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Workflow.NewApprovalWorkflowName.Contains(searchText))
-                    && workflowId == null || s.WorkflowId == workflowId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new WorkflowMappingModel { Id = se.Id, WorkflowId = se.WorkflowId },
+            var entity = _mapper.Map<WorkflowMappingModel, WorkflowMaping>(workflowMaping);
 
-            size);
+            await _unitOfWork.Repository<WorkflowMaping>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
 
-            return data;
+            return new WorkflowMappingModel();
         }
+        public async Task<WorkflowMappingModel> UpdateWorkflowMappingDetailAsync(long workflowMapingId, string model)
+        {
+            var grade = JsonConvert.DeserializeObject<WorkflowMappingModel>(model);
+            var entity = _mapper.Map<WorkflowMappingModel, WorkflowMaping>(grade);
+
+            await _unitOfWork.Repository<WorkflowMaping>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new WorkflowMappingModel();
+        }
+
     }
 }

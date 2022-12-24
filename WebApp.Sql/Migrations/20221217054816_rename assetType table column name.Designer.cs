@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Sql;
 
 namespace WebApp.Sql.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    partial class WebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221217054816_rename assetType table column name")]
+    partial class renameassetTypetablecolumnname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -652,7 +654,7 @@ namespace WebApp.Sql.Migrations
                     b.ToTable("LeaveTypes");
                 });
 
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MaritalStatus", b =>
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.MeritalStatus", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -665,7 +667,7 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("MaritalStatusName")
+                    b.Property<string>("MeritalStatusName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("UpdatedBy")
@@ -676,7 +678,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MaritalStatuses");
+                    b.ToTable("MeritalStatuses");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.NewApprovalWorkflow", b =>
@@ -1212,7 +1214,7 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Avatar")
+                    b.Property<string>("Attachment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AwardName")
@@ -1233,8 +1235,8 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("Gift")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("PriceAmount")
-                        .HasColumnType("float");
+                    b.Property<float>("PriceAmount")
+                        .HasColumnType("real");
 
                     b.Property<string>("Remark")
                         .HasColumnType("nvarchar(max)");
@@ -1249,8 +1251,6 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AwardTypeId");
 
                     b.HasIndex("EmployeeId");
 
@@ -1577,7 +1577,7 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Remark")
+                    b.Property<string>("RemarK")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("UpdatedBy")
@@ -1918,7 +1918,10 @@ namespace WebApp.Sql.Migrations
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("FamilyMemberName")
+                    b.Property<long?>("EmployeesId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FemilyMemberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("GenderId")
@@ -1944,7 +1947,7 @@ namespace WebApp.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeesId");
 
                     b.HasIndex("GenderId");
 
@@ -2097,9 +2100,6 @@ namespace WebApp.Sql.Migrations
 
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("LanguageName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("ProficencyId")
                         .HasColumnType("bigint");
@@ -3504,11 +3504,6 @@ namespace WebApp.Sql.Migrations
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.AwardInfo", b =>
                 {
-                    b.HasOne("WebApp.Sql.Entities.Configurations.AwardType", "AwardType")
-                        .WithMany("AwardInfos")
-                        .HasForeignKey("AwardTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("AwardInfos")
                         .HasForeignKey("EmployeeId")
@@ -3518,8 +3513,6 @@ namespace WebApp.Sql.Migrations
                         .WithMany("AwardInfos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AwardType");
 
                     b.Navigation("Employees");
 
@@ -3829,7 +3822,7 @@ namespace WebApp.Sql.Migrations
                 {
                     b.HasOne("WebApp.Sql.Entities.Enrols.Employees", "Employees")
                         .WithMany("FamilyInfos")
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("WebApp.Sql.Entities.Configurations.Gender", "Gender")
@@ -4247,11 +4240,6 @@ namespace WebApp.Sql.Migrations
             modelBuilder.Entity("WebApp.Sql.Entities.Blogs.Blog", b =>
                 {
                     b.Navigation("Categories");
-                });
-
-            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.AwardType", b =>
-                {
-                    b.Navigation("AwardInfos");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.City", b =>

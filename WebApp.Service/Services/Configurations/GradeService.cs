@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,81 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<GradeModel>> GetCompanyDropdownAsync(long? companyId = null,
-        string searchText = null,
-        int size = CommonVariables.DropdownSize)
+        public async Task<Dropdown<GradeModel>> GetDropdownAsync(string searchText = null, int size = 15)
         {
             var data = await _unitOfWork.Repository<Grade>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new GradeModel { Id = se.Id, GradeName = se.GradeName, CompanyId = se.CompanyId },
-                size);
-
+            p => (string.IsNullOrEmpty(searchText) || p.GradeName.Contains(searchText)),
+            o => o.OrderBy(ob => ob.Id),
+            se => new GradeModel { Id = se.Id, GradeName = se.GradeName },
+            size
+            );
             return data;
+        }
+        public async Task<Paging<GradeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<Grade>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.GradeName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<Grade, GradeModel>(_mapper);
+
+            return response;
+        }
+        public async Task<Paging<GradeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<Grade>().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.GradeName.Contains(filterText1))),
+                //|| (string.IsNullOrEmpty(filterText2) || s.Lastname.Contains(filterText2))),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<Grade, GradeModel>(_mapper);
+
+            return response;
+        }
+        public async Task<GradeModel> GetGradeDetailAsync(long gradeId)
+        {
+            var data = await _unitOfWork.Repository<Grade>().FirstOrDefaultAsync(f => f.Id == gradeId,
+                o => o.OrderBy(ob => ob.Id)
+                );
+
+
+            var response = _mapper.Map<Grade, GradeModel>(data);
+
+            return response;
+        }
+        public async Task<GradeModel> AddGradeDetailAsync(GradeModel grade)
+        {
+
+
+            var entity = _mapper.Map<GradeModel, Grade>(grade);
+
+            await _unitOfWork.Repository<Grade>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new GradeModel();
+        }
+        public async Task<GradeModel> UpdateGradeDetailAsync(long gradeId, GradeModel grade)
+        {
+            var entity = _mapper.Map<GradeModel,Grade>(grade);
+
+            await _unitOfWork.Repository<Grade>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new GradeModel();
+        }
+        public async Task<GradeModel> UpdateGradeDetailAsync(long gradeId, string model)
+        {
+            var grade = JsonConvert.DeserializeObject<GradeModel>(model);
+            var entity = _mapper.Map<GradeModel, Grade>(grade);
+
+            await _unitOfWork.Repository<Grade>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new GradeModel();
         }
     }
 }
