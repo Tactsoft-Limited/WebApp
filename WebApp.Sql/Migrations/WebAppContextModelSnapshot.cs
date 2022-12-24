@@ -1170,7 +1170,7 @@ namespace WebApp.Sql.Migrations
                     b.Property<string>("AssetName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Attachment")
+                    b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("BranchId")
