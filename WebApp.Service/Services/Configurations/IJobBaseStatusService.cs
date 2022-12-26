@@ -13,8 +13,11 @@ namespace WebApp.Service.Services.Configurations
 {
     public interface IJobBaseStatusService : IBaseService<JobBaseStatus>
     {
-        Task<Dropdown<JobBaseStatusModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<JobBaseStatusModel>> GetProjectDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
-        Task<Dropdown<JobBaseStatusModel>> GetBranchDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<JobBaseStatusModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<JobBaseStatusModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<JobBaseStatusModel> GetJobBaseStatusDetailAsync(long jobbasestatusId);
+        Task<JobBaseStatusModel> AddJobBaseStatusDetailAsync(JobBaseStatusModel model);
+        Task<JobBaseStatusModel> UpdateJobBaseStatusDetailAsync(long jobbasestatusId, JobBaseStatusModel model);
+        Task<JobBaseStatusModel> UpdateJobBaseStatusDetailAsync(long jobbasestatusId, string model);
     }
 }

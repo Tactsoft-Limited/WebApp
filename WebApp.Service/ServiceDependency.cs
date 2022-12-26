@@ -79,6 +79,10 @@ namespace WebApp.Service
             services.AddScoped<ILeaveTypeService, LeaveTypeService>();
             services.AddScoped<IAwardInfoService, AwardInfoService>();
             services.AddScoped<IProficiencyService, ProficiencyService>();
+            services.AddScoped<ILanguageService, LanguageService>();
+            services.AddScoped<IReligionService, ReligionService>();
+            services.AddScoped<IJobStatusService, JobStatusService>();
+            services.AddScoped<IStateService, StateService>();
         }
     }
 }

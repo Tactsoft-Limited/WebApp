@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +24,81 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<InstituteModel>> GetCompanyDropdownAsync(long? companyId = null,
-    string searchText = null,
-    int size = CommonVariables.DropdownSize)
+        public async Task<Dropdown<InstituteModel>> GetDropdownAsync(string searchText = null, int size = 15)
         {
             var data = await _unitOfWork.Repository<Institute>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
-                o => o.OrderBy(ob => ob.Id),
-                se => new InstituteModel { Id = se.Id, InstituteName = se.InstituteName, CompanyId = se.CompanyId },
-                size);
-
+                 p => (string.IsNullOrEmpty(searchText) || p.InstituteName.Contains(searchText)),
+                 o => o.OrderBy(ob => ob.Id),
+                 se => new InstituteModel { Id = se.Id, InstituteName = se.InstituteName },
+                 size
+                 );
             return data;
+        }
+        public async Task<Paging<InstituteModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<Institute>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.InstituteName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<Institute, InstituteModel>(_mapper);
+
+            return response;
+        }
+        public async Task<Paging<InstituteModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository<Institute>().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.InstituteName.Contains(filterText1))),
+                //|| (string.IsNullOrEmpty(filterText2) || s.Lastname.Contains(filterText2))),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<Institute, InstituteModel>(_mapper);
+
+            return response;
+        }
+        public async Task<InstituteModel> GetInstituteDetailAsync(long instituteId)
+        {
+            var data = await _unitOfWork.Repository<Institute>().FirstOrDefaultAsync(f => f.Id == instituteId,
+                o => o.OrderBy(ob => ob.Id)
+                );
+
+
+            var response = _mapper.Map<Institute, InstituteModel>(data);
+
+            return response;
+        }
+        public async Task<InstituteModel> AddInstituteDetailAsync(InstituteModel institute)
+        {
+
+
+            var entity = _mapper.Map<InstituteModel, Institute>(institute);
+
+            await _unitOfWork.Repository<Institute>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new InstituteModel();
+        }
+        public async Task<InstituteModel> UpdateInstituteDetailAsync(long instituteId, InstituteModel institute)
+        {
+            var entity = _mapper.Map<InstituteModel, Institute>(institute);
+
+            await _unitOfWork.Repository<Institute>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new InstituteModel();
+        }
+        public async Task<InstituteModel> UpdateInstituteDetailAsync(long instituteId, string model)
+        {
+            var grade = JsonConvert.DeserializeObject<InstituteModel>(model);
+            var entity = _mapper.Map<InstituteModel, Institute>(grade);
+
+            await _unitOfWork.Repository<Institute>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new InstituteModel();
         }
     }
 }

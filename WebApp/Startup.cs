@@ -153,10 +153,28 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<SupervisorSetup, SupervisorSetupModel>().ReverseMap();
             CreateMap<Designation, DesignationModel>().ReverseMap();
             CreateMap<Department, DepartmentModel>().ReverseMap();
+            CreateMap<Language, LanguageModel>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeModel>().ReverseMap();
+            CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
+            CreateMap<Religion, ReligionModel>().ReverseMap();
+            CreateMap<JobStatus, JobStatusModel>().ReverseMap();
             CreateMap<Document, DocumentModel>().ReverseMap();
 
 
-
+            CreateMap<NewJobStatus, NewJobStatusModel>().ReverseMap();
+            CreateMap<JobBaseStatus, JobBaseStatusModel>().ReverseMap();
+            CreateMap<EducationGroup, EducationGroupModel>().ReverseMap();
+            CreateMap<EducationType, EducationTypeModel>().ReverseMap();
+            CreateMap<Grade, GradeModel>().ReverseMap();
+            CreateMap<Institute, InstituteModel>().ReverseMap();
+            CreateMap<EmploymentCategorie, EmploymentCategoryModel>().ReverseMap();
+            CreateMap<DocumentCategorie, DocumentCategoryModel>().ReverseMap();
+            CreateMap<AwardType, AwardTypeModel>().ReverseMap();
+            CreateMap<WarningType, WarningTypeModel>().ReverseMap();
+            CreateMap<NewApprovalWorkflow, NewApprovalWorkflowModel>().ReverseMap();
+            CreateMap<WorkflowMaping, WorkflowMappingModel>().ReverseMap();
+            CreateMap<OpeningYear, OpeningYearModel>().ReverseMap();
+            CreateMap<Status, StatusModel>().ReverseMap();
         }
     }
 }

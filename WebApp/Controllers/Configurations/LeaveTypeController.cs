@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebApp.Core;
 using WebApp.Extensions;
 using WebApp.Helpers.Base;
+using WebApp.Service.Models.Configurations;
 using WebApp.Service.Services.Configurations;
 using WebApp.Sql.Entities.Configurations;
 
@@ -18,10 +20,40 @@ namespace WebApp.Controllers.Configurations
         {
             _leavetypeService = leavetypeService;
         }
-        [HttpGet("company_dropdown")]
-        public async Task<IActionResult> GetCompanyDropdownAsync(long? companyId = null, string searchText = null)
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetDropdownAsync(string searchText = null)
         {
-            var res = await _leavetypeService.GetCompanyDropdownAsync(companyId, searchText);
+            var res = await _leavetypeService.GetDropdownAsync(searchText);
+
+            return new ApiOkActionResult(res);
+        }
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var res = await _leavetypeService.GetSearchAsync(pageIndex, pageSize, searchText);
+
+            return new ApiOkActionResult(res);
+        }
+        [HttpGet("{leaveTypeId}")]
+        public async Task<IActionResult> GetLeaveTypeDetailsAsync(long leaveTypeId)
+        {
+            var res = await _leavetypeService.GetLeaveTypeDetailsAsync(leaveTypeId);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> AddLeaveTypeDetailsAsync([FromForm] LeaveTypeModel model)
+        {
+            var res = await _leavetypeService.AddLeaveTypeDetailsAsync(model);
+
+            return new ApiOkActionResult(res);
+        }
+
+        [HttpPut("{leaveTypeId}")]
+        public async Task<IActionResult> UpdateLeaveTypeDetailsAsync(long leaveTypeId, [FromForm] LeaveTypeModel model)
+        {
+            var res = await _leavetypeService.UpdateLeaveTypeDetailsAsync(leaveTypeId, model);
 
             return new ApiOkActionResult(res);
         }

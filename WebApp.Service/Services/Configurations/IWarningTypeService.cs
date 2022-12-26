@@ -13,6 +13,12 @@ namespace WebApp.Service.Services.Configurations
 {
    public interface IWarningTypeService : IBaseService<WarningType>
     {
-        Task<Dropdown<WarningTypeModel>> GetCompanyDropdownAsync(long? companyId = null, string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Dropdown<WarningTypeModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize);
+        Task<Paging<WarningTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<WarningTypeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+        Task<WarningTypeModel> GetWarningTypeDetailAsync(long waringtypeId);
+        Task<WarningTypeModel> AddWarningTypeDetailAsync(WarningTypeModel model);
+        Task<WarningTypeModel> UpdateWarningTypeDetailAsync(long waringtypeId, WarningTypeModel model);
+        Task<WarningTypeModel> UpdateWarningTypeDetailAsync(long waringtypeId, string model);
     }
 }

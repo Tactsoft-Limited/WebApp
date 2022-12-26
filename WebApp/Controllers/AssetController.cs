@@ -40,10 +40,10 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpGet("{assetTypeId}")]
-        public async Task<IActionResult> GetAssetDetailAsync(long assetTypeId)
+        [HttpGet("{assetId}")]
+        public async Task<IActionResult> GetAssetDetailAsync(long assetId)
         {
-            var res = await _assetService.GetAssetDetailAsync(assetTypeId);
+            var res = await _assetService.GetAssetDetailAsync(assetId);
 
             return new ApiOkActionResult(res);
         }
@@ -54,8 +54,8 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{assetTypeId}")]
-        public async Task<IActionResult> UpdateAssetTypeDetailAsync(long assetId, [FromForm] AssetModel asset)
+        [HttpPut("{assetId}")]
+        public async Task<IActionResult> UpdateAssetDetailAsync(long assetId, [FromForm] AssetModel asset)
         {
 
             var res = await _assetService.UpdateAssetDetailAsync(assetId, asset);

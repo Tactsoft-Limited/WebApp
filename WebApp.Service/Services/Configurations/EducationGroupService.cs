@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<EducationGroupModel>> GetCompanyDropdownAsync(long? companyId = null,
+        public async Task<Dropdown<EducationGroupModel>> GetDropdownAsync(long? companyId = null,
     string searchText = null,
     int size = CommonVariables.DropdownSize)
         {
@@ -35,6 +36,73 @@ namespace WebApp.Service.Services.Configurations
                 size);
 
             return data;
+        }
+
+        public async Task<Paging<EducationGroupModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<EducationGroup>().GetPageAsync(pageIndex,
+                pageSize,
+                s => (string.IsNullOrEmpty(searchText) || s.EducationGroupName.Contains(searchText)),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<EducationGroup, EducationGroupModel>(_mapper);
+
+            return response;
+        }
+        public async Task<Paging<EducationGroupModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            var data = await _unitOfWork.Repository< EducationGroup> ().GetPageAsync(pageIndex,
+                pageSize,
+                s => ((string.IsNullOrEmpty(filterText1) || s.EducationGroupName.Contains(filterText1))),
+                //|| (string.IsNullOrEmpty(filterText2) || s.Lastname.Contains(filterText2))),
+                o => o.OrderBy(ob => ob.Id),
+                se => se);
+
+            var response = data.ToPagingModel<EducationGroup, EducationGroupModel>(_mapper);
+
+            return response;
+        }
+        public async Task<EducationGroupModel> GetEducationgroupDetailAsync(long educationgroupId)
+        {
+            var data = await _unitOfWork.Repository<EducationGroup>().FirstOrDefaultAsync(f => f.Id == educationgroupId,
+                o => o.OrderBy(ob => ob.Id)
+                );
+
+
+            var response = _mapper.Map<EducationGroup, EducationGroupModel>(data);
+
+            return response;
+        }
+        public async Task<EducationGroupModel> AddEducationgroupDetailAsync(EducationGroupModel educationgroup)
+        {
+
+
+            var entity = _mapper.Map<EducationGroupModel, EducationGroup>(educationgroup);
+
+            await _unitOfWork.Repository<EducationGroup>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new EducationGroupModel();
+        }
+        public async Task<EducationGroupModel> UpdateEducationgroupDetailAsync(long educationgroupId, EducationGroupModel educationgroup)
+        {
+            var entity = _mapper.Map<EducationGroupModel, EducationGroup>(educationgroup);
+
+            await _unitOfWork.Repository<EducationGroup>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new EducationGroupModel();
+        }
+        public async Task<EducationGroupModel> UpdateEducationgroupDetailAsync(long educationgroupId, string model)
+        {
+            var educationgroup= JsonConvert.DeserializeObject<EducationGroupModel>(model);
+            var entity = _mapper.Map<EducationGroupModel, EducationGroup>(educationgroup);
+
+            await _unitOfWork.Repository<EducationGroup>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new EducationGroupModel();
         }
     }
 }

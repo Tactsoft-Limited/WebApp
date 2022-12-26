@@ -13,49 +13,50 @@ namespace WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EducationController : GenericBaseController<Education>
+    public class JobStatusController : GenericBaseController<JobStatus>
     {
-        private readonly IEducationService _educationService;
+        private readonly IJobStatusService _jobStatusService;
 
-        public EducationController(IEducationService educationService) : base(educationService)
+        public JobStatusController(IJobStatusService jobStatusService) : base(jobStatusService)
         {
-            this._educationService = educationService;
+            this._jobStatusService = jobStatusService;
         }
 
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
         {
-            var res = await _educationService.GetSearchAsync(pageIndex, pageSize, searchText);
+            var res = await _jobStatusService.GetSearchAsync(pageIndex, pageSize, searchText);
 
             return new ApiOkActionResult(res);
         }
+
         [HttpGet("filter")]
         public async Task<IActionResult> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null /*string filterText2 = null*/)
         {
-            var res = await _educationService.GetFilterAsync(pageIndex, pageSize, filterText1 /*filterText2*/);
+            var res = await _jobStatusService.GetFilterAsync(pageIndex, pageSize, filterText1 /*filterText2*/);
 
             return new ApiOkActionResult(res);
         }
 
-        [HttpGet("{educationId}")]
-        public async Task<IActionResult> GetEducationDetailsAsync(long educationId)
+        [HttpGet("{jobStatusId}")]
+        public async Task<IActionResult> GetJobStatusDetailAsync(long jobStatusId)
         {
-            var res = await _educationService.GetEducationDetailsAsync(educationId);
+            var res = await _jobStatusService.GetJobStatusDetailAsync(jobStatusId);
 
             return new ApiOkActionResult(res);
         }
         [HttpPost()]
-        public async Task<IActionResult> AddEducationDetailsAsync([FromForm] EducationModel model)
+        public async Task<IActionResult> AddJobStatusDetailAsync([FromForm] JobStatusModel model)
         {
-            var res = await _educationService.AddEducationDetailsAsync(model);
+            var res = await _jobStatusService.AddJobStatusDetailAsync(model);
 
             return new ApiOkActionResult(res);
         }
-        [HttpPut("{educationId}")]
-        public async Task<IActionResult> UpdateEducationDetailsAsync(long educationId, [FromForm] EducationModel model)
+        [HttpPut("{jobStatusId}")]
+        public async Task<IActionResult> UpdateJobStatusDetailAsync(long jobStatusId, [FromForm] JobStatusModel model)
         {
 
-            var res = await _educationService.UpdateEducationDetailsAsync(educationId, model);
+            var res = await _jobStatusService.UpdateJobStatusDetailAsync(jobStatusId, model);
 
             return new ApiOkActionResult(res);
         }

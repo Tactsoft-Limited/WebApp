@@ -23,18 +23,65 @@ namespace WebApp.Service.Services.Configurations
             this._unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Dropdown<ClaimTypeModel>> GetCompanyDropdownAsync(long? companyId = null,
-    string searchText = null,
+        public async Task<Dropdown<ClaimTypeModel>> GetDropdownAsync(string searchText = null,
     int size = CommonVariables.DropdownSize)
         {
             var data = await _unitOfWork.Repository<ClaimType>().GetDropdownAsync(
-                s => ((string.IsNullOrEmpty(searchText) || s.Company.CompanyName.Contains(searchText))
-                    && companyId == null || s.CompanyId == companyId),
+                s => ((string.IsNullOrEmpty(searchText) || s.CliamTypeName.Contains(searchText))),
                 o => o.OrderBy(ob => ob.Id),
-                se => new ClaimTypeModel { Id = se.Id, CliamTypeName = se.CliamTypeName, CompanyId = se.CompanyId },
+                se => new ClaimTypeModel { Id = se.Id, CliamTypeName = se.CliamTypeName },
                 size);
 
             return data;
+        }
+
+        public async Task<ClaimTypeModel> AddClaimTypeDetailsAsync(ClaimTypeModel model)
+        {
+            var entity = _mapper.Map<ClaimTypeModel, ClaimType>(model);
+
+            await _unitOfWork.Repository<ClaimType>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new ClaimTypeModel();
+        }
+
+        public async Task<ClaimTypeModel> GetClaimTypeDetailsAsync(long countryId)
+        {
+            var data = await _unitOfWork.Repository<ClaimType>().FirstOrDefaultAsync(f => f.Id == countryId);
+
+            var response = _mapper.Map<ClaimType, ClaimTypeModel>(data);
+
+            return response;
+        }
+        public Task<Paging<ClaimTypeModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Paging<ClaimTypeModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null)
+        {
+            var data = await _unitOfWork.Repository<ClaimType>().GetPageAsync(pageIndex, pageSize,
+                p => (string.IsNullOrEmpty(searchText) | p.CliamTypeName.Contains(searchText) ),
+                o => o.OrderBy(ob => ob.Id));
+
+            var response = data.ToPagingModel<ClaimType, ClaimTypeModel>(_mapper);
+
+            return response;
+        }
+
+        public async Task<ClaimTypeModel> UpdateClaimTypeDetailsAsync(long claimTypeId, ClaimTypeModel model)
+        {
+            var entity = _mapper.Map<ClaimTypeModel, ClaimType>(model);
+
+            await _unitOfWork.Repository<ClaimType>().UpdateAsync(entity);
+            await _unitOfWork.CompleteAsync();
+
+            return new ClaimTypeModel();
+        }
+
+        public Task<ClaimTypeModel> UpdateClaimTypeDetailsAsync(long claimTypeId, string model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

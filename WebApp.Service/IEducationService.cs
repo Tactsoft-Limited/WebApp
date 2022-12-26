@@ -16,6 +16,7 @@ namespace WebApp.Service
         Task<Dropdown<EducationModel>> GetDropdownAsync(string searchText = null, int size = CommonVariables.DropdownSize); 
         Task<Paging<EducationModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<EducationModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
+
         Task<EducationModel> GetEducationDetailsAsync(long educationId);
         Task<EducationModel> AddEducationDetailsAsync(EducationModel model);
         Task<EducationModel> UpdateEducationDetailsAsync(long educationId, EducationModel model);
