@@ -18,8 +18,8 @@ namespace WebApp.Service.Models.Enrols
         public long? UserId { get; set; }
         public long? EmployeeId { get; set; }
         public int DocumentTypeId { get; set; }
-        public string Attachment { get; set; }
-        public IFormFile AttachmentFile { get; set; }
+        public string Avatar { get; set; }
+        public IFormFile AvatarFile { get; set; }
         public string Remark { get; set; }
         public UserModel User { get; set; }
         public EmployeesModel Employees { get; set; }
