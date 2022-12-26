@@ -33,16 +33,16 @@ namespace WebApp.Service
         public async Task<DocumentModel> AddDocumentDetailAsync(DocumentModel model)
         {
             string uniqueFileName = string.Empty;
-            if (model.AttachmentFile !=null)
+            if (model.AvatarFile != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, CommonVariables.AvatarLocation);
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AttachmentFile.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AvatarFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.AttachmentFile.CopyTo(fileStream);
+                    model.AvatarFile.CopyTo(fileStream);
                 }
-                model.Attachment = uniqueFileName;
+                model.Avatar = uniqueFileName;
             }
             var entity = _mapper.Map<DocumentModel, Document>(model);
             await _unitOfWork.Repository<Document>().UpdateAsync(entity);
@@ -88,20 +88,20 @@ namespace WebApp.Service
         public async Task<DocumentModel> UpdateDocumentDetailAsync(long documentId, DocumentModel model)
         {
             string uniqueFileName = string.Empty;
-            if (model.AttachmentFile != null)
+            if (model.AvatarFile != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, CommonVariables.AvatarLocation);
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AttachmentFile.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.AvatarFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.AttachmentFile.CopyTo(fileStream);
+                    model.AvatarFile.CopyTo(fileStream);
                 }
-                model.Attachment = uniqueFileName;
+                model.Avatar = uniqueFileName;
             }
             else
             {
-                model.Attachment = model.Attachment?.Split("/")?.LastOrDefault();
+                model.Avatar = model.Avatar?.Split("/")?.LastOrDefault();
             }
 
             var entity = _mapper.Map<DocumentModel, Document>(model);
@@ -126,7 +126,7 @@ namespace WebApp.Service
                     filles.CopyTo(fileStream);
                 }
             }
-            document.Attachment = uniqueFileName;
+            document.Avatar = uniqueFileName;
             var entity = _mapper.Map<DocumentModel, Document>(document);
 
             await _unitOfWork.Repository<Document>().UpdateAsync(entity);
