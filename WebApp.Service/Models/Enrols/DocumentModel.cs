@@ -21,7 +21,7 @@ namespace WebApp.Service.Models.Enrols
         public string Attachment { get; set; }
         public IFormFile AttachmentFile { get; set; }
         public string Remark { get; set; }
-        public User User { get; set; }
-        public Employees Employees { get; set; }
+        public UserModel User { get; set; }
+        public EmployeesModel Employees { get; set; }
     }
 }
