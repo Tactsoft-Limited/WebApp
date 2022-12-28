@@ -176,6 +176,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<WorkflowMaping, WorkflowMappingModel>().ReverseMap();
             CreateMap<OpeningYear, OpeningYearModel>().ReverseMap();
             CreateMap<Status, StatusModel>().ReverseMap();
+            CreateMap<HobbyType, HobbyTypeModel>().ReverseMap();
         }
     }
 }
