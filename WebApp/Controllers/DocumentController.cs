@@ -48,16 +48,16 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
+        //[HttpPut("{documentId}")]
+        //public async Task<IActionResult> UpdateDocumentDetailAsync(long documentId, [FromForm] DocumentModel document)
+        //{
+
+        //    var res = await _documentService.UpdateDocumentDetailAsync(documentId, document);
+
+        //    return new ApiOkActionResult(res);
+        //}
+
         [HttpPut("{documentId}")]
-        public async Task<IActionResult> UpdateDocumentDetailAsync(long documentId, [FromForm] DocumentModel document)
-        {
-
-            var res = await _documentService.UpdateDocumentDetailAsync(documentId, document);
-
-            return new ApiOkActionResult(res);
-        }
-
-        [HttpPut("{documentId1}")]
         public async Task<IActionResult> UpdateDocumentDetailAsync(long documentId, [FromForm] string document, [FromForm] List<IFormFile> file)
         {
 
