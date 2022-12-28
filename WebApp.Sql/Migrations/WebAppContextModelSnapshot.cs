@@ -1664,8 +1664,8 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int>("DocumentTypeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("DocumentTypeId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
