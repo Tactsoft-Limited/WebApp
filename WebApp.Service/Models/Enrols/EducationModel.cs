@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApp.Service.Models.Configurations;
 using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
 
@@ -27,10 +28,10 @@ namespace WebApp.Service.Models.Enrols
         public string LastEducation { get; set; }
         public string Remarks { get; set; }
 
-        public Employees Employees { get; set; }
-        public EducationGroup EducationGroup { get; set; }
-        public EducationType EducationType { get; set; }
-        public Grade Grade { get; set; }
-        public Institute Institute { get; set; }
+        public EmployeesModel Employees { get; set; }
+        public EducationGroupModel EducationGroup { get; set; }
+        public EducationTypeModel EducationType { get; set; }
+        public GradeModel Grade { get; set; }
+        public InstituteModel Institute { get; set; }
     }
 }

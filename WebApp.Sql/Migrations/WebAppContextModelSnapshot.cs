@@ -1655,7 +1655,7 @@ namespace WebApp.Sql.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Attachment")
+                    b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("CreatedBy")
@@ -1664,8 +1664,8 @@ namespace WebApp.Sql.Migrations
                     b.Property<DateTimeOffset>("CreatedDateUtc")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int>("DocumentTypeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("DocumentTypeId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("EmployeeId")
                         .HasColumnType("bigint");
@@ -2320,6 +2320,8 @@ namespace WebApp.Sql.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SuppervisorSetupId");
 
                     b.HasIndex("UserId");
 
@@ -4005,12 +4007,19 @@ namespace WebApp.Sql.Migrations
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("WebApp.Sql.Entities.Configurations.SupervisorSetup", "SupervisorSetup")
+                        .WithMany("Supervisors")
+                        .HasForeignKey("SuppervisorSetupId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("WebApp.Sql.Entities.Identities.IdentityModel+User", "User")
                         .WithMany("Supervisors")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Employees");
+
+                    b.Navigation("SupervisorSetup");
 
                     b.Navigation("User");
                 });
@@ -4346,6 +4355,11 @@ namespace WebApp.Sql.Migrations
             modelBuilder.Entity("WebApp.Sql.Entities.Configurations.Status", b =>
                 {
                     b.Navigation("JobStatus");
+                });
+
+            modelBuilder.Entity("WebApp.Sql.Entities.Configurations.SupervisorSetup", b =>
+                {
+                    b.Navigation("Supervisors");
                 });
 
             modelBuilder.Entity("WebApp.Sql.Entities.Enrols.Asset", b =>

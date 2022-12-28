@@ -11,8 +11,8 @@ namespace WebApp.Sql.Entities.Enrols
     {
         public long? UserId { get; set; }
         public long? EmployeeId { get; set; }
-        public int DocumentTypeId { get; set; }
-        public string Attachment { get; set; }
+        public long? DocumentTypeId { get; set; }
+        public string Avatar { get; set; }
         public string Remark { get; set; }
         public User User { get; set; }
         public Employees Employees { get; set; }
