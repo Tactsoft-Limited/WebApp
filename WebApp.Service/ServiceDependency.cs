@@ -9,6 +9,7 @@ using WebApp.Service.Services;
 using WebApp.Service.Services.Configurations;
 using WebApp.Services;
 using WebApp.Sql.Entities.Enrols;
+using WebApp.Sql.Repositories;
 
 namespace WebApp.Service
 {
