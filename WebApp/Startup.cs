@@ -115,7 +115,7 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<AwardInfo, AwardInfoModel>()
-                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar)?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar) ?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                 .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
             CreateMap<BloodGroup, BloodGroupModel>().ReverseMap();
@@ -158,8 +158,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
             CreateMap<Religion, ReligionModel>().ReverseMap();
             CreateMap<JobStatus, JobStatusModel>().ReverseMap();
-            CreateMap<Document, DocumentModel>().ReverseMap();
-
+            CreateMap<Document, DocumentModel>().ReverseMap()
+                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ReverseMap();
 
             CreateMap<NewJobStatus, NewJobStatusModel>().ReverseMap();
             CreateMap<JobBaseStatus, JobBaseStatusModel>().ReverseMap();
