@@ -84,6 +84,7 @@ namespace WebApp.Service
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<IJobStatusService, JobStatusService>();
             services.AddScoped<IStateService, StateService>();
+            services.AddScoped<IHobbyTypeService, HobbyTypeService>();
         }
     }
 }
