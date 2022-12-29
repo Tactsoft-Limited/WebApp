@@ -41,6 +41,7 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
+
         [HttpPost()]
         public async Task<IActionResult> AddDocumentDetailAsync([FromForm] DocumentModel model)
         {
@@ -48,20 +49,12 @@ namespace WebApp.Controllers
 
             return new ApiOkActionResult(res);
         }
-        //[HttpPut("{documentId}")]
-        //public async Task<IActionResult> UpdateDocumentDetailAsync(long documentId, [FromForm] DocumentModel document)
-        //{
-
-        //    var res = await _documentService.UpdateDocumentDetailAsync(documentId, document);
-
-        //    return new ApiOkActionResult(res);
-        //}
 
         [HttpPut("{documentId}")]
-        public async Task<IActionResult> UpdateDocumentDetailAsync(long documentId, [FromForm] string document, [FromForm] List<IFormFile> file)
+        public async Task<IActionResult> UpdateEmployeesDetailAsync(long documentId, [FromForm] DocumentModel documents)
         {
 
-            var res = await _documentService.UpdateDocumentDetailAsync(documentId, document, file);
+            var res = await _documentService.UpdateDocumentDetailAsync(documentId, documents);
 
             return new ApiOkActionResult(res);
         }
