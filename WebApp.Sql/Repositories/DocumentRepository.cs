@@ -11,7 +11,7 @@ namespace WebApp.Sql.Repositories
 {
     public class DocumentRepository : SqlRepository<Document>, IDocumentRepository
     {
-        public DocumentRepository(WebAppContext dbContext) : base(dbContext)
+        public DocumentRepository(WebAppContext Context) : base(Context)
         {
         }
     }
