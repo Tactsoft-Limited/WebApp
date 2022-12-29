@@ -19,6 +19,6 @@ namespace WebApp.Service
         Task<DocumentModel> GetDocumentDetailAsync(long documentId);
         Task<DocumentModel> AddDocumentDetailAsync(DocumentModel model);
         Task<DocumentModel> UpdateDocumentDetailAsync(long documentId, DocumentModel model);
-        Task<DocumentModel> UpdateDocumentDetailAsync(long documentId, string model, List<IFormFile> file);
+        Task<DocumentModel> UpdateDocumentDetailAsync(long documentId, string model, List<IFormFile> images);
     }
 }
