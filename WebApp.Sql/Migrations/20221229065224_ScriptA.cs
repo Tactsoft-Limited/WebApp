@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Sql.Migrations
 {
-    public partial class SacriptA : Migration
+    public partial class ScriptA : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -492,6 +492,30 @@ namespace WebApp.Sql.Migrations
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DocumentType",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentType", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentType_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -989,6 +1013,12 @@ namespace WebApp.Sql.Migrations
                         name: "FK_Documents_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Documents_DocumentType_DocumentTypeId",
+                        column: x => x.DocumentTypeId,
+                        principalTable: "DocumentType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -2614,6 +2644,11 @@ namespace WebApp.Sql.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Documents_DocumentTypeId",
+                table: "Documents",
+                column: "DocumentTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Documents_EmployeeId",
                 table: "Documents",
                 column: "EmployeeId");
@@ -2621,6 +2656,11 @@ namespace WebApp.Sql.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_UserId",
                 table: "Documents",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentType_UserId",
+                table: "DocumentType",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -3163,6 +3203,9 @@ namespace WebApp.Sql.Migrations
 
             migrationBuilder.DropTable(
                 name: "Assets");
+
+            migrationBuilder.DropTable(
+                name: "DocumentType");
 
             migrationBuilder.DropTable(
                 name: "EducationGroup");
