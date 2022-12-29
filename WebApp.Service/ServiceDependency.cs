@@ -85,6 +85,7 @@ namespace WebApp.Service
             services.AddScoped<IJobStatusService, JobStatusService>();
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<IHobbyTypeService, HobbyTypeService>();
+            services.AddScoped<IDocumentTypeService, DocumentTypeService>();
         }
     }
 }
