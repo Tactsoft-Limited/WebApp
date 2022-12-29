@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using static WebApp.Sql.Entities.Identities.IdentityModel;
 using WebApp.Sql.Entities.Enrols;
 using Microsoft.AspNetCore.Http;
+using WebApp.Sql.Entities.Configurations;
+using WebApp.Service.Models.Configurations;
 
 namespace WebApp.Service.Models.Enrols
 {
@@ -23,5 +25,6 @@ namespace WebApp.Service.Models.Enrols
         public string Remark { get; set; }
         public UserModel User { get; set; }
         public EmployeesModel Employees { get; set; }
+        public DocumentTypeModel DocumentType { get; set; }
     }
 }
