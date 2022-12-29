@@ -177,6 +177,7 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<OpeningYear, OpeningYearModel>().ReverseMap();
             CreateMap<Status, StatusModel>().ReverseMap();
             CreateMap<HobbyType, HobbyTypeModel>().ReverseMap();
+            CreateMap<DocumentType, DocumentTypeModel>().ReverseMap();
         }
     }
 }
