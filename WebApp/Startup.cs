@@ -115,8 +115,8 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<AwardInfo, AwardInfoModel>()
-                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar)?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
-                .ReverseMap();
+               .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+               .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
             CreateMap<BloodGroup, BloodGroupModel>().ReverseMap();
             CreateMap<Contact, ContactModel>().ReverseMap();
@@ -134,7 +134,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<Education, EducationModel>().ReverseMap();
             CreateMap<CompanyInfo, CompanyInfoModel>().ReverseMap();
             CreateMap<BranchInfo, BranchInfoModel>().ReverseMap();
-            CreateMap<AssetType, AssetTypeModel>().ReverseMap();
+            CreateMap<AssetType, AssetTypeModel>()
+            .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+            .ReverseMap();
             CreateMap<Asset, AssetModel>().ReverseMap();
             CreateMap<Project, ProjectModel>().ReverseMap();
             CreateMap<Gender, GenderModel>().ReverseMap();
