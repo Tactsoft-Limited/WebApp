@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Sql.Entities.Configurations;
 using WebApp.Sql.Entities.Enrols;
 
 namespace WebApp.Sql.Entities.Identities
@@ -60,6 +61,7 @@ namespace WebApp.Sql.Entities.Identities
 
             public IList<Document> Documents { get; set; }
             public IList<AwardInfo> AwardInfos { get; set; }
+            public IList<DocumentType> DocumentTypes { get; set; }
         }
 
         [Table("UserRoles")]

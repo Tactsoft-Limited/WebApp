@@ -9,6 +9,7 @@ using WebApp.Service.Services;
 using WebApp.Service.Services.Configurations;
 using WebApp.Services;
 using WebApp.Sql.Entities.Enrols;
+using WebApp.Sql.Repositories;
 
 namespace WebApp.Service
 {
@@ -82,6 +83,9 @@ namespace WebApp.Service
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IReligionService, ReligionService>();
             services.AddScoped<IJobStatusService, JobStatusService>();
+            services.AddScoped<IStateService, StateService>();
+            services.AddScoped<IHobbyTypeService, HobbyTypeService>();
+            services.AddScoped<IDocumentTypeService, DocumentTypeService>();
         }
     }
 }

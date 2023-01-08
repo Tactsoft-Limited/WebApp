@@ -115,6 +115,8 @@ namespace DotnetCoreApplicationBoilerplate
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<AwardInfo, AwardInfoModel>()
+                .ForMember(d=>d.Avatar, opts=>opts.MapFrom(src=>string.IsNullOrEmpty(src.Avatar) ?"":$"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ReverseMap();
                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
                .ReverseMap();
             CreateMap<Blog, BlogModel>().ReverseMap();
@@ -160,7 +162,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<ClaimType, ClaimTypeModel>().ReverseMap();
             CreateMap<Religion, ReligionModel>().ReverseMap();
             CreateMap<JobStatus, JobStatusModel>().ReverseMap();
-
+            CreateMap<Document, DocumentModel>().ReverseMap()
+                .ForMember(d => d.Avatar, opts => opts.MapFrom(src => string.IsNullOrEmpty(src.Avatar) ? "" : $"{CommonVariables.AvatarLocation}/{src.Avatar}"))
+                .ReverseMap();
 
             CreateMap<NewJobStatus, NewJobStatusModel>().ReverseMap();
             CreateMap<JobBaseStatus, JobBaseStatusModel>().ReverseMap();
@@ -175,6 +179,9 @@ namespace DotnetCoreApplicationBoilerplate
             CreateMap<NewApprovalWorkflow, NewApprovalWorkflowModel>().ReverseMap();
             CreateMap<WorkflowMaping, WorkflowMappingModel>().ReverseMap();
             CreateMap<OpeningYear, OpeningYearModel>().ReverseMap();
+            CreateMap<Status, StatusModel>().ReverseMap();
+            CreateMap<HobbyType, HobbyTypeModel>().ReverseMap();
+            CreateMap<DocumentType, DocumentTypeModel>().ReverseMap();
         }
     }
 }

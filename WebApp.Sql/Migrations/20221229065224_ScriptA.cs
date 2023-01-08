@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Sql.Migrations
 {
-    public partial class initial_database : Migration
+    public partial class ScriptA : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -204,6 +204,23 @@ namespace WebApp.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MaritalStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaritalStatusName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaritalStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
@@ -217,23 +234,6 @@ namespace WebApp.Sql.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MeritalStatuses",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MeritalStatusName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
-                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MeritalStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -492,6 +492,30 @@ namespace WebApp.Sql.Migrations
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DocumentType",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentType", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentType_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -827,42 +851,6 @@ namespace WebApp.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AwardInfos",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: true),
-                    EmployeeId = table.Column<long>(type: "bigint", nullable: true),
-                    AwardTypeId = table.Column<long>(type: "bigint", nullable: true),
-                    AwardName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gift = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PriceAmount = table.Column<float>(type: "real", nullable: false),
-                    Attachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
-                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AwardInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AwardInfos_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AwardInfos_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -973,7 +961,7 @@ namespace WebApp.Sql.Migrations
                     EmployeeId = table.Column<long>(type: "bigint", nullable: true),
                     DesignationId = table.Column<long>(type: "bigint", nullable: true),
                     EffectedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RemarK = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
@@ -1010,8 +998,8 @@ namespace WebApp.Sql.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<long>(type: "bigint", nullable: true),
                     EmployeeId = table.Column<long>(type: "bigint", nullable: true),
-                    DocumentTypeId = table.Column<int>(type: "int", nullable: false),
-                    Attachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentTypeId = table.Column<long>(type: "bigint", nullable: true),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -1025,6 +1013,12 @@ namespace WebApp.Sql.Migrations
                         name: "FK_Documents_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Documents_DocumentType_DocumentTypeId",
+                        column: x => x.DocumentTypeId,
+                        principalTable: "DocumentType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -1221,6 +1215,7 @@ namespace WebApp.Sql.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: true),
                     EmployeeId = table.Column<long>(type: "bigint", nullable: true),
                     ProficencyId = table.Column<long>(type: "bigint", nullable: true),
+                    LanguageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -1285,41 +1280,6 @@ namespace WebApp.Sql.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Passports_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Supervisors",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: true),
-                    SuppervisorSetupId = table.Column<long>(type: "bigint", nullable: true),
-                    EmployeeId = table.Column<long>(type: "bigint", nullable: true),
-                    SuppervisorEmployeeId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDirectSupervisor = table.Column<bool>(type: "bit", nullable: false),
-                    EffectedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
-                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Supervisors", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Supervisors_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Supervisors_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
@@ -1411,7 +1371,7 @@ namespace WebApp.Sql.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<long>(type: "bigint", nullable: true),
                     AssetName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Attachment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanyId = table.Column<long>(type: "bigint", nullable: true),
                     BranchId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -2074,6 +2034,48 @@ namespace WebApp.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AwardInfos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    EmployeeId = table.Column<long>(type: "bigint", nullable: true),
+                    AwardTypeId = table.Column<long>(type: "bigint", nullable: true),
+                    AwardName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gift = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PriceAmount = table.Column<double>(type: "float", nullable: false),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AwardInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AwardInfos_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AwardInfos_AwardTypes_AwardTypeId",
+                        column: x => x.AwardTypeId,
+                        principalTable: "AwardTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AwardInfos_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Educations",
                 columns: table => new
                 {
@@ -2262,6 +2264,47 @@ namespace WebApp.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Supervisors",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
+                    SuppervisorSetupId = table.Column<long>(type: "bigint", nullable: true),
+                    EmployeeId = table.Column<long>(type: "bigint", nullable: true),
+                    SuppervisorEmployeeId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDirectSupervisor = table.Column<bool>(type: "bit", nullable: false),
+                    EffectedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Remark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    UpdatedDateUtc = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supervisors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Supervisors_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Supervisors_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Supervisors_SupervisorSetups_SuppervisorSetupId",
+                        column: x => x.SuppervisorSetupId,
+                        principalTable: "SupervisorSetups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AssetRequisition",
                 columns: table => new
                 {
@@ -2431,6 +2474,11 @@ namespace WebApp.Sql.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AwardInfos_AwardTypeId",
+                table: "AwardInfos",
+                column: "AwardTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AwardInfos_EmployeeId",
                 table: "AwardInfos",
                 column: "EmployeeId");
@@ -2596,6 +2644,11 @@ namespace WebApp.Sql.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Documents_DocumentTypeId",
+                table: "Documents",
+                column: "DocumentTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Documents_EmployeeId",
                 table: "Documents",
                 column: "EmployeeId");
@@ -2603,6 +2656,11 @@ namespace WebApp.Sql.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_UserId",
                 table: "Documents",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentType_UserId",
+                table: "DocumentType",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -2831,6 +2889,11 @@ namespace WebApp.Sql.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Supervisors_SuppervisorSetupId",
+                table: "Supervisors",
+                column: "SuppervisorSetupId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Supervisors_UserId",
                 table: "Supervisors",
                 column: "UserId");
@@ -2998,9 +3061,6 @@ namespace WebApp.Sql.Migrations
                 name: "AwardInfos");
 
             migrationBuilder.DropTable(
-                name: "AwardTypes");
-
-            migrationBuilder.DropTable(
                 name: "BankInfos");
 
             migrationBuilder.DropTable(
@@ -3067,10 +3127,10 @@ namespace WebApp.Sql.Migrations
                 name: "LeaveTypes");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "MaritalStatuses");
 
             migrationBuilder.DropTable(
-                name: "MeritalStatuses");
+                name: "Menus");
 
             migrationBuilder.DropTable(
                 name: "NewJobStatus");
@@ -3101,9 +3161,6 @@ namespace WebApp.Sql.Migrations
 
             migrationBuilder.DropTable(
                 name: "Supervisors");
-
-            migrationBuilder.DropTable(
-                name: "SupervisorSetups");
 
             migrationBuilder.DropTable(
                 name: "UserAddressInformation");
@@ -3139,10 +3196,16 @@ namespace WebApp.Sql.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "AwardTypes");
+
+            migrationBuilder.DropTable(
                 name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Assets");
+
+            migrationBuilder.DropTable(
+                name: "DocumentType");
 
             migrationBuilder.DropTable(
                 name: "EducationGroup");
@@ -3166,13 +3229,13 @@ namespace WebApp.Sql.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "SupervisorSetups");
+
+            migrationBuilder.DropTable(
                 name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "UserInformations");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "NewApprovalWorkflows");
@@ -3181,10 +3244,7 @@ namespace WebApp.Sql.Migrations
                 name: "AssetType");
 
             migrationBuilder.DropTable(
-                name: "Departments");
-
-            migrationBuilder.DropTable(
-                name: "Genders");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "BranchInfos");
@@ -3193,13 +3253,19 @@ namespace WebApp.Sql.Migrations
                 name: "CompanyInfos");
 
             migrationBuilder.DropTable(
-                name: "Designations");
+                name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "Genders");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Citys");
+
+            migrationBuilder.DropTable(
+                name: "Designations");
 
             migrationBuilder.DropTable(
                 name: "States");

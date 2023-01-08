@@ -14,6 +14,8 @@ namespace WebApp.Service
 {
     public interface IEmployeeManagementCategoryService:IBaseService<EmployeeManagementCategory>
     {
+        Task<Paging<EmployeeManagementCategoryModel>> GetSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
+        Task<Paging<EmployeeManagementCategoryModel>> GetFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
         Task<Paging<EmployeeManagementCategoryModel>> GetEmployeeManagementCategoryServiceSearchAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string searchText = null);
         Task<Paging<EmployeeManagementCategoryModel>> GetEmployeeManagementCategoryServiceFilterAsync(int pageIndex = CommonVariables.pageIndex, int pageSize = CommonVariables.pageSize, string filterText1 = null);
 
